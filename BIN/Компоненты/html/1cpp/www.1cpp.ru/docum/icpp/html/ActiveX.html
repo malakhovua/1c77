@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="CP1251" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/ActiveX.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:50 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=CP1251" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>АктивИкс</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: ActiveX.html,v 1.1250 2013/01/30 23:11:08 fez Exp $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id2">
+<h1 class="title"><span class="target" id="id1">АктивИкс</span></h1>
+
+<!-- Автор: Рыбальченко Степан aka Steban -->
+<!-- <chminfo>
+        <insert nodes="//common/maininfo/*"/>
+        <alinks>
+                                _1cpp_ativex_ctrl_
+                                _1cpp_formex_cc_target_
+                        </alinks>
+</chminfo> -->
+<div class="contents topic" id="id3">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#activex" id="id11"><strong>Класс &quot;АктивИкс&quot; / &quot;ActiveX&quot;.</strong></a></li>
+<li><a class="reference internal" href="#id4" id="id12">События</a><ul>
+<li><a class="reference internal" href="#selection" id="id13">Выбор / Selection</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id14">Свойства</a><ul>
+<li><a class="reference internal" href="#object" id="id15">Объект / Object</a></li>
+<li><a class="reference internal" href="#eventprocessing" id="id16">ОбработкаСобытий / EventProcessing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id17">Методы</a><ul>
+<li><a class="reference internal" href="#assignattrib" id="id18">УстановитьАтрибут / AssignAttrib</a></li>
+<li><a class="reference internal" href="#createcontrol" id="id19">СоздатьЭУ / CreateControl</a></li>
+<li><a class="reference internal" href="#setfocus" id="id20">УстановитьФокус / SetFocus</a></li>
+<li><a class="reference internal" href="#destroy" id="id21">Уничтожить / Destroy</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="activex">
+<h1><strong>Класс &quot;АктивИкс&quot; / &quot;ActiveX&quot;.</strong></h1>
+<!-- <chminfo split="0" splitchild="0">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<p>Класс позволяет размещать на формах 1С:Предприятие элементы управления (далее ЭУ) ActiveX
+и обрабатывать события, возникающие в ЭУ.
+При возникновении события вызывается процедура модуля формы с именем:</p>
+<pre class="literal-block">
+&lt;ИдентификаторЭлементаДиалога&gt;_&lt;Событие&gt;
+</pre>
+<p>где ИдентификаторЭлементаДиалога - идентификатор элемента диалога, на месте которого создан ЭУ,
+и Событие - наименование события ЭУ (например OnClick).
+Например, обработчик Процедура ИДБраузер_BeforeNavigate2(Параметры...)</p>
+<p>Класс может служить базовым классом для классов, определяемых пользователем.</p>
+<p>В этом случае, если в модуле реализации КОП-наследника определены процедуры или функции с именами,
+совпадающими с именами событий (например, OnClick) без указания имени реквизита:</p>
+<pre class="literal-block">
+&lt;Событие&gt;
+</pre>
+<p>где Событие - наименование события ЭУ (например OnClick),
+Например, обработчик Процедура BeforeNavigate2(Параметры...)</p>
+<p>то при возникновении соответствующих событий они будут вызваны.
+Если определены обработчики в модуле формы и в модуле реализации КОП, то сначала будут вызваны
+обработчики из модуля реализации КОП.
+Для обработки событий в модуле реализации КОП экземпляр класса должен быть создан следующим образом:</p>
+<pre class="literal-block">
+АтрФормы = СоздатьОбъект(&quot;АтрибутФормы&quot;);
+АтрФормы.УстановитьАтрибут(Форма,&quot;ФДерево&quot;);
+Дерево=СоздатьОбъект(&quot;Дерево&quot;);//класс-наследник АктивИкс
+АтрФормы.СоздатьЭлементУправления(Дерево); // СоздатьЭУ
+Дерево.СоздатьЭУ(&quot;MSComctlLib.TreeCtrl&quot;);
+</pre>
+</div>
+<div class="section" id="id4">
+<h1>События</h1>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="selection">
+<h2><span class="target" id="id5">Выбор</span> / Selection</h2>
+<blockquote>
+<p><strong>Синтаксис для формы:</strong> Выбор( Объект )</p>
+<p><strong>Синтаксис для КОП:</strong> Выбор()</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Объект - тип: АктивИкс или КОП-наследник АктивИкс. Параметр Объект не передается в случае нахождения обработчика в наследнике АктивИкс.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает при нажатии Enter или двойном щелчке на элементе АктивИкс в форме.
+После обработки данного события управление передается самому ЭУ.
+Применение данного события полностью идентично применению штатным событиям АктивИкс.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id6">
+<h1>Свойства</h1>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="object">
+<h2><span class="target" id="id7">Объект</span> / Object</h2>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> OLE объект.</p>
+<p><strong>Описание:</strong> Обеспечивает доступ к свойствам и методам созданного элемента управления.</p>
+</blockquote>
+</div>
+<div class="section" id="eventprocessing">
+<h2>ОбработкаСобытий / EventProcessing</h2>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Управляет вызовом процедур - обработчиков событий.</p>
+</blockquote>
+<p>Если 0, то при возникновении событий в элементе управления
+процедуры-обработчики не вызываются. При любых других значениях обработка событий производится.</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h1>Методы</h1>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="assignattrib">
+<h2><span class="target" id="id9">УстановитьАтрибут</span> / AssignAttrib</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстановитьАтрибут(Форма, ИдентификаторЭлементаДиалога)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>Форма</strong> - тип: Форма. Форма, на которой будет создан элемент ActiveX</li>
+<li><strong>ИдентификаторЭлементаДиалога</strong> - тип: Строка. Идентификатор элемента
+диалога, на месте которого будет создан элемент ActiveX.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Указывает размещение создаваемого элемента,
+а также устанавливает префикс для имен процедур-обработчиков событий, расположенных
+в модуле формы.</p>
+</blockquote>
+<p>имена процедур-обработчиков событий, расположенных в модуле
+<a class="reference external" href="classes.chm__/classes0.html">КОП-наследника</a> АктивИкс совпадают с именами событий.</p>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает после физического открытия окна формы (например - в предопределенной процедуре
+ПослеОткрытия). Метод работает только для реквизитов диалога типа &quot;Текст&quot;.</p>
+</div>
+</div>
+<div class="section" id="createcontrol">
+<h2>СоздатьЭУ / CreateControl</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong></p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>ProgID</strong> - тип: Строка. ProgID элемента управления как указано в реестре.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Возвращает:</strong> OLE объект созданного элемента управления.</p>
+<p><strong>Описание:</strong> Создает в месте, указанном при вызове процедуры <a class="reference internal" href="#id9">УстановитьАтрибут</a>
+элемент управления ActiveX с указанным ProgID.</p>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает после указания расположения ЭУ вызовом <a class="reference internal" href="#id9">УстановитьАтрибут</a> класса <a class="reference internal" href="#id1">АктивИкс</a>
+или вызовом СоздатьЭУ(СоздатьТабличноеПоле) класса АтрибутФормы.</p>
+</div>
+<p>OLE-объект возвращаемый при выполнении метода может быть сохранен в переменной.
+В дальнейшем доступ к этому объекту может осуществляться через свойство <a class="reference internal" href="#id7">Объект</a>.</p>
+</div>
+<div class="section" id="setfocus">
+<h2>УстановитьФокус / SetFocus</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстановитьФокус()</p>
+<p><strong>Описание:</strong> Устанавливает фокус ввода.</p>
+</blockquote>
+</div>
+<div class="section" id="destroy">
+<h2>Уничтожить / Destroy</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> Уничтожить()</p>
+<p><strong>Описание:</strong> уничтожает элемент управления.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2013-01-30 23:09 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/ActiveX.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:51 GMT -->
+</html>

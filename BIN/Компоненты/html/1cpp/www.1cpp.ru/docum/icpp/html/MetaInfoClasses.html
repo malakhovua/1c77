@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="CP1251" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/MetaInfoClasses.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:52 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=CP1251" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>MetaInfoClasses</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: MetaInfoClasses.html,v 1.1183 2013/01/30 23:11:08 fez Exp $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="metainfoclasses">
+<h1 class="title">MetaInfoClasses</h1>
+
+<!-- Автор: Артур Аюханов aka artbear, mailto: artbear@inbox.ru -->
+<!-- <chminfo>
+        <insert nodes="//common/maininfo/*"/>
+        <alinks>_1cpp_metainfoclasses_</alinks>
+        <klinks>
+                MetaInfoClasses
+        </klinks>
+</chminfo> -->
+<div class="contents topic" id="id1">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id2" id="id5">Методы</a><ul>
+<li><a class="reference internal" href="#als-createals" id="id6">СоздатьALS / CreateALS</a></li>
+<li><a class="reference internal" href="#setfilterclasses" id="id7">УстФильтрПоКлассам / SetFilterClasses</a></li>
+<li><a class="reference internal" href="#setfilternamespace" id="id8">УстФильтрПоПростИмен / SetFilterNamespace</a></li>
+<li><a class="reference internal" href="#getloadincludefiles" id="id9">ПолучитьЗагрВложФайлы / GetLoadIncludeFiles</a></li>
+<li><a class="reference internal" href="#getdefsymbolofpreproc" id="id10">ПолучитьОпрСимволыПрепроц / GetDefSymbolOfPreproc</a></li>
+<li><a class="reference internal" href="#getallclassesnames" id="id11">ПолучитьВсеИменаКлассов / GetAllClassesNames</a></li>
+<li><a class="reference internal" href="#getallaliasandpath" id="id12">ПолучитьПсевдИ_Пути / GetAllAliasAndPath</a></li>
+<li><a class="reference internal" href="#getnamesmethofclass" id="id13">ПолучитьИменаМетодовКласса / GetNamesMethOfClass</a></li>
+<li><a class="reference internal" href="#getinfoparammeth" id="id14">ПолучитьИнфоПоПар / GetInfoParamMeth</a></li>
+<li><a class="reference internal" href="#isclassexist" id="id15">КлассСуществует / IsClassExist</a></li>
+<li><a class="reference internal" href="#ismethexist" id="id16">МетодСуществует / IsMethExist</a></li>
+<li><a class="reference internal" href="#getversion" id="id17">ПолучитьВерсию / GetVersion</a></li>
+<li><a class="reference internal" href="#sql-thisissql-ver" id="id18">ЭтоSQL_Версия / ThisIsSQL_Ver</a></li>
+<li><a class="reference internal" href="#getcursettings" id="id19">ПолучитьТекУстановки / GetCurSettings</a></li>
+<li><a class="reference internal" href="#setcursettings" id="id20">УстановитьТекУстановки / SetCurSettings</a></li>
+<li><a class="reference internal" href="#readdefinesofclasses" id="id21">ЗагрузитьОписаниеКлассов / ReadDefinesOfClasses</a></li>
+<li><a class="reference internal" href="#getbaseclasses" id="id22">ПолучитьИменаБазовыхКлассов / GetBaseClasses</a></li>
+<li><a class="reference internal" href="#theclassis" id="id23">ЯвляетсяОбъектом / TheClassIs</a></li>
+<li><a class="reference internal" href="#getfileversion" id="id24">ПолучитьВерсиюФайла / GetFileVersion</a></li>
+<li><a class="reference internal" href="#clearclassoptimizationdata" id="id25">ОчиститьДанныеОптимизацииКлассов / ClearClassOptimizationData</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p><strong>Класс &quot;MetaInfoClasses&quot; / &quot;MetaInfoClasses&quot;.</strong></p>
+<p>1. Удобный сервисный класс, показывающий различную метаинформацию
+по классам, методам, параметрам методов, определенным символам препроцессора, псевдонимам путей,
+версию 1С++, текущие настройки 1С++, вложенным файлам (директивой #include).</p>
+<ol class="arabic simple" start="2">
+<li>Класс также умеет динамически подгружать класы - метод <a class="reference internal" href="#id3">ЗагрузитьОписаниеКлассов</a> .</li>
+</ol>
+<p>3. Класс также умеет сбрасывает метаданные классов, что позволяет динамически перезагружать классы, не перезагружая Предприятие.
+Метод <a class="reference internal" href="#id4">ОчиститьДанныеОптимизацииКлассов</a> .</p>
+<p>4. А также формировать по специальным комментариям в файлах определения
+классов ( prm-файлы ) XML - документацию и ALS - документацию по классам.
+Метод <a class="reference internal" href="#als">СоздатьALS</a> .</p>
+<p>Все специальные комментарии формируются в виде XML текста и определяются
+наличием
+трех знаков /// перед их началом.</p>
+<p>Например:</p>
+<pre class="literal-block">
+///&lt;class name = МойКласс Version = 1.0 LastDate =
+///descr = Мой первый класс с XML - комментариями
+///depends =  use =  author = Гусев Д.А. firm = OXY base =
+///example =  remark = &gt;
+//А это обычный комментарий, которые не проверяется XML - парсером
+class МойКласс=МойКласс.ert
+{
+};
+///&lt;/class&gt;
+</pre>
+<div class="section" id="id2">
+<h1>Методы</h1>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="als-createals">
+<span id="als"></span><h2>СоздатьALS / CreateALS</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> СоздатьALS(стрИмяФайлаALS, стрИмяКорня)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>стрИмяФайлаALS</strong> - тип: Строка. Имя файла als.</li>
+<li><strong>стрИмяКорня</strong> - тип: Строка. Имя корневой папки в синтаксис помощнике, в которой будут помещаться описания классов.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> формирует по XML - описаниям классов специального формата,
+описанного выше, als - файл помощника 1С. И формирует XML-файл описаний.
+Настройки для этого метода осуществляются с помощью следующих методов:
+TuningALS, SetFilterClasses, SetFilterNamespace, описание которых см.
+выше.</p>
+<p>Для возможности формирования ALS - файла из XML комментариев определены 6 специальных тэгов названия, которых можно изменять:</p>
+<blockquote>
+<p>·       Пространство имен (по умолчанию namespace). Этот тэг формирует папку в синтаксис помощнике 1С</p>
+<p>·       Класс (по умолчанию class)</p>
+<p>·       Метод (по умолчанию method)</p>
+<p>·       Параметр метода (по умолчанию param)</p>
+<p>·       Возвращаемое значение (по умолчанию returns)</p>
+<p>·       Свойство (по умолчанию property)</p>
+<p>·       У всех выше описанных тэгов, кроме возвращаемого значения, обязан быть атрибут имя (по умолчанию name)</p>
+</blockquote>
+<p>Пример в примере жирным выделенных все необходимые тэги и атрибуты:</p>
+</blockquote>
+<pre class="literal-block">
+/// &lt;namespace name=Мои супер классы&gt;
+//****************************************************************************
+///&lt;class name = МойКласс Version = 1.0 LastDate =
+///descr =
+///depends =  use =  author = Гусев Д.А. firm = OXY base =
+///example =  remark = &gt;
+class МойКласс=МойКласс.ert
+{
+//*********************************************************************
+        /// &lt;property name=Атрибут1 access=Public type=Строка&gt;
+        /// Атрибут первый
+        /// &lt;/property&gt;
+        //**********************************************************************
+        /// &lt;method name=Метод access=Public&gt;
+        /// &lt;summary&gt;&lt;/summary&gt;
+        /// &lt;example&gt;&lt;/example&gt;
+        /// &lt;remark&gt;&lt;/remark&gt;
+        /// &lt;param name=Число mod=[in] | [out] type=чПарам1 defaultValue = 1&gt;Параметр первый&lt;/param&gt;
+        /// &lt;returns type=Число&gt;Что &lt;/returns&gt;
+        /// &lt;sig&gt;
+        Число Метод(Число чПарам1 = 1);
+        /// &lt;/sig&gt;
+        /// &lt;/method&gt;
+};
+///&lt;/class&gt;
+/// &lt;/namespace&gt;
+
+
+В поставку с ВК включен демонстрационный пример формирования als-файла для класса.
+И предложен шаблоны заполнения для 1C редактора, где есть сокращения:
+класс\ мет\ пар\ св\ прим\ и их англ. эквиваленты.
+</pre>
+</div>
+<div class="section" id="setfilterclasses">
+<h2>УстФильтрПоКлассам / SetFilterClasses</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстФильтрПоКлассам(стрФильтр)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first simple">
+<li><strong>стрФильтр</strong> - тип: Строка. Имена классов, разделенные запятой, которые необходимо выгружать в als-файл.</li>
+</ul>
+<p class="last">Пустая строка - фильтр отключен и выгружаться будут все комментированные классы.</p>
+</dd>
+</dl>
+<p><strong>Описание:</strong> устанавливает фильтр по выгружаемым классам в als-файл содержащихся в текущей конфигурации.</p>
+</blockquote>
+</div>
+<div class="section" id="setfilternamespace">
+<h2>УстФильтрПоПростИмен / SetFilterNamespace</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстФильтрПоПростИмен(стрФильтр)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first simple">
+<li><strong>стрФильтр</strong> - тип: Строка. Имена пространств имен, разделенные запятой, которые необходимо выгружать в als-файл.</li>
+</ul>
+<p class="last">Пустая строка - фильтр отключен и выгружаться будут все пространства.</p>
+</dd>
+</dl>
+<p><strong>Описание:</strong> устанавливает фильтр по пространству имен для выгрузки в als-файл.</p>
+</blockquote>
+</div>
+<div class="section" id="getloadincludefiles">
+<h2>ПолучитьЗагрВложФайлы / GetLoadIncludeFiles</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьЗагрВложФайлы()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть имена файлов.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список с именами вложенных файлов - загруженных
+с помощью препроцессорной директивы #include.</p>
+</blockquote>
+</div>
+<div class="section" id="getdefsymbolofpreproc">
+<h2>ПолучитьОпрСимволыПрепроц / GetDefSymbolOfPreproc</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьОпрСимволыПрепроц()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть имена символов.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список определенных препроцессорной директивой #define символов.</p>
+</blockquote>
+</div>
+<div class="section" id="getallclassesnames">
+<h2>ПолучитьВсеИменаКлассов / GetAllClassesNames</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьВсеИменаКлассов()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть имена классов, а в символьном представлении полный путь к его реализации.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список имен классов и полных путей до них.</p>
+</blockquote>
+</div>
+<div class="section" id="getallaliasandpath">
+<h2>ПолучитьПсевдИ_Пути / GetAllAliasAndPath</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьПсевдИ_Пути()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть имена псевдонимов, а в символьном представлении их содержимое.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список псевдонимов и путей которые они определяют.</p>
+</blockquote>
+</div>
+<div class="section" id="getnamesmethofclass">
+<h2>ПолучитьИменаМетодовКласса / GetNamesMethOfClass</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьИменаМетодовКласса(стрИмяКласса)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>стрИмяКласса</strong> - тип: Строка. Имя класса, имена методов которого мы желаем получить.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть имена методов.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список имен методов у класса.</p>
+<p><strong>Внимание:</strong>
+Метод работает, только для тех методов, которые были определены в файлах - определений классов (prm-файлы).&quot;</p>
+</blockquote>
+</div>
+<div class="section" id="getinfoparammeth">
+<h2>ПолучитьИнфоПоПар / GetInfoParamMeth</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьИнфоПоПар(стрИмяКласса, стрИмяМетода)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>стрИмяКласса</strong> - тип: Строка. Имя класса.</li>
+<li><strong>стрИмяМетода</strong> - тип: Строка. Имя метода.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть структуры с предопределенными полями.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает список предопределенных структур параметров
+метода класса с полями: Имя - имя параметра, Имя - тип параметра,
+Значение - значение по умолчанию для параметра, Режим - имеет два
+состояния ПоЗначению и ПоСылке.</p>
+<p><strong>Внимание:</strong>
+Метод работает, только для тех методов, которые были определены в файлах - определений классов (prm-файлы).&quot;</p>
+</blockquote>
+</div>
+<div class="section" id="isclassexist">
+<h2>КлассСуществует / IsClassExist</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> КлассСуществует(стрИмяКласса)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>стрИмяКласса</strong> - тип: Строка. Имя класса.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Число.  1 - существует, 0 - не существует.</dd>
+</dl>
+<p><strong>Описание:</strong> Определяет, существует ли в системе зарегистрированный класс с таким именем.</p>
+<p>Метод является полным аналогом соответствующего метода встроенного класса &quot;Информатор&quot;.</p>
+</blockquote>
+</div>
+<div class="section" id="ismethexist">
+<h2>МетодСуществует / IsMethExist</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> МетодСуществует(стрИмяКласса, стрИмяМетода)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>стрИмяКласса</strong> - тип: Строка. Имя класса.</li>
+<li><strong>стрИмяМетода</strong> - тип: Строка. Имя метода.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Число.  1 - существует, 0 - не существует.</dd>
+</dl>
+<p><strong>Описание:</strong> Определяет, существует ли в системе зарегистрированный класс с таким именем и методом.</p>
+<p><strong>Внимание:</strong>
+Метод работает, только для тех методов, которые были определены в файлах - определений классов (prm-файлы).</p>
+<p>Метод является полным аналогом соответствующего метода встроенного класса &quot;Информатор&quot;.</p>
+</blockquote>
+</div>
+<div class="section" id="getversion">
+<h2>ПолучитьВерсию / GetVersion</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьВерсию()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Число. Номер версии, число без точек. Пример: если версия ВК 1.1.1.0, то метод вернет 1110.</dd>
+</dl>
+<p><strong>Описание:</strong> возвращает номер текущей версии ВК 1С++.</p>
+</blockquote>
+</div>
+<div class="section" id="sql-thisissql-ver">
+<h2>ЭтоSQL_Версия / ThisIsSQL_Ver</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЭтоSQL_Версия()</p>
+<dl class="docutils">
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Число.</dd>
+</dl>
+<p><strong>Описание:</strong> Возвращает 1, если текущая версия 1С работает с SQL сервером Майкрософт, 0 - иначе.</p>
+</blockquote>
+</div>
+<div class="section" id="getcursettings">
+<h2>ПолучитьТекУстановки / GetCurSettings</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьТекУстановки(бВклОптимизация, бВклПроверкаТипов, бВклРежимОтладки)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>бВклОптимизация</strong> - тип: Число.  Выходной параметр: 1 - включена, 0 - выключена.</li>
+<li><strong>&lt;бВклПроверкаТипов</strong> - тип: Число. Выходной параметр: 1 - включена, 0 - выключена.</li>
+<li><strong>&lt;бВклРежимОтладки</strong> - тип: Число. Выходной параметр: 1 - включен, 0 - выключен.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Метод возвращает установки ВК, которые настраиваются
+в параметрах на закладке Настройки 1С++, почитать о которых можно в classes.chm.</p>
+</blockquote>
+</div>
+<div class="section" id="setcursettings">
+<h2>УстановитьТекУстановки / SetCurSettings</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстановитьТекУстановки(бВклОптимизация, бВклПроверкаТипов, бВклРежимОтладки)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>бВклОптимизация</strong> - тип: Число. входной параметр: 1 - включена, 0 - выключена, любое другое число не изменяет текущее значение.</li>
+<li><strong>&lt;бВклПроверкаТипов</strong> - тип: Число. Входной параметр: 1 - включена, 0 - выключена, любое другое число не изменяет текущее значение.</li>
+<li><strong>&lt;бВклРежимОтладки</strong> - тип: Число. Входной параметр: 1 - включен, 0 - выключен, любое другое число не изменяет текущее значение.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Метод изменяет установки ВК, которые настраиваются
+в параметрах на закладке Настройки 1С++, почитать о которых можно в classes.chm.</p>
+</blockquote>
+</div>
+<div class="section" id="readdefinesofclasses">
+<span id="id3"></span><h2>ЗагрузитьОписаниеКлассов / ReadDefinesOfClasses</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЗагрузитьОписаниеКлассов(ИмяФайлаИлиСтрокаОписанияКлассов)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>ИмяФайлаИлиСтрокаОписанияКлассов</strong> - тип: Строка. Имя файла описания класса или классов. Или строка с непосредственным описанием класса/классов.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Загружает описания классов и сами классы из соответствующих файлов или строк описания.</p>
+<p>Синтаксис описания и реализации классов - это обычный синтаксис 1С++</p>
+</blockquote>
+</div>
+<div class="section" id="getbaseclasses">
+<h2>ПолучитьИменаБазовыхКлассов / GetBaseClasses</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьИменаБазовыхКлассов(ИмяКласса)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>ИмяКласса</strong> - тип: Строка. Имя класса.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: СписокЗначений. Список значений, значения в котором есть наименования базовых классов.</dd>
+</dl>
+<p><strong>Описание:</strong> Получает список базовых классов для указанного класса.</p>
+</blockquote>
+</div>
+<div class="section" id="theclassis">
+<h2>ЯвляетсяОбъектом / TheClassIs</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЯвляетсяОбъектом(НазваниеПроверяемогоТипа, НазваниеТипаНаКоторыйПроверяем)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>НазваниеПроверяемогоТипа</strong> - тип: Строка. Имя типа, который проверяем.</li>
+<li><strong>НазваниеТипаНаКоторыйПроверяем</strong> - тип: Строка. Имя типа, на который проверяем.</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Число. 1 - является, 0 - нет.</dd>
+</dl>
+<p><strong>Описание:</strong> Возвращает 1, если проверяемый тип совпадает со вторым типом или проверяемый тип является наследников от второго типа.</p>
+<p>Возвращает 0 в обратном случае.</p>
+</blockquote>
+</div>
+<div class="section" id="getfileversion">
+<h2>ПолучитьВерсиюФайла / GetFileVersion</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьВерсиюФайла([ПутьФайла = &quot;&quot;], [ИмяПоляСтруктурыВерсии = &quot;&quot;])</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>ПутьФайла</strong> - тип: Строка.Путь к файлу. Если путь не задан, значит, подразумевается путь к ВК 1С++, т.е. к исходному файлу 1cp.dllp.</li>
+<li><strong>ИмяПоляСтруктурыВерсии</strong> - тип: Строка. Имя поля. Например, PrivateBuild, SpecialBuild, FileVersion</li>
+</ul>
+</dd>
+<dt><strong>Возвращаемое значение:</strong></dt>
+<dd>тип: Строка. Значение указанного поля структуры версии для указанного файла.</dd>
+</dl>
+<p><strong>Описание:</strong> Получает данные о любом поле структуры версии файла.</p>
+</blockquote>
+</div>
+<div class="section" id="clearclassoptimizationdata">
+<span id="id4"></span><h2>ОчиститьДанныеОптимизацииКлассов / ClearClassOptimizationData</h2>
+<blockquote>
+<p><strong>Синтаксис:</strong> ОчиститьДанныеОптимизацииКлассов()</p>
+<p><strong>Описание:</strong> Позволяет сбросить метаданные у пользовательских классов.</p>
+<p>После исполнения данного метода классы при создании будут заново
+перекомпилированы, независимо от включения/выключения режима Оптимизация.</p>
+<p><strong>Внимание:</strong> Метод удобно использовать для динамического обновления классов без перезагрузки пользователей из 1С.</p>
+<p>Фактически данный метод позволяет всегда включать режим Оптимизации для большего ускорения и динамически перезагружать классы в режиме Предприятии в случае их  обновления.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2013-01-30 23:09 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/MetaInfoClasses.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:52 GMT -->
+</html>

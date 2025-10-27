@@ -1,0 +1,4 @@
+public: virtual unsigned int __thiscall CBufdFile::Read(void *,unsigned int)
+public: virtual void __thiscall CDB7Stream::NextChar(void)
+public: long __thiscall CDB7Stream::GetSinceCheckpoint(void)const
+public: void __thiscall CDB7Stream::Checkpoint(void)

@@ -1,0 +1,428 @@
+#AccWare Data Dictionary
+D=ddSQLV7120|AccWare Data Dictionary
+#
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUSERS_TLock           |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SUSERS(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUSERS_TLockX          |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SUSERS(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 0      : Соединений
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SUSERS |Соединений                    |_1SUSERS   |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=USRSCNT               |Number of users     |S   |0     |0        
+F=NETCHGCN              |Count of changes    |I   |0     |0        
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SSYSTEM_TLock          |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SSYSTEM(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SSYSTEM_TLockX         |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SSYSTEM(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 1      : Системная
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SSYSTEM|Системная                     |_1SSYSTEM  |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=CURDATE               |Date of TM          |D   |0     |0        
+F=CURTIME               |Time of TM          |I   |0     |0        
+F=EVENTIDTA             |ID Event On TA      |C   |9     |0        
+F=DBSIGN                |DB Sign             |C   |3     |0        
+F=DBSETUUID             |UUID of DB set      |C   |36    |0        
+F=SNAPSHPER             |Snap Shot Period    |C   |1     |0        
+F=ACCDATE               |Date of Account Tota|D   |0     |0        
+F=FLAGS                 |FLAGS               |I   |0     |0        
+#
+#===============================================================================
+#==PROCEDURE MAX(ROW_ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCONST_MaxRowID        |MAX(ROW_ID)   |@i I O                                  |set nocount on select @i=MAX(ROW_ID) from _1SCONST(NOLOCK) if @i is null select @i=0
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCONST_TLock           |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SCONST(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCONST_TLockX          |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SCONST(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 2      : Константы
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SCONST |Константы                     |_1SCONST   |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=ROW_ID                |Row ID              |I   |0     |0        
+F=OBJID                 |ID obj(0-cons )     |C   |9     |0        
+F=ID                    |ID parameter        |I   |0     |0        
+F=DATE                  |Fix date            |D   |0     |0        
+F=VALUE                 |valume              |V   |255   |0        
+F=DOCID                 |ID Document         |C   |9     |0        
+F=TIME                  |Time                |I   |0     |0        
+F=ACTNO                 |Action No           |I   |0     |0        
+F=LINENO_               |LineNo              |S   |0     |0        
+F=TVALUE                |                    |C   |3     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK__1SCONST                    |              |1     |ROW_ID                                                      |1          
+I=IDD                            |              |1     |ID,OBJID,DATE,TIME,DOCID,ROW_ID                             |0          
+I=DOC                            |              |1     |DOCID,ACTNO,ROW_ID                                          |0          
+#
+#===============================================================================
+#==PROCEDURE MAX(ROW_ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SJOURN_MaxRowID        |MAX(ROW_ID)   |@i I O                                  |set nocount on select @i=MAX(ROW_ID) from _1SJOURN(NOLOCK) if @i is null select @i=0
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SJOURN_TLock           |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SJOURN(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SJOURN_TLockX          |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SJOURN(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 3      : Журналы
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SJOURN |Журналы                       |_1SJOURN   |R         
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=ROW_ID                |Row ID              |I   |0     |0        
+F=IDJOURNAL             |ID of Journal       |I   |0     |0        
+F=IDDOC                 |ID Document         |C   |9     |0        
+F=IDDOCDEF              |ID Def Document     |I   |0     |0        
+F=APPCODE               |App code            |S   |0     |0        
+F=DATE_TIME_IDDOC       |Date+Time+IDDoc     |C   |23    |0        
+F=DNPREFIX              |Prefix Document No  |C   |18    |0        
+F=DOCNO                 |Document No         |C   |5     |0        
+F=CLOSED                |Flag document is clo|Y   |0     |0        
+F=ISMARK                |Doc is Marked for De|L   |0     |0        
+F=ACTCNT                |Action counter      |I   |0     |0        
+F=VERSTAMP              |Version stamp       |I   |0     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK__1SJOURN                    |ROW_ID        |1     |ROW_ID                                                      |1          
+I=IDDOC                          |Id Doc        |1     |IDDOC                                                       |0          
+I=ACDATETIME                     |Date+Time+ID  |1     |DATE_TIME_IDDOC                                             |0          
+I=DOCNO                          |Prefix+No     |1     |DNPREFIX,DOCNO,ROW_ID                                       |0          
+I=DOCTYPE                        |Type+Date+Time|1     |IDDOCDEF,DATE_TIME_IDDOC                                    |0          
+I=JOURNAL                        |Journal+Date+T|1     |IDJOURNAL,DATE_TIME_IDDOC                                   |0          
+#
+#===============================================================================
+#==PROCEDURE BYIDOC
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SJOURN_ByIDDOC         |BYIDOC        |@id C(9)                                |select * from _1SJOURN(NOLOCK) where IDDOC=@id
+#
+#===============================================================================
+#==PROCEDURE MAX(ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SJOURN_MaxID           |MAX(ID)       |@id C(9) O                              |set nocount on select @id=MAX(IDDOC) from _1SJOURN(NOLOCK) if @id is null select @id='         '
+#
+#===============================================================================
+#==PROCEDURE MAX(ROW_ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCRDOC_MaxRowID        |MAX(ROW_ID)   |@i I O                                  |set nocount on select @i=MAX(ROW_ID) from _1SCRDOC(NOLOCK) if @i is null select @i=0
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCRDOC_TLock           |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SCRDOC(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCRDOC_TLockX          |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SCRDOC(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 4      : Ссылки документов
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SCRDOC |Ссылки документов             |_1SCRDOC   |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=ROW_ID                |Row ID              |I   |0     |0        
+F=MDID                  |Md ID of select     |I   |0     |0        
+F=PARENTVAL             |Parent Value        |C   |23    |0        
+F=CHILD_DATE_TIME_IDDOC |Child date          |C   |23    |0        
+F=CHILDID               |Child Doc ID        |C   |9     |0        
+F=FLAGS                 |Flags of refers     |Y   |0     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK__1SCRDOC                    |ROW_ID        |1     |ROW_ID                                                      |1          
+I=CHILD                          |Child Referenc|1     |CHILDID,MDID,PARENTVAL                                      |0          
+I=PARENT                         |Parent Referen|1     |MDID,PARENTVAL,CHILD_DATE_TIME_IDDOC                        |0          
+#
+#===============================================================================
+#==PROCEDURE 
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SCRDOC_Write           |              |@MdId I, @ParentVal C(23), @ChildDateTimeIdDoc C(23), @ChildId C(9), @Flags Y|{\
+SET NOCOUNT ON
+UPDATE _1SCRDOC SET FLAGS=FLAGS|@Flags WHERE CHILDID=@ChildId AND MDID=@MdId AND PARENTVAL=@ParentVal
+IF @@ROWCOUNT=0
+    INSERT INTO _1SCRDOC VALUES ( @MdId, @ParentVal, @ChildDateTimeIdDoc, @ChildId, @Flags )
+\}
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SDNLOCK_TLock          |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SDNLOCK(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SDNLOCK_TLockX         |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SDNLOCK(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 5      : Номеров документов
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SDNLOCK|Номеров документов            |_1SDNLOCK  |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=DNPREFIX              |Prefix Document No  |C   |28    |0        
+F=DOCNO                 |Document No         |C   |5     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK__1SDNLOCK                   |Prefix+No     |1     |DNPREFIX,DOCNO                                              |1          
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUIDCTL_TLock          |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from _1SUIDCTL(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUIDCTL_TLockX         |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from _1SUIDCTL(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 6      : Уникальности
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=1SUIDCTL|Уникальности                  |_1SUIDCTL  |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=TYPEID                |Type ID             |I   |0     |0        
+F=MAXID                 |Max Object ID       |C   |9     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK__1SUIDCTL                   |TypeID        |1     |TYPEID                                                      |1          
+#
+#===============================================================================
+#==PROCEDURE GetMaxID
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUIDCTL_GetMaxID       |GetMaxID      |@tid I, @id C(9) O                      |select @id=MAXID from _1SUIDCTL(NOLOCK) where TYPEID=@tid if @id is null select @id='         '
+#
+#===============================================================================
+#==PROCEDURE SetMaxID
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp__1SUIDCTL_SetMaxID       |SetMaxID      |@tid I, @id C(9) O                      |set nocount on declare @oid char(9) select @oid=MAXID from _1SUIDCTL where TYPEID=@tid if @oid is null insert into _1SUIDCTL values(@tid,@id) else begin if @oid<@id update _1SUIDCTL set MAXID=@id where TYPEID=@tid end
+#
+#===============================================================================
+#==PROCEDURE MAX(ROW_ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_SC20_MaxRowID            |MAX(ROW_ID)   |@i I O                                  |set nocount on select @i=MAX(ROW_ID) from SC20(NOLOCK) if @i is null select @i=0
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_SC20_TLock               |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from SC20(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_SC20_TLockX              |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from SC20(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 7      : Справочник Контрагенты
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=SC20    |Справочник Контрагенты        |SC20       |R         
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=ROW_ID                |Row ID              |I   |0     |0        
+F=ID                    |ID object           |C   |9     |0        
+F=CODE                  |object code         |C   |5     |0        
+F=DESCR                 |object description  |C   |40    |0        
+F=ISMARK                |Object is Marked for|L   |0     |0        
+F=VERSTAMP              |Version stamp       |I   |0     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK_SC20                        |Row Id        |1     |ROW_ID                                                      |1          
+I=IDD                            |of ID         |1     |ID                                                          |0          
+I=CODE                           |of CODE       |1     |CODE,ROW_ID                                                 |0          
+I=DESCR                          |of DESCR      |1     |DESCR,ROW_ID                                                |0          
+#
+#===============================================================================
+#==PROCEDURE BYID
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_SC20_ByID                |BYID          |@id C(9)                                |select * from SC20(NOLOCK) where ID=@id
+#
+#===============================================================================
+#==PROCEDURE MAX(ID)
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_SC20_MaxID               |MAX(ID)       |@id C(9) O                              |set nocount on select @id=MAX(ID) from SC20(NOLOCK) if @id is null select @id='         '
+#
+#===============================================================================
+#==PROCEDURE 
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_GetBeginOfPeriod         |              |@BaseDate D, @Period C(1), @NewDate D O |{\
+SET NOCOUNT ON
+SET DATEFIRST 1
+DECLARE @Day int
+IF @Period='D'
+    SELECT @NewDate=@BaseDate
+
+ELSE IF @Period='W'
+    SELECT @NewDate=DATEADD(dd, -DATEPART(dw, @BaseDate)+1, @BaseDate)
+
+ELSE IF @Period='M'
+    SELECT @NewDate=DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BaseDate), '1753-01-01')
+
+ELSE IF @Period='Q'
+    SELECT @NewDate=DATEADD(qq, DATEDIFF(qq, '1753-01-01', @BaseDate), '1753-01-01')
+
+ELSE IF @Period='Y'
+    SELECT @NewDate=DATEADD(yy, DATEDIFF(yy, '1753-01-01', @BaseDate), '1753-01-01')
+
+ELSE IF @Period='T'
+    BEGIN
+	    SELECT @Day=DATEPART(dd, @BaseDate )
+	    IF @Day>15 SELECT @Day=15
+	    ELSE       SELECT @Day=0
+	    SELECT @NewDate=DATEADD(dd, @Day, DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BaseDate), '1753-01-01'))
+    END
+
+ELSE IF @Period='C'
+    BEGIN
+	    SELECT @Day=DATEPART(dd, @BaseDate )
+
+	    IF      @Day>20  SELECT @Day=20
+	    ELSE IF @Day>10  SELECT @Day=10
+		ELSE             SELECT @Day=0
+
+        SELECT @NewDate=DATEADD(dd, @Day, DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BaseDate), '1753-01-01'))
+    END
+
+ELSE IF @Period='F'
+    BEGIN
+        SELECT @Day=DATEPART(dd, @BaseDate )
+
+        IF      @Day>25 SELECT @Day=25
+        ELSE IF @Day>20 SELECT @Day=20
+        ELSE IF @Day>15 SELECT @Day=15
+        ELSE IF @Day>10 SELECT @Day=10
+        ELSE IF @Day>5  SELECT @Day=5
+        ELSE            SELECT @Day=0
+
+        SELECT @NewDate=DATEADD(dd, @Day, DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BaseDate), '1753-01-01'))
+    END
+
+ELSE SELECT @NewDate=CONVERT(datetime, '1753-01-01')
+\}
+#
+#===============================================================================
+#==PROCEDURE 
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_GetNextPeriod            |              |@BaseDate D, @Period C(1), @NewDate D O |{\
+SET NOCOUNT ON
+SET DATEFIRST 1
+DECLARE @BeginOfPeriod datetime
+DECLARE @day integer
+EXECUTE _1sp_GetBeginOfPeriod @BaseDate, @Period, @BeginOfPeriod OUTPUT
+
+IF @Period='D'
+    SELECT @NewDate=DATEADD(dd, 1,  @BeginOfPeriod)
+ELSE IF @Period='W'
+    SELECT @NewDate=DATEADD(wk, 1,  @BeginOfPeriod)
+ELSE IF @Period='M'
+    SELECT @NewDate=DATEADD(mm, 1,  @BeginOfPeriod)
+ELSE IF @Period='Q'
+    SELECT @NewDate=DATEADD(qq, 1,  @BeginOfPeriod)
+ELSE IF @Period='Y'
+    SELECT @NewDate=DATEADD(yy, 1,  @BeginOfPeriod)
+ELSE IF @Period='T' BEGIN
+    SELECT @day=DATEPART(dd, @BeginOfPeriod)
+    IF @day>15 SELECT @NewDate=DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BeginOfPeriod), '1753-02-01')
+    ELSE       SELECT @NewDate=DATEADD(dd, 15, @BeginOfPeriod)
+END
+ELSE IF @Period='C' BEGIN
+    SELECT @day=DATEPART(dd, @BeginOfPeriod)
+    IF @day>20 SELECT @NewDate=DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BeginOfPeriod), '1753-02-01')
+    ELSE       SELECT @NewDate=DATEADD(dd, 10, @BeginOfPeriod)
+END
+ELSE IF @Period='F' BEGIN
+    SELECT @day=DATEPART(dd, @BeginOfPeriod)
+    IF @day>25 SELECT @NewDate=DATEADD(mm, DATEDIFF(mm, '1753-01-01', @BeginOfPeriod), '1753-02-01')
+    ELSE       SELECT @NewDate=DATEADD(dd, 5,  @BeginOfPeriod)
+END
+ELSE SELECT @NewDate=CONVERT(datetime, '1753-01-01')
+\}
+#
+#===============================================================================
+#==PROCEDURE 
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_GetEndOfPeriod           |              |@BaseDate D, @Period C(1), @NewDate D O |{\
+SET NOCOUNT ON
+DECLARE @NextPeriod  datetime
+
+EXECUTE _1sp_GetNextPeriod @BaseDate, @Period, @NextPeriod OUTPUT
+SELECT @NewDate=DATEADD(dd, -1,  @NextPeriod)
+\}
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_DH13_TLock               |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from DH13(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_DH13_TLockX              |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from DH13(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 8      : Документ ПрихНакл
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=DH13    |Документ ПрихНакл             |DH13       |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=IDDOC                 |ID Document's       |C   |9     |0        
+F=SP19                  |(P)Контрагент       |C   |9     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK_DH13                        |of IDDOC      |1     |IDDOC                                                       |1          
+#
+#===============================================================================
+#==PROCEDURE EscalateTLock
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_DH24_TLock               |EscalateTLock |                                        |set nocount on declare @i integer select @i=1 from DH24(TABLOCK HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==PROCEDURE EscalateTLockX
+# Name                          |Descr         |Parameters                              |Source                                                                          
+P=_1sp_DH24_TLockX              |EscalateTLockX|                                        |set nocount on declare @i integer select @i=1 from DH24(TABLOCKX HOLDLOCK) where 0=1
+#
+#===============================================================================
+#==TABLE no 9      : Документ РасхНакл
+# Name    |Descr                         |SQLTableNam|RecordLock
+T=DH24    |Документ РасхНакл             |DH24       |          
+#-----Fields-------
+# Name                  |Descr               |Type|Length|Precision
+F=IDDOC                 |ID Document's       |C   |9     |0        
+F=SP25                  |(P)Контрагент       |C   |9     |0        
+#----Indexes------
+# Name                           |Descr         |Unique|Indexed fields                                              |Type       
+I=PK_DH24                        |of IDDOC      |1     |IDDOC                                                       |1          

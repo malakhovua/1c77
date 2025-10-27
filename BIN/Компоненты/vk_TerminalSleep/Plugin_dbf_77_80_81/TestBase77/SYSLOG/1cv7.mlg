@@ -1,0 +1,19 @@
+20100818;14:51:29;;C;Sys;OpenSession;0;НОВЫЙ СЕАНС : Компьютер CHERTANOV(m);;
+20100818;14:52:01;;C;Restruct;RestructStart;1;;;
+20100818;14:52:01;;C;Restruct;RestructStatus;3;Анализ изменений в структуре информации.;;
+20100818;14:52:01;;C;Restruct;RestructStatus;3;Изменения в метаданных не вызвали изменений данных.;;
+20100818;14:52:02;;C;Restruct;RestructCopy;1;;;
+20100818;14:52:02;;C;Restruct;RestructAcptEnd;1;;;
+20100818;14:52:02;;E;Sys;OpenSession;0;Компьютер CHERTANOV(m);;
+20100818;14:52:19;;E;Sys;CloseSession;0;;;
+20100818;14:52:24;;E;Sys;OpenSession;0;Компьютер CHERTANOV(m);;
+20100818;14:52:29;;E;Sys;CloseSession;0;;;
+20100818;14:52:33;;E;Sys;OpenSession;0;Компьютер CHERTANOV;;
+20100818;14:52:42;;E;Docs;DocOpen;3;;O/12/1;Новый1 1 16.08.2007 20:21:31
+20100818;14:52:49;;E;Sys;OpenSession;0;Компьютер CHERTANOV;;
+20100818;14:53:02;;E;Docs;DocWriteAndPostBfAP;2;;O/12/1;Новый1 1 16.08.2007 20:21:31
+20100818;14:53:02;;E;Docs;DocNew;3;;O/12/0;Новый1 2 18.08.2010
+20100818;14:53:05;;E;Sys;CloseSession;0;;;
+20100818;14:53:24;;E;Docs;DocNotWrite;3;;O/12/0;Новый1 2 18.08.2010
+20100818;14:53:26;;E;Sys;CloseSession;0;;;
+20100818;14:53:27;;C;Sys;CloseSession;0;;;

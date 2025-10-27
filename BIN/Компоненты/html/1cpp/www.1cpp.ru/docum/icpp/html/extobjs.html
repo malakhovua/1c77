@@ -1,0 +1,4422 @@
+<?xml version="1.0" encoding="CP1251" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/extobjs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:55 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=CP1251" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>Дополнительные классы и ЭУ</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: extobjs.html,v 1.1250 2013/01/30 23:11:09 fez Exp $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">Дополнительные классы и ЭУ</h1>
+
+<!-- Автор: Александр Орефков -->
+<!-- Автор: Артур Аюханов, 2006 -->
+<!-- <chminfo>
+    <insert nodes="//common/maininfo/*"/>
+    <alinks>_1cpp_ext_classes_</alinks>
+    <toc>
+        <self>
+            <merge file="IndexedTable"/>
+            <merge file="TableField"/>
+            <merge file="ActiveX"/>
+            <childstoc/>
+            <merge file="guid"/>
+            <merge file="BinaryData"/>
+            <merge file="Math"/>
+            <childstoc/>
+            <merge file="Hooker"/>
+            <merge file="Informer"/>
+            <merge file="SettingsManager"/>
+        </self>
+    </toc>
+</chminfo> -->
+<div class="contents topic" id="id2">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id8" id="id142">ФабрикаОбъектов</a><ul>
+<li><a class="reference internal" href="#id9" id="id143">Методы</a><ul>
+<li><a class="reference internal" href="#new" id="id144">Новый / New</a></li>
+<li><a class="reference internal" href="#font" id="id145">Шрифт / Font</a></li>
+<li><a class="reference internal" href="#axcontrol" id="id146">АктивИкс / AXControl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13" id="id147">Система</a><ul>
+<li><a class="reference internal" href="#id14" id="id148">Методы</a><ul>
+<li><a class="reference internal" href="#closeform" id="id149">ЗакрытьФорму / CloseForm</a></li>
+<li><a class="reference internal" href="#hkcu-registeraddinsinhkcu" id="id150">РегистрироватьКомпонентыВ_HKCU / RegisterAddinsInHKCU</a></li>
+<li><a class="reference internal" href="#sleep" id="id151">Уснуть / Sleep</a></li>
+<li><a class="reference internal" href="#id17" id="id152">Сигнал / Beep</a></li>
+<li><a class="reference internal" href="#id18" id="id153">СигналСообщения / MessageBeep</a></li>
+<li><a class="reference internal" href="#savepic" id="id154">СохранитьКартинку / SavePic</a></li>
+<li><a class="reference internal" href="#ole-getolepicture" id="id155">ПолучитьOLEКартинку / GetOlePicture</a></li>
+<li><a class="reference internal" href="#serialize" id="id156">Сериализовать / Serialize</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#win" id="id157">РеестрWin</a><ul>
+<li><a class="reference internal" href="#id20" id="id158">Методы</a><ul>
+<li><a class="reference internal" href="#createkey" id="id159">СоздатьКлюч / CreateKey</a></li>
+<li><a class="reference internal" href="#openkey" id="id160">ОткрытьКлюч / OpenKey</a></li>
+<li><a class="reference internal" href="#connectregistry" id="id161">ПодключитьРегистр / ConnectRegistry</a></li>
+<li><a class="reference internal" href="#deletekey" id="id162">УдалитьКлюч / DeleteKey</a></li>
+<li><a class="reference internal" href="#deletevalue" id="id163">УдалитьЗначение / DeleteValue</a></li>
+<li><a class="reference internal" href="#setvalue" id="id164">УстановитьЗначение / SetValue</a></li>
+<li><a class="reference internal" href="#queryvalue" id="id165">ЗапроситьЗначение / QueryValue</a></li>
+<li><a class="reference internal" href="#choosekeys" id="id166">ВыбратьКлючи / ChooseKeys</a></li>
+<li><a class="reference internal" href="#getkey" id="id167">ПолучитьКлюч / GetKey</a></li>
+<li><a class="reference internal" href="#choosevalues" id="id168">ВыбратьЗначения / ChooseValues</a></li>
+<li><a class="reference internal" href="#getvalue" id="id169">ПолучитьЗначение / GetValue</a></li>
+<li><a class="reference internal" href="#id25" id="id170">ОтладочныеСообщения</a></li>
+<li><a class="reference internal" href="#id26" id="id171">ЗаписатьВсеАтрибуты</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id27" id="id172">ВыполняемыйМодуль</a><ul>
+<li><a class="reference internal" href="#id28" id="id173">Свойства</a><ul>
+<li><a class="reference internal" href="#id29" id="id174">&lt;ИмяПеременной&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id30" id="id175">Методы</a><ul>
+<li><a class="reference internal" href="#id31" id="id176">&lt;ИмяМетода&gt;</a></li>
+<li><a class="reference internal" href="#assignsource" id="id177">УстановитьМодуль / AssignSource</a></li>
+<li><a class="reference internal" href="#getmoduletext" id="id178">ПолучитьТекстМодуля / GetModuleText</a></li>
+<li><a class="reference internal" href="#assigncontext" id="id179">НазначитьКонтекст / AssignContext</a></li>
+<li><a class="reference internal" href="#assignfriendmodule" id="id180">ПрисоединитьТекущийМодуль / AssignFriendModule</a></li>
+<li><a class="reference internal" href="#compile" id="id181">КомпилироватьМодуль / Compile</a></li>
+<li><a class="reference internal" href="#execute" id="id182">ВыполнитьМодуль / Execute</a></li>
+<li><a class="reference internal" href="#getmethofcontext" id="id183">GetMethOfContext</a></li>
+<li><a class="reference internal" href="#raiseerror" id="id184">СформироватьОшибку / RaiseError</a></li>
+<li><a class="reference internal" href="#erasepoststate" id="id185">ОчиститьПозициюПроведения / ErasePostState</a></li>
+<li><a class="reference internal" href="#restorepoststate" id="id186">ВосстановитьПозициюПроведения / RestorePostState</a></li>
+<li><a class="reference internal" href="#throw" id="id187">ВыброситьИскл / Throw</a></li>
+<li><a class="reference internal" href="#getexeption" id="id188">ПолучитьИсключение / GetExeption</a></li>
+<li><a class="reference internal" href="#compileandexecute" id="id189">КомпилироватьИВыполнитьМодуль / CompileAndExecute</a></li>
+<li><a class="reference internal" href="#enableexceptions" id="id190">РазрешитьИсключения / EnableExceptions</a></li>
+<li><a class="reference internal" href="#callcontextprocedure" id="id191">ВыполнитьПроцедуруКонтекста / CallContextProcedure</a></li>
+<li><a class="reference internal" href="#callcontextfunction" id="id192">ВыполнитьФункциюКонтекста / CallContextFunction</a></li>
+<li><a class="reference internal" href="#enableinsidecalling" id="id193">РазрешитьВложенныйВызовМетодов / EnableInsideCalling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id44" id="id194">Делегат</a><ul>
+<li><a class="reference internal" href="#id45" id="id195">Методы</a><ul>
+<li><a class="reference internal" href="#definetype" id="id196">ОпределитьТип / DefineType</a></li>
+<li><a class="reference internal" href="#addmethod" id="id197">Добавить / AddMethod</a></li>
+<li><a class="reference internal" href="#remmethod" id="id198">Удалить / RemMethod</a></li>
+<li><a class="reference internal" href="#remmethodbykey" id="id199">УдалитьПоКлючу / RemMethodByKey</a></li>
+<li><a class="reference internal" href="#invoke" id="id200">Вызвать / Invoke</a></li>
+<li><a class="reference internal" href="#invokevl" id="id201">ВызватьСЗ / InvokeVL</a></li>
+<li><a class="reference internal" href="#invokebykey" id="id202">ВызватьПоКлючу / InvokeByKey</a></li>
+<li><a class="reference internal" href="#invokevlbykey" id="id203">ВызватьСЗПоКлючу / InvokeVLByKey</a></li>
+<li><a class="reference internal" href="#erase" id="id204">Очистить / Erase</a></li>
+<li><a class="reference internal" href="#isempty" id="id205">Пустой / IsEmpty</a></li>
+<li><a class="reference internal" href="#gethandlerstable" id="id206">ПолучитьТаблицуОбработчиков / GetHandlersTable</a></li>
+<li><a class="reference internal" href="#gethandlerstablebykey" id="id207">ПолучитьТаблицуОбработчиковПоКлючу / GetHandlersTableByKey</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id54" id="id208">МенеджерСобытий</a><ul>
+<li><a class="reference internal" href="#id55" id="id209">Методы</a><ul>
+<li><a class="reference internal" href="#id56" id="id210">Пустой / IsEmpty</a></li>
+<li><a class="reference internal" href="#addeventhandle" id="id211">ДобавитьОбработчикСобытия / AddEventHandle</a></li>
+<li><a class="reference internal" href="#remeventhandle" id="id212">УдалитьОбработчикСобытия / RemEventHandle</a></li>
+<li><a class="reference internal" href="#sendevent" id="id213">ПослатьСобытие / SendEvent</a></li>
+<li><a class="reference internal" href="#setdelegate" id="id214">УстановитьДелегата / SetDelegate</a></li>
+<li><a class="reference internal" href="#clear" id="id215">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#setcountofparams" id="id216">УстановитьКоличествоПараметров / SetCountOfParams</a></li>
+<li><a class="reference internal" href="#id61" id="id217">ПолучитьТаблицуОбработчиков / GetHandlersTable</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id62" id="id218">Пример кода</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id63" id="id219">Структура</a><ul>
+<li><a class="reference internal" href="#id64" id="id220">Свойства</a><ul>
+<li><a class="reference internal" href="#id65" id="id221">&lt;ИмяСвойства&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id66" id="id222">Методы</a><ul>
+<li><a class="reference internal" href="#insert" id="id223">Вставить / Insert</a></li>
+<li><a class="reference internal" href="#count" id="id224">Количество / Count</a></li>
+<li><a class="reference internal" href="#id69" id="id225">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#property" id="id226">Свойство / Property</a></li>
+<li><a class="reference internal" href="#remove" id="id227">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#get" id="id228">Получить / Get</a></li>
+<li><a class="reference internal" href="#existprop" id="id229">ЕстьСвойство / ExistProp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dynavalue" id="id230">DynaValue</a><ul>
+<li><a class="reference internal" href="#id75" id="id231">Свойства</a><ul>
+<li><a class="reference internal" href="#id76" id="id232">&lt;ИмяСвойства&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id77" id="id233">Методы</a><ul>
+<li><a class="reference internal" href="#addprop" id="id234">ДобавитьСвойство / AddProp</a></li>
+<li><a class="reference internal" href="#selectprops" id="id235">ВыбратьСвойства / SelectProps</a></li>
+<li><a class="reference internal" href="#getprop" id="id236">ПолучитьСвойство / GetProp</a></li>
+<li><a class="reference internal" href="#getpropbynum" id="id237">ПолучитьСвойствоПоНомеру / GetPropByNum</a></li>
+<li><a class="reference internal" href="#getnprops" id="id238">КоличествоСвойств / GetNProps</a></li>
+<li><a class="reference internal" href="#savetostring" id="id239">ВыгрузитьВСтроку / SaveToString</a></li>
+<li><a class="reference internal" href="#savetofile" id="id240">ВыгрузитьВФайл / SaveToFile</a></li>
+<li><a class="reference internal" href="#loadfromstring" id="id241">ЗагрузитьИзСтроки / LoadFromString</a></li>
+<li><a class="reference internal" href="#loadfromfile" id="id242">ЗагрузитьИзФайла / LoadFromFile</a></li>
+<li><a class="reference internal" href="#findbyname" id="id243">НайтиПоИмени / FindByName</a></li>
+<li><a class="reference internal" href="#getbyname" id="id244">ПолучитьПоИмени / GetByName</a></li>
+<li><a class="reference internal" href="#setbyname" id="id245">УстановитьПоИмени / SetByName</a></li>
+<li><a class="reference internal" href="#setbynum" id="id246">УстановитьПоНомеру / SetByNum</a></li>
+<li><a class="reference internal" href="#deletebynum" id="id247">УдалитьПоНомеру / DeleteByNum</a></li>
+<li><a class="reference internal" href="#deletebyname" id="id248">УдалитьПоИмени / DeleteByName</a></li>
+<li><a class="reference internal" href="#id93" id="id249">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#propstovaluelist" id="id250">СвойстваВСписокЗначений / PropsToValueList</a></li>
+<li><a class="reference internal" href="#findbyvalue" id="id251">НайтиПоЗначению / FindByValue</a></li>
+<li><a class="reference internal" href="#findbyatributevalue" id="id252">НайтиПоЗначениюАтрибута / FindByAtributeValue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id97" id="id253">Форма</a><ul>
+<li><a class="reference internal" href="#id98" id="id254">События</a><ul>
+<li><a class="reference internal" href="#id100" id="id255">ФормаПриСоздании</a></li>
+<li><a class="reference internal" href="#id102" id="id256">ФормаПослеЗаписи</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id103" id="id257">Методы</a><ul>
+<li><a class="reference internal" href="#assignform" id="id258">УстановитьФорму / AssignForm</a></li>
+<li><a class="reference internal" href="#createcontrol" id="id259">СоздатьЭлементУправления / CreateControl</a></li>
+<li><a class="reference internal" href="#getcontrol" id="id260">ПолучитьЭлементУправления / GetControl</a></li>
+<li><a class="reference internal" href="#createcontrolonform" id="id261">СоздатьЭлементУправленияНаФорме / CreateControlOnForm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id108" id="id262">БуферОбмена</a><ul>
+<li><a class="reference internal" href="#id109" id="id263">Методы</a><ul>
+<li><a class="reference internal" href="#id111" id="id264">Получить / Get</a></li>
+<li><a class="reference internal" href="#set" id="id265">Установить / Set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id113" id="id266">Вектор</a><ul>
+<li><a class="reference internal" href="#id114" id="id267">Методы</a><ul>
+<li><a class="reference internal" href="#id115" id="id268">Количество / Count</a></li>
+<li><a class="reference internal" href="#ubound" id="id269">ВГраница / UBound</a></li>
+<li><a class="reference internal" href="#id116" id="id270">Получить / Get</a></li>
+<li><a class="reference internal" href="#id117" id="id271">Установить / Set</a></li>
+<li><a class="reference internal" href="#add" id="id272">Добавить / Add</a></li>
+<li><a class="reference internal" href="#id118" id="id273">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#id119" id="id274">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#id120" id="id275">Вставить / Insert</a></li>
+<li><a class="reference internal" href="#move" id="id276">Сдвинуть / Move</a></li>
+<li><a class="reference internal" href="#unload" id="id277">Выгрузить / Unload</a></li>
+<li><a class="reference internal" href="#reserve" id="id278">Резервировать / Reserve</a></li>
+<li><a class="reference internal" href="#resize" id="id279">ИзменитьРазмер / Resize</a></li>
+<li><a class="reference internal" href="#sort" id="id280">Сортировать / Sort</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id121" id="id281">АссоциативныйВектор</a><ul>
+<li><a class="reference internal" href="#id122" id="id282">Методы</a><ul>
+<li><a class="reference internal" href="#id123" id="id283">Количество / Count</a></li>
+<li><a class="reference internal" href="#id124" id="id284">ВГраница / UBound</a></li>
+<li><a class="reference internal" href="#id125" id="id285">Получить / Get</a></li>
+<li><a class="reference internal" href="#id126" id="id286">ПолучитьКлюч / GetKey</a></li>
+<li><a class="reference internal" href="#findkey" id="id287">НайтиКлюч / FindKey</a></li>
+<li><a class="reference internal" href="#id127" id="id288">Выгрузить / Unload</a></li>
+<li><a class="reference internal" href="#id128" id="id289">Установить / Set</a></li>
+<li><a class="reference internal" href="#id129" id="id290">Добавить / Add</a></li>
+<li><a class="reference internal" href="#id130" id="id291">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#id131" id="id292">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#id132" id="id293">Вставить / Insert</a></li>
+<li><a class="reference internal" href="#id133" id="id294">Сдвинуть / Move</a></li>
+<li><a class="reference internal" href="#id134" id="id295">Резервировать / Reserve</a></li>
+<li><a class="reference internal" href="#id135" id="id296">ИзменитьРазмер / Resize</a></li>
+<li><a class="reference internal" href="#id136" id="id297">Сортировать / Sort</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id137" id="id298">Свойства</a><ul>
+<li><a class="reference internal" href="#key" id="id299">&lt;Ключ&gt; / &lt;Key&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cpp" id="id300">1cpp.Делегат</a><ul>
+<li><a class="reference internal" href="#id138" id="id301">Методы</a><ul>
+<li><a class="reference internal" href="#id139" id="id302">Установить / Set</a></li>
+<li><a class="reference internal" href="#id140" id="id303">Пустой / IsEmpty</a></li>
+<li><a class="reference internal" href="#id141" id="id304">Вызвать / Invoke</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>В состав 1С++ входят дополнительные типы объектов и элементы управления.</p>
+<ul class="simple">
+<li><a class="reference external" href="indexedtable.chm__/indexedtable0.html">ИндексированнаяТаблица</a></li>
+<li><a class="reference external" href="TableField.chm__/TableField0.html">ТабличноеПоле</a></li>
+<li><a class="reference external" href="BinaryData.chm__/BinaryData0.html">BinaryData</a></li>
+<li><a class="reference external" href="Math.chm__/Math0.html">Math</a></li>
+<li><a class="reference external" href="Hooker.chm__/Hooker0.html">Перехватчик</a></li>
+<li><a class="reference external" href="Informer.chm__/Informer0.html">Информатор</a></li>
+<li><a class="reference external" href="SettingsManager.chm__/SettingsManager0.html">УправлениеНастройками</a></li>
+</ul>
+<div class="section" id="id8">
+<h1>ФабрикаОбъектов</h1>
+<!-- <chminfo>
+    <klinks>
+        ФабрикаОбъектов
+        ObjectFactory
+    </klinks>
+</chminfo> -->
+<p><strong>Класс ФабрикаОбъектов / ObjectFactory</strong></p>
+<p><strong>Специальный объект, позволяющий создавать объекты любых типов, как
+встроенных классов 1С++ и пользовательских классов 1С++, так и классов от
+1С или любых внешних компонент.</strong></p>
+<p>Существуют две схемы создания объектов:</p>
+<p>1. <strong>Создание встроенных классов с помощью конструкторов
+путем вызова метода ФабрикиОбъектов.НаименованиеСоздаваемогоТипа
+с названием, совпадающим с именем типа создаваемого объекта.</strong></p>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает на релизах 1С+ 2.0.0.0 и старше.</p>
+</div>
+<ul class="simple">
+<li>Позволяет снабдить процесс создания объектов параметрами, число
+которых может быть различным.
+Каждый метод фабрики объектов возвращает объект одноименного типа.</li>
+</ul>
+<p>Описание синтаксиса создания расположено в описании самих объектов.</p>
+<p>Пример создания:</p>
+<blockquote>
+<ul class="simple">
+<li>Фабрика = СоздатьОбъект(&quot;ФабрикаОбъектов&quot;);</li>
+<li>ШрифтАриал10Жирный = Фабрика. <a class="reference internal" href="#id11">Шрифт</a> (&quot;Arial&quot;, 10, 1);</li>
+</ul>
+</blockquote>
+<p>На данный момент подобным образом можно создавать объекты двух классов:
+&quot;Font / <a class="reference internal" href="#id11">Шрифт</a> &quot; и &quot;AXControl / <a class="reference internal" href="#id12">АктивИкс</a> &quot;</p>
+<ol class="arabic" start="2">
+<li><p class="first"><strong>Создание объектов с помощью метода ФабрикаОбъектов.Новый</strong></p>
+<blockquote>
+<p>Позволяет снабдить процесс создания объектов параметрами, число
+которых может быть различным.
+Этот метод фабрики объектов возвращает объект указанного типа.</p>
+</blockquote>
+</li>
+</ol>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает только на релизе 1С+ 2.5 и старше.</p>
+</div>
+<dl class="docutils">
+<dt>Пример создания:</dt>
+<dd><blockquote class="first">
+<ul class="simple">
+<li>ДругаяТаб = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ТаблицаЗначений&quot;, &quot;Загрузить&quot;, ДругаяТаб);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ТаблицаЗначений&quot;);</li>
+</ul>
+</blockquote>
+<dl class="last docutils">
+<dt>или</dt>
+<dd><ul class="first last simple">
+<li>ДругаяТаб = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ИндексированнаяТаблица&quot;, &quot;Загрузить&quot;, ДругаяТаб);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ИндексированнаяТаблица&quot;);</li>
+</ul>
+</dd>
+<dt>или</dt>
+<dd><ul class="first last simple">
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;);</li>
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;, &quot;КонструкторБезПараметров&quot;);</li>
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;, &quot;КонструкторCКоличествомПараметров2&quot;, 1, 2);</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="section" id="id9">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="new">
+<span id="id10"></span><h3>Новый / New</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Новый(ИмяТипаИлиКласса, [ИмяКонструктора], [Парам1, Парам2, ...])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first"><strong>ИмяТипаИлиКласса</strong> - тип: Строка. Имя типа. Не должен быть простым типом (Строка, Число, Дата).</p>
+</li>
+<li><p class="first"><strong>ИмяКонструктора</strong> - тип: Строка. Необязательный параметр.</p>
+<blockquote>
+<p>Если пытаемся создать объект, который <strong>не является классом КОП 1С++</strong>,
+для данного объекта должен быть определен метод-процедура с таким
+названием. Данный метод должен принимать указанное число
+параметров.</p>
+<p>Если пытаемся создать объект, который <strong>является классом КОП 1С++</strong>,
+в модуле данного объекта должен быть определен
+<strong>метод-процедура</strong> с необходимым названием.
+Важно: процедура-конструктор должна быть определена без
+атрибута Экспорт.</p>
+<p>Данный метод должен принимать указанное число параметров.</p>
+</blockquote>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Парам1, Парам2, ...</strong> - тип: Произвольный. Необязательный параметр.</dt>
+<dd><p class="first last">Любое число параметров любого типа.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Объект указанного типа.</p>
+<p><strong>Описание:</strong> Создает объект указанного типа и сразу же вызывает для
+него метод-конструктор, если у объекта есть такой метод-процедура.</p>
+<blockquote>
+<p>Если  пытаемся  создать  объект,  который  <strong>является  классом  КОП
+1С++</strong>, и указан конструктор, отличный от дефолтного
+&quot;Конструктор&quot;, создается объект нового класса и для него
+вместо дефолтного &quot;Конструктор&quot; вызывается конструктор с
+указанным именем и параметрами.
+Если имя конструктора для пользовательского класса 1С++ не
+указано, создается объект класса и для него вызывается
+процедура &quot;Конструктор&quot;, если она определена в модуле.</p>
+<p>Если имя конструктора не указано,
+метод просто возвращает объект, созданный с помощью
+вызова СоздатьОбъект(ИмяТипаИлиКласса).</p>
+<p>Если не удается создать объект с таким названием, выдается исключение.
+Если у указанного класса нет процедуры с таким названием, выдается исключение.
+Если у указанного класса нет процедуры с таким названием, но есть функция с таким названием,
+выдается исключение.</p>
+<p>Если пытаемся создать объект, который <strong>является классом КОП 1С++</strong>,
+и если найденная процедура-конструктор определена с параметром
+Экспорт, выдается исключение.</p>
+<p>Если количество переданных параметров не совпадает с
+количеством параметром, которые определены для указанного
+метода-конструктора, выдается исключение.</p>
+</blockquote>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает только на релизе 1С+ 2.5 и старше.</p>
+</div>
+<ul>
+<li><p class="first"><strong>Пример создания:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ДругаяТаб = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ТаблицаЗначений&quot;, &quot;Загрузить&quot;, ДругаяТаб);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ТаблицаЗначений&quot;);</li>
+</ul>
+</blockquote>
+<dl class="docutils">
+<dt>или</dt>
+<dd><ul class="first last simple">
+<li>ДругаяТаб = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ИндексированнаяТаблица&quot;, &quot;Загрузить&quot;, ДругаяТаб);</li>
+<li>Таб = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;ИндексированнаяТаблица&quot;);</li>
+</ul>
+</dd>
+<dt>или</dt>
+<dd><ul class="first last simple">
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;);</li>
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;, &quot;КонструкторБезПараметров&quot;);</li>
+<li>ОбъектКОП = Фабрика. <a class="reference internal" href="#id10">Новый</a> (&quot;КлассСКонструкторами&quot;, &quot;КонструкторCКоличествомПараметров2&quot;, 1, 2);</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="font">
+<span id="id11"></span><h3>Шрифт / Font</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Шрифт([Парам1, Парам2, ...])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Парам1, Парам2, ...</strong> - тип: Произвольный. Необязательный параметр.</dt>
+<dd><p class="first last">Любое число параметров любого типа.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Объект класс Шрифт / Font.</p>
+<p><strong>Описание:</strong> Создает объект класс Шрифт / Font,
+вызывая для него соответствующий конструктор с нужными параметрами.</p>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает на релизах 1С+ 2.0.0.0 и старше.</p>
+</div>
+<ul>
+<li><p class="first"><strong>Пример создания:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Фабрика = СоздатьОбъект(&quot;ФабрикаОбъектов&quot;);</li>
+<li>ШрифтАриал10Жирный = Фабрика.Шрифт(&quot;Arial&quot;, 10, 1);</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="axcontrol">
+<span id="id12"></span><h3>АктивИкс / AXControl</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> АктивИкс([Парам1, Парам2, ...])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>Парам1, Парам2, ...</strong> - тип: Произвольный. Необязательный параметр.</dt>
+<dd><p class="first last">Любое число параметров любого типа.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Объект класс АктивИкс / AXControl.</p>
+<p><strong>Описание:</strong> Создает объект класс АктивИкс / AXControl,
+вызывая для него соответствующий конструктор с нужными параметрами.</p>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает на релизах 1С+ 2.0.0.0 и старше.</p>
+</div>
+<ul class="simple">
+<li></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h1>Система</h1>
+<!-- <chminfo>
+    <klinks>
+        Система
+        System
+    </klinks>
+</chminfo> -->
+<p><strong>Класс Система / System</strong></p>
+<p>Класс предоставляет различные вспомогательные функции.</p>
+<div class="section" id="id14">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="closeform">
+<span id="id15"></span><h3>ЗакрытьФорму / CloseForm</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЗакрытьФорму(КонтФормы, ФлагСохранения = 0)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first"><strong>КонтФормы</strong> - тип: ГрупповойКонтекст.</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>ФлагСохранения</strong> - тип: Число. Необязательный параметр.</dt>
+<dd><p class="first last">0 - закрыть форму без вопросов;
+1 - если документ, счет, элемент справочника изменен,
+то будет запрос о сохранении изменений.
+Значение по  умолчанию - 0.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - не удалось закрыть форму.</li>
+<li>1 - форма успешно закрыта.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Немедленно закрывает форму с отработкой всех событий, обработчики которых есть в форме.</p>
+<blockquote>
+<p>В отличие от метода КонтФормы.Форма.Закрыть([ФлагСохранения]), который
+закрывает форму не сразу, а только после завершения работыпользовательского кода,
+данный метод не ждет завершения кода, а закрывает форму немедленно.
+Т.е. управление к следующей строке после вызова
+Система.ЗакрытьФорму будет передано только после закрытия формы.</p>
+<p><strong>После выполнения данного метода ТипЗначения(КонтФормы) = 0 !</strong> ,
+т.к. форма закрыта, и все групповые контексты, которые указывали
+на эту форму, стали недействительными.</p>
+<p>В случае, если первый параметр не является групповым контекстом, выдается исключение.
+В случае, если второй параметр не является числом, выдается исключение.</p>
+</blockquote>
+<p><strong>Версия:</strong> Метод работает на релизе 2.5 и позже, а также 2.0.3.2</p>
+</blockquote>
+</div>
+<div class="section" id="hkcu-registeraddinsinhkcu">
+<span id="hkcu"></span><h3>РегистрироватьКомпонентыВ_HKCU / RegisterAddinsInHKCU</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> РегистрироватьКомпонентыВ_HKCU(фHKCU = 1)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>фHKCU</strong> - тип: Число. Необязательный параметр.</dt>
+<dd><ul class="first simple">
+<li>1 - переназначить ветку реестра HKEY_CLASSES_ROOT в HKEY_CURRENT_USER,</li>
+<li>0 - отменить переназначение.</li>
+</ul>
+<p class="last">Значение по  умолчанию - 1.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Переназначение ветки реестра, в которой приисходит регистрация внешних компонент.</p>
+<blockquote>
+Вызов метода обеспечивает регистрацию внешних компонент в пользовательской
+ветке реестра. При последующей загрузке внешних компонент функцией
+ЗагрузитьВнешнююКомпоненту(), регистрация компоненты происходит в
+HKEY_CURRENT_USER.
+Переназначение ветки реестра происходит только для Windows 2000 и выше, и только
+в том случае, если попытка регистрации 1С++ в HKML завершилась неудачей.</blockquote>
+<p><strong>Версия:</strong> Метод работает на релизе 2.5 и позже, а также 2.0.3.4</p>
+<blockquote>
+<strong>Пример:</strong></blockquote>
+</blockquote>
+<pre class="literal-block">
+Функция ИнициализироватьВнешнююКомпоненту(ИмяФайла) Экспорт
+      Система=СоздатьОбъект(&quot;Система&quot;);
+      Система.РегистрироватьКомпонентыВ_HKCU();
+      рез=ЗагрузитьВнешнююКомпоненту(ИмяФайла)
+      Если рез=0 Тогда
+              СообщитьОбОшибкеЗагрузкиВК(ИмяФайла);
+      КонецЕсли;
+      Система.РегистрироватьКомпонентыВ_HKCU(0);
+      Возврат рез;
+КонецФункции
+</pre>
+</div>
+<div class="section" id="sleep">
+<span id="id16"></span><h3>Уснуть / Sleep</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Уснуть(КоличествоМиллисекунд)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>КоличествоМиллисекунд</strong> - тип: Число. .</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Делает паузу путем вызова системной функции Sleep(КоличествоМиллисекунд).</p>
+<p><strong>Версия:</strong> Метод работает на релизе 2.5 и позже, а также 2.0.3.2</p>
+</blockquote>
+</div>
+<div class="section" id="id17">
+<span id="beep"></span><h3>Сигнал / Beep</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Beep(Частота, Длительность)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Частота</strong>: Число; Частота звука, Hz. Параметр должен находиться в диапазоне 37 - 32767 Hz</li>
+<li><strong>Длительность</strong>: Число; Длительность звука в миллисекундах</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Метод предназначен для генерации простых звуковых тонов через системный динамик.
+Функция выполняется синхронно, не возвращая управление системе до окончания проигрывания звука.</p>
+<p><strong>Версия:</strong> Метод добавлен в версии 3.2.3.13</p>
+</blockquote>
+</div>
+<div class="section" id="id18">
+<span id="messagebeep"></span><h3>СигналСообщения / MessageBeep</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> MessageBeep(Тип)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first"><strong>Тип</strong>: Число;  Тип сигнала, как установлено в реестре. Может принимать следующие значения:</p>
+<blockquote>
+<ul class="simple">
+<li>-1: Simple beep. If the sound card is not available, the sound is generated using the speaker.</li>
+<li>MB_ICONASTERISK 0x00000040L SystemAsterisk</li>
+<li>MB_ICONEXCLAMATION 0x00000030L SystemExclamation</li>
+<li>MB_ICONHAND 0x00000010L SystemHand</li>
+<li>MB_ICONQUESTION 0x00000020L SystemQuestion</li>
+<li>MB_OK 0x00000000L SystemDefault</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Метод предназначен для проигрывания звуковых сигналов. Сигналы различных типов идентифицируются по записи в реестре.
+После постановки в очередь звукового сигнала, метод возвращает управление вызывающей функции и проигрывает звук асинхронно.</p>
+<p><strong>Версия:</strong> Метод добавлен в версии 3.2.3.13</p>
+</blockquote>
+</div>
+<div class="section" id="savepic">
+<h3>СохранитьКартинку / SavePic</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong>  СохранитьКартинку(Каталог, ИмяФайла, Картинка, Индекс, Ширина)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>Каталог - тип: Строка. Каталог, в котором будет создан файл картинки (метод проверяет наличие каталога и выбрасывает исключение, если путь не верен). Если каталог не указан, то будет использоваться каталог временных файлов; в этом случае метод вернет через этот параметр путь к каталогу.</li>
+<li>ИмяФайла - тип: Строка. Имя файла (без расширения) с которым будет создан файл картинки. Если не указано, то будет сгенерировано уникальное имя в формате picXXX.ext; в этом случае метод вернет через этот параметр имя созданного файла.</li>
+<li>Картинка - тип: Картинка или Строка. Параметром может выступать как объект типа Картинка, так и строка с идентификатором из библиотеки картинок.</li>
+<li>Индекс - тип: Число. Индекс картинки (начиная с нуля), в случае, если картинка составная. Если параметр не указан, то сохраняется картинка целиком (по умолчанию -1).</li>
+<li>Ширина - тип: Число. Ширина картинки в пикселях (по умолчанию 16). Необходимо для определения индекса составной картинки.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> позволяет сохранить картинку в файловую систему. Если значения параметров Каталог и/или ИмяФайла не были заданы, то метод сохранит картинку в каталог временных файлов с уникальным именем.
+Для создаваемых файлов метод сам подставляет расширение. Метод может выбросить исключение, в случае возникновения ошибочных ситуаций.
+Сохранению подлежат картинки следующих типов: ICO, BMP.</p>
+</blockquote>
+<p>Пример (<cite>сохранение картинки из библиотеки картинок</cite>):</p>
+<pre class="literal-block">
+Перем Сервис;
+Перем Каталог, Файл; // в эти переменные вернутся путь к каталогу и имя файла
+
+Сервис = СоздатьОбъект(&quot;spService&quot;);
+
+// сохранение картинки с идентификатором &quot;СтрелкаВниз&quot; из библиотеки картинок
+//
+Сервис.СохранитьКартинку(Каталог, Файл, &quot;СтрелкаВниз&quot;);
+
+// сохранение картинки с идентификатором &quot;СтрелкаВниз&quot; из библиотеки картинок.
+// картинка представляется набором из 3 картинок, каждая шириной по 16 пикселей.
+//
+Каталог  = &quot;&quot;;
+Файл     = &quot;&quot;;
+Сервис.СохранитьКартинку(Каталог, Файл, &quot;СтрелкаВниз&quot;, 0, 16); // первая картинка
+
+Каталог  = &quot;&quot;;
+Файл     = &quot;&quot;;
+Сервис.СохранитьКартинку(Каталог, Файл, &quot;СтрелкаВниз&quot;, 1, 16); // вторая картинка
+
+Каталог  = &quot;&quot;;
+Файл     = &quot;&quot;;
+Сервис.СохранитьКартинку(Каталог, Файл, &quot;СтрелкаВниз&quot;, 2, 16); // третья картинка
+</pre>
+<p>Пример (<cite>сохранение объекта Картинка</cite>):</p>
+<pre class="literal-block">
+Перем Сервис;
+Перем Каталог, Файл; // в эти переменные вернутся путь к каталогу и имя файла
+Перем Карт; // объект Картинка для примера
+
+Сервис = СоздатьОбъект(&quot;spService&quot;);
+
+// создаем из файла объект Картинка для дальнейших манипуляций
+//
+Карт = СоздатьОбъект(&quot;Картинка&quot;);
+Карт.Загрузить(&quot;C:\pics_for_samle\pic1.bmp&quot;); // картинка из 2-ух по 16 пикселей
+
+Каталог  = &quot;&quot;;
+Файл     = &quot;&quot;;
+Сервис.СохранитьКартинку(Каталог, Файл, Карт); // всю целиком
+
+Каталог  = &quot;&quot;;
+Файл     = &quot;&quot;;
+Сервис.СохранитьКартинку(Каталог, Файл, Карт, 1, 16); // только вторую
+</pre>
+</div>
+<div class="section" id="ole-getolepicture">
+<h3>ПолучитьOLEКартинку / GetOlePicture</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong>  ПолучитьOLEКартинку(Картинка, Индекс, Ширина)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>Картинка - тип: Картинка или Строка. Параметром может выступать как объект типа Картинка, так и строка с идентификатором из библиотеки картинок.</li>
+<li>Индекс - тип: Число. Индекс картинки (начиная с нуля), в случае, если картинка составная. Если параметр не указан, то сохраняется картинка целиком (по умолчанию -1).</li>
+<li>Ширина - тип: Число. Ширина картинки в пикселях (по умолчанию 16). Необходимо для определения индекса составной картинки.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Возвращает:</strong> тип: IPicture. Возвращает картинку типа <cite>OLE.Picture</cite>.</p>
+<p><strong>Описание:</strong> позволяет получить картинку типа <cite>OLE.Picture</cite>.
+Получению подлежат картинки следующих типов: ICO, BMP.</p>
+</blockquote>
+</div>
+<div class="section" id="serialize">
+<span id="id19"></span><h3>Сериализовать / Serialize</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Сериализовать(Объект)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Объект</strong> - тип: агрегатный.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Выполнение ObjRef-сериализации для возможности передачи
+объектов 1С (например, ТаблицаЗначений, СписокЗначений) в скрипты и различные внешние
+компоненты.</p>
+<p>Например, при использовании внутри 1С объекта &quot;MSScriptControl.ScriptControl&quot; и
+при попытке засунуть в скрипт встроенный в 1С объект (типа ТЗ, СЗ и др.) через AddObject получаем ошибку &quot;плохой тип переменной&quot;.</p>
+<p><strong>Важно:</strong> сохранение сериализованного представления объекта без
+сохранения объекта Система выдаст неверный результат, т.е. время жизни
+сериализованного представления привязано ко времени жизни объекта
+Система, с помощью которого получено сериализованное представление.</p>
+<dl class="docutils">
+<dt>Пример обычного <strong>НЕВЕРНОГО кода</strong>:</dt>
+<dd><blockquote class="first">
+<blockquote>
+<p>Т = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);</p>
+<p>Scr=СоздатьОбъект(&quot;MSScriptControl.ScriptControl&quot;);
+scr.Language=&quot;vbscript&quot;;
+Scr.AddObject(&quot;v&quot;, Т);  !! здесь будет выдана ошибка !!</p>
+<dl class="docutils">
+<dt>Scr.AddCode(&quot;</dt>
+<dd><div class="first last line-block">
+<div class="line">Function TestVT</div>
+<div class="line-block">
+<div class="line">v.SelectLines()</div>
+<div class="line">v.GetLine()</div>
+<div class="line">TestVT=v.t1</div>
+</div>
+<div class="line">End Function&quot;);</div>
+</div>
+</dd>
+</dl>
+<p>Сообщить(Scr.Eval(&quot;TestVT()&quot;)); // т.е. до этой строки даже не дойдет</p>
+</blockquote>
+<p>Пример <strong>ВЕРНОГО кода</strong> с помощью данного метода</p>
+<blockquote>
+<p>Т = СоздатьОбъект(&quot;ТаблицаЗначений&quot;);
+Т.НоваяКолонка(&quot;t1&quot;);
+Т.НоваяСтрока();
+Т.t1 = 111;</p>
+<p>Scr=СоздатьОбъект(&quot;MSScriptControl.ScriptControl&quot;);
+scr.Language=&quot;vbscript&quot;;</p>
+</blockquote>
+</blockquote>
+<p>Система = СоздатьОбъект(&quot;Система&quot;);</p>
+<blockquote class="last">
+<dl class="docutils">
+<dt>Scr.AddCode(&quot;</dt>
+<dd><div class="first last line-block">
+<div class="line">Function TestVT</div>
+<div class="line-block">
+<div class="line">Set v=GetObject(&quot;&quot;&quot;+Система.Сериализовать(Т)+&quot;&quot;&quot;)</div>
+<div class="line">v.SelectLines()</div>
+<div class="line">v.GetLine()</div>
+<div class="line">TestVT=v.t1</div>
+</div>
+<div class="line">End Function&quot;);</div>
+</div>
+</dd>
+</dl>
+<p>Сообщить(Scr.Eval(&quot;TestVT()&quot;); // будет выдано 111, что и требовалось</p>
+</blockquote>
+</dd>
+</dl>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="win">
+<h1>РеестрWin</h1>
+<!-- <chminfo>
+    <klinks>
+        РаботаСРегистромWin
+        WorkAsRegisterWin
+        РеестрWin
+        RegistryWin
+    </klinks>
+</chminfo> -->
+<p><strong>Класс РеестрWin / RegistryWin</strong></p>
+<p><strong>Класс РаботаСРегистромWin / WorkAsRegisterWin</strong></p>
+<p>Предназначен для работы с реестром &quot;Windows&quot; в стиле языка 1С : Предприятия.</p>
+<p>Позволяет:</p>
+<ul class="simple">
+<li>создавать, открывать ключи реестра, подключаться к реестру удаленного компьютера;</li>
+<li>добавлять в ключи строковые и числовые значения, удалять значения из ключей реестра;</li>
+<li>перебирать ключи и значения ключей;</li>
+<li>организовывать поиск ключа или значения по имени.</li>
+</ul>
+<div class="section" id="id20">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="createkey">
+<h3>СоздатьКлюч / CreateKey</h3>
+<blockquote id="id21">
+<p><strong>Синтаксис:</strong> СоздатьКлюч(Ключ, Имя, Режим)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Ключ - тип: Строка. Название ветви реестра. Названия строго определены и бывают
+следующих видов:</p>
+<blockquote>
+<ul class="simple">
+<li>HKEY_CLASSES_ROOT</li>
+<li>HKEY_CURRENT_CONFIG</li>
+<li>HKEY_CURRENT_USER</li>
+<li>HKEY_LOCAL_MACHINE</li>
+<li>HKEY_USERS</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Имя - тип: Строка. Названием ключа реестра. (например: &quot;Software\1C\1Cv7\7.7&quot;)</p>
+</li>
+<li><p class="first">Режим - тип: Строка. Режим создания ключа. Названия строго определены и бывают
+следующих видов:</p>
+<blockquote>
+<ul class="simple">
+<li>KEY_CREATE_LINK   Permission to create a symbolic link.</li>
+<li>KEY_CREATE_SUB_KEY    Permission to create subkeys.</li>
+<li>KEY_ENUMERATE_SUB_KEYS    Permission to enumerate subkeys.</li>
+<li>KEY_EXECUTE   Permission for read access.</li>
+<li>KEY_NOTIFY    Permission for change notification.</li>
+<li>KEY_QUERY_VALUE   Permission to query subkey data.</li>
+<li>KEY_SET_VALUE Permission to set subkey data.</li>
+<li>KEY_ALL_ACCESS    Combines the KEY_QUERY_VALUE, KEY_ENUMERATE_SUB_KEYS, KEY_NOTIFY, KEY_CREATE_SUB_KEY, KEY_CREATE_LINK, and KEY_SET_VALUE access rights, plus all the standard access rights except SYNCHRONIZE.</li>
+<li>KEY_READ  Combines the STANDARD_RIGHTS_READ, KEY_QUERY_VALUE, KEY_ENUMERATE_SUB_KEYS, and KEY_NOTIFY access rights.</li>
+<li>KEY_WRITE Combines the STANDARD_RIGHTS_WRITE, KEY_SET_VALUE, and KEY_CREATE_SUB_KEY access rights</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>-1 - ошибка</li>
+<li>0 - ключ с таким названием уже существует и будет просто открыт</li>
+<li>1 - ключ успешно создан</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Создает в реестре ключ с указанным именем.</p>
+</blockquote>
+</div>
+<div class="section" id="openkey">
+<h3>ОткрытьКлюч / OpenKey</h3>
+<blockquote id="id22">
+<p><strong>Синтаксис:</strong> ОткрытьКлюч(Ключ, Имя, Режим)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Ключ - тип: Строка. Название ветви реестра. Названия строго определены и бывают следующих видов:</p>
+<ul class="simple">
+<li>HKEY_CLASSES_ROOT</li>
+<li>HKEY_CURRENT_CONFIG</li>
+<li>HKEY_CURRENT_USER</li>
+<li>HKEY_LOCAL_MACHINE</li>
+<li>HKEY_USERS</li>
+</ul>
+</li>
+<li><p class="first">Имя - тип: Строка. Названием ключа реестра. (например: &quot;Software\1C\1Cv7\7.7&quot;)</p>
+</li>
+<li><p class="first">Режим - тип: Строка. Режим создания ключа. Названия строго определены и бывают следующих видов:</p>
+<blockquote>
+<ul class="simple">
+<li>KEY_CREATE_LINK   Permission to create a symbolic link .</li>
+<li>KEY_CREATE_SUB_KEY    Permission to create subkeys.</li>
+<li>KEY_ENUMERATE_SUB_KEYS    Permission to enumerate subkeys.</li>
+<li>KEY_EXECUTE   Permission for read access.</li>
+<li>KEY_NOTIFY    Permission for change notification.</li>
+<li>KEY_QUERY_VALUE   Permission to query subkey data.</li>
+<li>KEY_SET_VALUE Permission to set subkey data.</li>
+<li>KEY_ALL_ACCESS    Combines the KEY_QUERY_VALUE, KEY_ENUMERATE_SUB_KEYS, KEY_NOTIFY, KEY_CREATE_SUB_KEY, KEY_CREATE_LINK, and KEY_SET_VALUE access rights, plus all the standard access rights except SYNCHRONIZE.</li>
+<li>KEY_READ  Combines the STANDARD_RIGHTS_READ, KEY_QUERY_VALUE, KEY_ENUMERATE_SUB_KEYS, and KEY_NOTIFY access rights.</li>
+<li>KEY_WRITE Combines the STANDARD_RIGHTS_WRITE, KEY_SET_VALUE, and KEY_CREATE_SUB_KEY access rights</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - ошибка</li>
+<li>1 - ключ открыт</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Открывает ключ реестра с указанным именем.</p>
+</blockquote>
+</div>
+<div class="section" id="connectregistry">
+<h3>ПодключитьРегистр / ConnectRegistry</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПодключитьРегистр(ИмяУдаленногоКомпьютера, Ключ)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">ИмяУдаленногоКомпьютера - тип: Строка. Cетевое имя компьютера,
+к реестру которого необходимо подключиться (например: \computername).
+Если указать пустую строку, то метод подключится к локальной машине.</p>
+</li>
+<li><p class="first">Ключ - тип: Cтрока. Название ветви реестра. Названия строго определены и
+бывают следующих видов:</p>
+<blockquote>
+<ul class="simple">
+<li>HKEY_LOCAL_MACHINE</li>
+<li>HKEY_USERS</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - ошибка</li>
+<li>1 - соединение установлено</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Подключает объект к реестру удаленного компьютера.</p>
+<p><strong>Примечание:</strong> для возможности успешного подключения к компьютеру с установленной
+операционной системой Windows 95 необходимо инсталлировать на нем
+&quot;Microsoft Remote Registry service&quot;.</p>
+</blockquote>
+</div>
+<div class="section" id="deletekey">
+<h3>УдалитьКлюч / DeleteKey</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> УдалитьКлюч(ИмяПодКлюча)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяПодКлюча - тип: Строка. Имя удаляемого подключа.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - была ошибка</li>
+<li>1 - удаление закончено успешно</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет подключ ключа, открытого ранее функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a> или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="deletevalue">
+<h3>УдалитьЗначение / DeleteValue</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> УдалитьЗначение(ИмяЗначения)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяЗначения - тип: Строка. Имя удаляемого значения.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - была ошибка</li>
+<li>1 - удаление закончено успешно</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет значение в ключе, открытом ранее функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a> или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="setvalue">
+<h3>УстановитьЗначение / SetValue</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстановитьЗначение(ИмяЗначения, ТипЗначения, Значение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">ИмяЗначения - тип: Строка. Название значения в ключе.</p>
+</li>
+<li><p class="first">ТипЗначения - тип: Строка. Может принимать только два значения:</p>
+<blockquote>
+<ul class="simple">
+<li>&quot;REG_SZ&quot; - тип значения строка</li>
+<li>&quot;REG_DWORD&quot; - тип значения целое число</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Значение - тип: Строка, Число. Значение, которое необходимо установить,
+зависит от типа, установленного в предыдущем параметре.</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - была ошибка</li>
+<li>1 - установка закончена успешно</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает значение, указанное в параметре ИмяЗначения ключа,
+открытого ранее функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a> или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="queryvalue">
+<h3>ЗапроситьЗначение / QueryValue</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЗапроситьЗначение(ИмяЗначения, Значение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяЗначения - тип: Строка. Название значения в ключе.</li>
+<li>Значение - тип: Имя переменной. Переменная для приема запрошенного значения.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - была ошибка</li>
+<li>1 - запрос закончен успешно</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Запрашивает значение, указанное в параметре ИмяЗначения ключа,
+открытого ранее функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a> или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+<p><strong>Примечание:</strong> Если операция выполнена успешно, то результат будет в Значение.
+Тип значений, которые можно получить, может быть только &quot;REG_SZ&quot; или &quot;REG_DWORD&quot;.</p>
+</blockquote>
+</div>
+<div class="section" id="choosekeys">
+<h3>ВыбратьКлючи / ChooseKeys</h3>
+<blockquote id="id23">
+<p><strong>Синтаксис:</strong> ВыбратьКлючи()</p>
+<p><strong>Возвращает:</strong> Число. Количество выбранных подключей.</p>
+<p><strong>Описание:</strong> Открывает выборку подключей ключа, установленного функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a>
+или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="getkey">
+<h3>ПолучитьКлюч / GetKey</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьКлюч(ИмяПодКлюча)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяПодКлюча - тип: Имя переменной. Переменная для приема названия подключа.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - выборка пуста</li>
+<li>1 - в выборке еще есть подключи</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Получает следующее название подключа из выборки, открытой
+ранее методом <a class="reference internal" href="#id23">ВыбратьКлючи</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="choosevalues">
+<h3>ВыбратьЗначения / ChooseValues</h3>
+<blockquote id="id24">
+<p><strong>Синтаксис:</strong> ВыбратьЗначения()</p>
+<p><strong>Возвращает:</strong> Число. Количество - значений в выборке.</p>
+<p><strong>Описание:</strong> Открывает выборку значений ключа, установленного функцией <a class="reference internal" href="#id22">ОткрытьКлюч</a> или <a class="reference internal" href="#id21">СоздатьКлюч</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="getvalue">
+<h3>ПолучитьЗначение / GetValue</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьЗначение(ИмяЗначения)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяЗначения - тип: Имя переменной. Переменная, в которую возвращается строковое название значения.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - выборка пуста</li>
+<li>1 - в выборке еще есть значения</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Получает следующее название значения из выборки, открытой
+ранеее методом <a class="reference internal" href="#id24">ВыбратьЗначения</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="id25">
+<h3>ОтладочныеСообщения</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ОтладочныеСообщения(Включить)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Включить - тип: Число.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - Отключить</li>
+<li>1 - Включить</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Включает/отключает отладочные сообщения при возникновении ошибок
+работы с реестром.</p>
+</blockquote>
+</div>
+<div class="section" id="id26">
+<h3>ЗаписатьВсеАтрибуты</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ЗаписатьВсеАтрибуты()</p>
+<p><strong>Описание:</strong> Немедленно записать изменения, внесенные ранее в реестр.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id27">
+<h1>ВыполняемыйМодуль</h1>
+<!-- <chminfo>
+    <klinks>
+        ВыполняемыйМодуль
+        ExecuteModule
+    </klinks>
+</chminfo> -->
+<p><strong>Класс ВыполняемыйМодуль / ExecuteModule</strong></p>
+<p>Предназначен для работы с динамическими модулями, передаваемыми в параметре
+метода в качестве строки.</p>
+<p>После установки текста модуля скомпилируйте и выполните его.
+Модуль инициализируется и выполнит операторы, расположенные в конце тела
+модуля, вне методов. После этого можно обращаться к переменным модуля,
+как к свойствам этого объекта, и к методам модуля, как к методам объекта.
+Важно: класс поддерживает исключения 1С.</p>
+<div class="section" id="id28">
+<h2>Свойства</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id29">
+<h3>&lt;ИмяПеременной&gt;</h3>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Любой.</p>
+<p><strong>Описание:</strong> Позволяет обращаться к переменным модуля, объявленным
+в тексте модуля, как к свойствам объекта.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id30">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id31">
+<h3>&lt;ИмяМетода&gt;</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Соответствует синтаксису метода модуля.</p>
+<p><strong>Параметры:</strong> Соответствуют параметрам меода модуля.</p>
+<p><strong>Описание:</strong> Позволяет обращаться к методам, определенным
+в тексте модуля, как к своим методам.</p>
+</blockquote>
+</div>
+<div class="section" id="assignsource">
+<h3>УстановитьМодуль / AssignSource</h3>
+<blockquote id="id32">
+<p><strong>Синтаксис:</strong> УстановитьМодуль(стрТекстМодуля)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрТекстМодуля - тип: Строка. Текст модуля.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает текст модуля на выполнение.</p>
+<p>В модуле возможно определять любые функция, процедуры и параметры,
+доступ к которым возможно осуществлять, через оператор-селектор .(точка)
+объекта класса <a class="reference internal" href="#id27">ВыполняемыйМодуль</a>, после компилирования и запуска.</p>
+</blockquote>
+</div>
+<div class="section" id="getmoduletext">
+<h3>ПолучитьТекстМодуля / GetModuleText</h3>
+<blockquote id="id33">
+<p><strong>Синтаксис:</strong> ПолучитьТекстМодуля()</p>
+<p><strong>Возвращает:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Текст модуля. - тип: Строка.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возвращает текст модуля.</p>
+</blockquote>
+</div>
+<div class="section" id="assigncontext">
+<h3>НазначитьКонтекст / AssignContext</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> НазначитьКонтекст(Контекст)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Контекст - тип: ГрупповойКонтекст, АгрегатныйОбъект. Назначаемый контекст.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает контекст модуля.</p>
+<p>Метод должен вызыватся до компиляции модуля. При этом к методам и
+свойствам назначенного контекста в тексте модуля можно будет обращаться
+напрямую, без указания имени объекта.</p>
+</blockquote>
+</div>
+<div class="section" id="assignfriendmodule">
+<h3>ПрисоединитьТекущийМодуль / AssignFriendModule</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПрисоединитьТекущийМодуль()</p>
+<p><strong>Описание:</strong> Присоединяет модуль, который в данный момент выполняется.</p>
+<p>Это позволяет в установленном модуле объекта обращаться напрямую к переменным и методам
+текущего модуля (т.е. модуля, в котором идет работа в данный момент с объектом
+класса <a class="reference internal" href="#id27">ВыполняемыйМодуль</a>).</p>
+</blockquote>
+</div>
+<div class="section" id="compile">
+<h3>КомпилироватьМодуль / Compile</h3>
+<blockquote id="id34">
+<p><strong>Синтаксис:</strong> КомпилироватьМодуль()</p>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1, если компиляция прошла успешно</li>
+<li>0 в случае неудачи</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Компилирует модуль, установленный с помощью метода <a class="reference internal" href="#id32">УстановитьМодуль</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="execute">
+<span id="id35"></span><h3>ВыполнитьМодуль / Execute</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ВыполнитьМодуль()</p>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1, если выполнение начато успешно</li>
+<li>0 в случае неудачи</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Выполняет модуль, установленный с помощью метода <a class="reference internal" href="#id32">УстановитьМодуль</a> и
+откомпилированный методом <a class="reference internal" href="#id34">КомпилироватьМодуль</a>.</p>
+<p>При этом происходит инициализация выполнения модуля и выполняются операторы
+тела модуля. После этого <a class="reference internal" href="#id27">ВыполняемыйМодуль</a> готов к использованию, и
+позволяет обращаться к переменным и методам модуля, как к своим свойствам
+и методам.</p>
+</blockquote>
+</div>
+<div class="section" id="getmethofcontext">
+<h3>GetMethOfContext</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> GetMethOfContext(Объект, тзМетоды = 0, тзСвойства = 0)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Объект</strong> - тип: Контекст, АгрегатныйОбъект. Объект, для которого необходимо получить описание.</li>
+<li><strong>тзМетоды</strong> - тип: ТаблицаЗначений. ТЗ, в которую будет возвращено описание методов объекта.</li>
+<li><strong>тзСвойства</strong> - тип: ТаблицаЗначений. ТЗ, в которую будет возвращено описание свойств объекта.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Предоставляет информацию о методах и свойствах объекта.</p>
+<p>Если задана хотя бы одна из таблиц (тзМетоды, тзСвойства), описание возвращается в соотв. таблице.
+Иначе описание выводится в окно сообщений.</p>
+<p><strong>Вместо данного метода удобнее использовать соответствующие методы
+класса &quot;Информатор&quot; - ПолучитьТаблицуМетодов и ПолучитьТаблицуСвойств.</strong></p>
+</blockquote>
+</div>
+<div class="section" id="raiseerror">
+<h3>СформироватьОшибку / RaiseError</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> СформироватьОшибку(ТекстОшибки)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ТекстОшибки - тип: Строка. Сообщение об ошибке.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Останавливает выполнение текущего модуля.</p>
+<p>При этом выводится сообщение об ошибке, переданное в параметре метода ТекстОшибки.</p>
+</blockquote>
+</div>
+<div class="section" id="erasepoststate">
+<h3>ОчиститьПозициюПроведения / ErasePostState</h3>
+<blockquote id="id36">
+<p><strong>Синтаксис:</strong> ОчиститьПозициюПроведения()</p>
+<p><strong>Описание:</strong> Очищает позицию проведения и сохраняет текущую в объекте.</p>
+<p>Далее в модуле документа можно проводить другие документы и отменять проведение
+других документов, после выполнения этих операций необходимо восстановить позицию
+с помощью метода <a class="reference internal" href="#id37">ВосстановитьПозициюПроведения</a>, описанного ниже.</p>
+<p><strong>Внимание! Проверка работоспособности метода была произведена только на релизе 1С 7.70.017.</strong></p>
+</blockquote>
+</div>
+<div class="section" id="restorepoststate">
+<h3>ВосстановитьПозициюПроведения / RestorePostState</h3>
+<blockquote id="id37">
+<p><strong>Синтаксис:</strong> ВосстановитьПозициюПроведения()</p>
+<p><strong>Описание:</strong> Восстанавливает позицию проведения текущего документа,
+очищенную с помощью метода <a class="reference internal" href="#id36">ОчиститьПозициюПроведения</a>.</p>
+<p>Методы <a class="reference internal" href="#id36">ОчиститьПозициюПроведения</a> и ВосстановитьПозициюПроведения необходимо вызывать
+всегда в паре в указанной последовательности!!!</p>
+<p><strong>Внимание! Проверка работоспособности метода была произведена только на релизе 1С 7.70.017.</strong></p>
+</blockquote>
+</div>
+<div class="section" id="throw">
+<h3>ВыброситьИскл / Throw</h3>
+<blockquote id="id38">
+<p><strong>Синтаксис:</strong> ВыброситьИскл(ОбъектИскл, [ТекстИскл])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ОбъектИскл - тип: Любой. Параметр, который потом можно получить при
+обработке исключения методом <a class="reference internal" href="#id39">ПолучитьИсключение</a>.</li>
+<li>ТекстИскл - тип: Строка. Сообщение об ошибке. По умолчанию &quot;&quot;.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Формирует исключение с объектом, который можно получить при
+перехвате/обработке исключения с помощью метода <a class="reference internal" href="#id39">ПолучитьИсключение</a>.</p>
+<p>При обработке исключения текст сообщения об ошибке можно получить
+с помощью глобальной функции <em>ОписаниеОшибки()</em>. Если исключение не
+обработано, этот текст будет выведен в окно сообщений.</p>
+</blockquote>
+</div>
+<div class="section" id="getexeption">
+<h3>ПолучитьИсключение / GetExeption</h3>
+<blockquote id="id39">
+<p><strong>Синтаксис:</strong> ПолучитьИсключение()</p>
+<p><strong>Возвращает:</strong> объект-исключение, параметр ОбъектИскл, переданный в
+метод <a class="reference internal" href="#id38">ВыброситьИскл</a>.</p>
+<p><strong>Описание:</strong> Получает объект исключения.</p>
+<p>Используется в обработчиках исключений для получения объекта исключения,
+переданного в метод <a class="reference internal" href="#id38">ВыброситьИскл</a>, или метода функционала класса
+<a class="reference external" href="alink.html">_ВыброситьИскл|_1cpp_oop__throw_</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="compileandexecute">
+<span id="id40"></span><h3>КомпилироватьИВыполнитьМодуль / CompileAndExecute</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> КомпилироватьИВыполнитьМодуль()</p>
+<p><strong>Описание:</strong> Компилирует и выполняет модуль, установленный с помощью
+метода <a class="reference internal" href="#id32">УстановитьМодуль</a> .</p>
+<p>При этом происходит инициализация выполнения модуля и выполняются операторы
+тела модуля. После этого <a class="reference internal" href="#id27">ВыполняемыйМодуль</a> готов к использованию, и
+позволяет обращаться к переменным и методам модуля, как к своим свойствам
+и методам.
+В случае ошибок синтаксиса в тексте модуля или ошибок выполнения
+генерируется исключение.</p>
+</blockquote>
+</div>
+<div class="section" id="enableexceptions">
+<h3>РазрешитьИсключения / EnableExceptions</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> РазрешитьИсключения()</p>
+<p><strong>Описание:</strong> Включает флаг выдачи исключений вместо показа ошибок в
+окне сообщений.</p>
+<p>После выполнения данного метода методы <a class="reference internal" href="#id35">ВыполнитьМодуль</a>, <a class="reference internal" href="#id34">КомпилироватьМодуль</a>
+вызывают исключение в случае ошибки, а не выдают сообщение в окно сообщений.
+В случае ошибок синтаксиса в тексте модуля или ошибок выполнения
+генерируется исключение.
+Метод <a class="reference internal" href="#id40">КомпилироватьИВыполнитьМодуль</a> всегда выбрасывает исключения,
+независимо от выполнения данного метода.</p>
+</blockquote>
+</div>
+<div class="section" id="callcontextprocedure">
+<span id="id41"></span><h3>ВыполнитьПроцедуруКонтекста / CallContextProcedure</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ВыполнитьПроцедуруКонтекста(Объект, ИмяПроцедуры, СписокАргументов)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Объект</strong> - тип: Агрегатный.</li>
+<li><strong>ИмяПроцедуры</strong> - тип: Строка.</li>
+<li><strong>СписокАргументов</strong> - тип: СписокЗначений. Список аргументов для упомянутой процедуры.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> 1, если процедура существует, или 0, если нет.</p>
+<p><strong>Описание:</strong> Выполняет процедуру для переданного объекта, если у объекта есть процедура с таким именем.
+Если найдена функция с таким именем, выдается исключение.</p>
+<p>В случае, если первый параметр не является агрегатным типом (Строка,Число и т.д.), выдается исключение.
+В случае, если второй параметр не является строкой или строка пуста, выдается исключение.
+В случае, если третий параметр не является списком значений, выдается исключение.</p>
+</blockquote>
+</div>
+<div class="section" id="callcontextfunction">
+<span id="id42"></span><h3>ВыполнитьФункциюКонтекста / CallContextFunction</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ВыполнитьФункциюКонтекста(Объект, ИмяПроцедуры, СписокАргументов, РезультатРаботыФункции)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Объект</strong> - тип: Агрегатный.</li>
+<li><strong>ИмяПроцедуры</strong> - тип: Строка.</li>
+<li><strong>СписокАргументов</strong> - тип: СписокЗначений. Список аргументов для упомянутой процедуры.</li>
+<li><strong>РезультатРаботыФункции</strong> - тип: Число.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> 1, если функция существует, или 0, если нет.</p>
+<p><strong>Описание:</strong> Выполняет функцию для переданного объекта, если у объекта есть функция с таким именем.
+Если найдена процедура с таким именем, выдается исключение.</p>
+<p>В случае, если первый параметр не является агрегатным типом (Строка,Число и т.д.), выдается исключение.
+В случае, если второй параметр не является строкой или строка пуста, выдается исключение.
+В случае, если третий параметр не является списком значений, выдается исключение.</p>
+</blockquote>
+</div>
+<div class="section" id="enableinsidecalling">
+<span id="id43"></span><h3>РазрешитьВложенныйВызовМетодов / EnableInsideCalling</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> РазрешитьВложенныйВызовМетодов()</p>
+<p><strong>Описание:</strong> Разрешает работу вложенных процедур модуля.
+В т.ч. и рекурсивных обращений, что может приводить к падению 1С.
+Вся ответственность за вложенные вызовы ложится на пользователя.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id44">
+<h1>Делегат</h1>
+<!-- <chminfo>
+    <klinks>
+        Делегат
+        Delegate
+    </klinks>
+</chminfo> -->
+<p><strong>Класс Делегат / Delegate</strong></p>
+<p>Данный класс представляет собой хранилище ссылок на методы экземпляров агрегатных
+объектов 1С. С помощью этого класса возможно вызывать группу методов с одинаковой
+сигнатурой (возвращаемый параметр, количество параметров или их отсутствие).</p>
+<p>Использование делегата позволяет писать обобщенные алгоритмы и делать групповые вызовы методов.</p>
+<div class="section" id="id45">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="definetype">
+<span id="id46"></span><h3>ОпределитьТип / DefineType</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ОпределитьТип(чКолПарам, флЕстьВозврат, [флПрерыватьВыполнение = 0])</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>чКолПарам</em>: Число</dt>
+<dd><p class="first last">Количество параметров, которые будут передаваться в методы делегата</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>флЕстьВозврат</em>: Число</dt>
+<dd><p class="first">Флаг наличия возвращаемого значения</p>
+<ul class="last simple">
+<li>1 - методы в делегате есть функции</li>
+<li>0 - методы в делегате есть процедуры</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>флПрерыватьВыполнение</em>: Число</dt>
+<dd><p class="first">Флаг прерывания выполнения по условию</p>
+<ul class="last simple">
+<li>1 - методы <a class="reference internal" href="#id48">Вызвать</a> и <a class="reference internal" href="#id50">ВызватьПоКлючу</a> прерывают выполнение цепочки, если при вызове очередной функции возвращенное значение равно 0</li>
+<li>0 - методы <a class="reference internal" href="#id48">Вызвать</a> и <a class="reference internal" href="#id50">ВызватьПоКлючу</a> всегда проходят цепочку вызова полностью</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Задает сигнатуру хранимых в Делегате методов.</div>
+<div class="line">Сигнатура - количество параметров и тип (функция / процедура) методов</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="addmethod">
+<span id="id47"></span><h3>Добавить / AddMethod</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Добавить(ЭкземплярАгрегатногоОбъекта, стрИмяМетода, [стрКлюч = &quot;&quot;])</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>ЭкземплярАгрегатногоОбъекта</em>: ГрупповойКонтекст, АгрегатныйОбъект</dt>
+<dd><p class="first last">Объект, метод которого будет сохранен для вызова</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>стрИмяМетода</em>: Строка</dt>
+<dd><p class="first last">Имя метода, который будет вызван</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>стрКлюч</em>: Строка</dt>
+<dd><p class="first">Если указан - можно вызывать метод по указанному ключу
+с помощью метода делегата <a class="reference internal" href="#id50">ВызватьПоКлючу</a></p>
+<div class="last line-block">
+<div class="line">По умолчанию используется ключ &quot;&quot;</div>
+<div class="line">Возможна реализация обработчика по умолчанию для ситуаций вызова по несуществующим ключам</div>
+<div class="line">(см. описание метода <a class="reference internal" href="#id50">ВызватьПоКлючу</a>)</div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Число</p>
+<ul class="simple">
+<li>1 - добавление метода прошло успешно</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first line-block">
+<div class="line">Устанавливает/добавляет в делегат ссылки на метод агрегатного объекта для его дальнейшего вызова</div>
+<div class="line">Сигнатура метода объекта для установки должна соответствовать указанной в <a class="reference internal" href="#id46">ОпределитьТип</a></div>
+</div>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Примечание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Возможно использование одинаковых методов для любых сочетаний ключей и агрегатных объектов</div>
+<div class="line">Количество ключей не регламентируется</div>
+<div class="line">Количество методов в пределах ключа не регламентируется</div>
+<div class="line">Ключи и имена методов являются регистронезависимыми</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="remmethod">
+<h3>Удалить / RemMethod</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Удалить(ЭкземплярАгрегатногоОбъекта, стрИмяМетода)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>ЭкземплярАгрегатногоОбъекта</em>: ГрупповойКонтекст, АгрегатныйОбъект</dt>
+<dd><p class="first last">Объект, ссылка на метод которого была сохранена ранее</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>стрИмяМетода</em>: Строка</dt>
+<dd><p class="first last">Имя метода, ссылка на который была сохранена ранее</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Число</p>
+<ul class="simple">
+<li>1 - удаление прошло успешно</li>
+<li>0 - ссылок не найдено</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Удаляет все ссылки на заданный метод указанного агрегатного объекта во всех ключах</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="remmethodbykey">
+<h3>УдалитьПоКлючу / RemMethodByKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УдалитьПоКлючу(стрКлюч)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>стрКлюч</em>: Строка</dt>
+<dd><p class="first last">Ключ, по которому происходит поиск методов объектов</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Число</p>
+<ul class="simple">
+<li>1 - удаление прошло успешно</li>
+<li>0 - для указанного ключа ссылок не найдено</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Удаляет все ссылки на методы агрегатных объектов по заданному ключу</div>
+<div class="line">Ключ задается при добавлении ссылки на метод, третьим параметром в <a class="reference internal" href="#id47">Добавить</a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="invoke">
+<span id="id48"></span><h3>Вызвать / Invoke</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Вызвать(...)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>...</em>:</dt>
+<dd><p class="first last">Количество параметров или их отсутствие определяется сигнатурой делегата,
+заданной ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Наличие и тип возвращаемого значения определяется сигнатурой делегата</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Вызывает все методы всех ключей, находящихся в делегате,
+с учетом параметра чПрерыватьВыполнение, заданного ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Примечание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Порядок вызова в пределах ключа регламентируется порядком добавления метода в делегат методом <a class="reference internal" href="#id47">Добавить</a>.</div>
+<div class="line">Порядок перебора ключей не определен.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="invokevl">
+<span id="id49"></span><h3>ВызватьСЗ / InvokeVL</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ВызватьСЗ(спПараметры)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>спПараметры</em>: СписокЗначений</dt>
+<dd><p class="first last">Количество параметров или их отсутствие определяется сигнатурой делегата,
+заданной ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Наличие и тип возвращаемого значения определяется сигнатурой делегата</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Вызывает все методы всех ключей, находящихся в делегате,
+с учетом параметра чПрерыватьВыполнение, заданного ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Примечание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Порядок вызова в пределах ключа регламентируется порядком добавления метода в делегат методом <a class="reference internal" href="#id47">Добавить</a>.</div>
+<div class="line">Порядок перебора ключей не определен.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="invokebykey">
+<span id="id50"></span><h3>ВызватьПоКлючу / InvokeByKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ВызватьПоКлючу(стрКлюч, ...)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>стрКлюч</em>: Строка</dt>
+<dd><p class="first last">Ключ, по которому происходит поиск ссылки</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>...</em>:</dt>
+<dd><p class="first last">Количество параметров или их отсутствие определяется сигнатурой делегата,
+заданной ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Наличие и тип возвращаемого значения определяется сигнатурой делегата</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Вызывает все методы указанного ключа, находящиеся в делегате,
+с учетом параметра чПрерыватьВыполнение, заданного ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Примечание:</th><td class="field-body"><p class="first">Порядок вызова в пределах ключа регламентируется порядком добавления метода в делегат
+методом <a class="reference internal" href="#id47">Добавить</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Обработчик по умолчанию:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first">Если указанный ключ в делегате не задан, вызывается обработчик по умолчанию
+по ключу &quot;__default&quot; (должен быть предварительно определен методом <a class="reference internal" href="#id47">Добавить</a>)</p>
+<div class="last line-block">
+<div class="line">Если обработчик по умолчанию также не задан, не вызывается ничего</div>
+<div class="line">Обработчик по умолчанию учитывает значение параметра чПрерыватьВыполнение в общем порядке</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="invokevlbykey">
+<span id="id51"></span><h3>ВызватьСЗПоКлючу / InvokeVLByKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ВызватьПоКлючу(стрКлюч, спПараметры)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>стрКлюч</em>: Строка</dt>
+<dd><p class="first last">Ключ, по которому происходит поиск ссылки</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>спПараметры</em>: СписокЗначений</dt>
+<dd><p class="first last">Количество параметров или их отсутствие определяется сигнатурой делегата,
+заданной ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Наличие и тип возвращаемого значения определяется сигнатурой делегата</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Вызывает все методы указанного ключа, находящиеся в делегате,
+с учетом параметра чПрерыватьВыполнение, заданного ранее методом <a class="reference internal" href="#id46">ОпределитьТип</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Примечание:</th><td class="field-body"><p class="first">Порядок вызова в пределах ключа регламентируется порядком добавления метода в делегат
+методом <a class="reference internal" href="#id47">Добавить</a></p>
+</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Обработчик по умолчанию:</th></tr>
+<tr><td>&nbsp;</td><td class="field-body"><p class="first">Если указанный ключ в делегате не задан, вызывается обработчик по умолчанию
+по ключу &quot;__default&quot; (должен быть предварительно определен методом <a class="reference internal" href="#id47">Добавить</a>)</p>
+<div class="last line-block">
+<div class="line">Если обработчик по умолчанию также не задан, не вызывается ничего</div>
+<div class="line">Обработчик по умолчанию учитывает значение параметра чПрерыватьВыполнение в общем порядке</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="erase">
+<h3>Очистить / Erase</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Очистить()</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Удаляет из делегата все установленные в нем ранее методы для всех ключей.</div>
+<div class="line">Сигнатура делегата после выполнения метода Очистить() не определена.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="isempty">
+<h3>Пустой / IsEmpty</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Пустой()</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Число</p>
+<ul class="simple">
+<li>1, если делегат не содержит ссылок на методы</li>
+<li>0, если содержит</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Проверяет наличие сохраненных ссылок</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="gethandlerstable">
+<span id="id52"></span><h3>ПолучитьТаблицуОбработчиков / GetHandlersTable</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ПолучитьТаблицуОбработчиков()</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Таблицу значений с подключенными обработчиками.
+В таблице есть 3 колонки - Объект, НаименованиеКласса, НаименованиеМетода</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><dl class="first last docutils">
+<dt>Возвращает таблицу значений подключенных обработчиков в порядке их</dt>
+<dd><p class="first last">добавления.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="gethandlerstablebykey">
+<span id="id53"></span><h3>ПолучитьТаблицуОбработчиковПоКлючу / GetHandlersTableByKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ПолучитьТаблицуОбработчиковПоКлючу(стрКлюч)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>стрКлюч</em>: Строка</dt>
+<dd><p class="first last">Ключ, по которому происходит поиск ссылки</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Таблицу значений с подключенными обработчиками.
+В таблице есть 3 колонки - Объект, НаименованиеКласса, НаименованиеМетода</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><dl class="first last docutils">
+<dt>Возвращает таблицу значений подключенных обработчиков в порядке их</dt>
+<dd><p class="first last">добавления.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id54">
+<h1>МенеджерСобытий</h1>
+<!-- <chminfo>
+    <klinks>
+        МенеджерСобытий
+        EventManager
+    </klinks>
+</chminfo> -->
+<p><strong>Класс МенеджерСобытий / EventManager</strong></p>
+<p>Данный класс предназначен для обработки событий, возникающих в классах КОП
+и других контекстах использования менеджера.</p>
+<p>Например: Есть класс, который формирует различные события и называется он
+&quot;ФабрикаСобытий&quot; (издатель событий). Предположим, что обращение к его открытым
+методам &quot;Событие_1&quot; и  &quot;Событие_2&quot; приводят к возникновению событий в системе
+от этого класса. Далее, у нас есть несколько классов, которые хотят подписаться
+на события (подписчики событий), формируемые классом &quot;ФабрикаСобытий&quot;,
+назовем их &quot;ОбработчикСобытий_1&quot; и &quot;ОбработчикСобытий_2&quot;.
+Экземпляры классов-обработчиков событий (подписчиков) определяют свои методы,
+которые будут вызываться при возникновении в экземпляре класса &quot;ФабрикаСобытий&quot;
+определенных событий. Далее опишем методы класса &quot;МенеджерСобытий&quot;
+и приведём с краткими пояснениями пример кода,  реализующий описанную схему.</p>
+<div class="section" id="id55">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id56">
+<h3>Пустой / IsEmpty</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Пустой()</p>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1, подписчиков нет</li>
+<li>0, подписчики есть</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Проверяет наличие в менеджере событий подписчиков.</p>
+</blockquote>
+</div>
+<div class="section" id="addeventhandle">
+<h3>ДобавитьОбработчикСобытия / AddEventHandle</h3>
+<blockquote id="id57">
+<p><strong>Синтаксис:</strong> ДобавитьОбработчикСобытия(копПодписчик, стрИмяМетода)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>копПодписчик - тип: КОП. Экземпляр класса-подписчика.</li>
+<li>стрИмяМетода - тип: Строка. Имя метода-обработчика класса-подписчика,
+который будет вызываться при возникновении событий, управляемых
+классом-менеджером.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - Добавление подписчика прошло успешно</li>
+<li>0 - Данный подписчик с таким методом уже зарегистрирован в менеджере событий</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Подписывает на событие экземпляр класса-подписчика событий.</p>
+<p>Метод-обработчик события должен быть членом класса-подписчика и принимать
+два параметра по умолчанию:</p>
+<ul class="simple">
+<li>Publisher или Издатель, в этот параметр передается экземпляр класса - издателя</li>
+<li>ExtParametrs или ДопПараметры, в этот параметр передается любая информация,
+посланная с помощью метода <a class="reference internal" href="#id58">ПослатьСобытие</a>.</li>
+</ul>
+<p>Количество параметров, заданных по умолчанию, возможно изменить с помощью
+установки отдельно созданного делегата - передать его в качестве параметра метода
+<a class="reference internal" href="#id59">УстановитьДелегата</a>, или передать число параметров в метод <a class="reference internal" href="#id60">УстановитьКоличествоПараметров</a>.</p>
+<p>Каждый метод-обработчик обязан возвращать числовое значение.
+Если функция возвращает 0, то цепочка обработки события прерывается на данном
+подписчике, т.е. если у нас есть менеджер событий, в котором зарегистрировано
+5 подписчиков и 2-ой по счету в своей функции возвращает 0, то 3 последующих
+подписчика не получат данное событие, другими словами - рассылка будет прервана
+на подписчике с номером 2. Если же функция возвращает любое другое числовое значение,
+отличное от нуля, то рассылка события менеджером не прерывается.</p>
+</blockquote>
+</div>
+<div class="section" id="remeventhandle">
+<h3>УдалитьОбработчикСобытия / RemEventHandle</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> УдалитьОбработчикСобытия(копПодписчик, стрИмяМетода)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>копПодписчик - тип: КОП. Экземпляр класса-подписчика.</li>
+<li>стрИмяМетода - тип: Строка. Имя метода-обработчика класса-подписчика.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - с подписки снят</li>
+<li>0 - нет, данный подписчик ранее не был зарегистрирован методом
+<a class="reference internal" href="#id57">ДобавитьОбработчикСобытия</a>.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Снимает с подписки экземпляр класса-подписчика,
+ранее подписавшегося на него с помощью <a class="reference internal" href="#id57">ДобавитьОбработчикСобытия</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="sendevent">
+<h3>ПослатьСобытие / SendEvent</h3>
+<blockquote id="id58">
+<p><strong>Синтаксис:</strong> ПослатьСобытие(Издатель, ДопПараметры ...)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Издатель - тип: ГрупповойКонтекст, КОП, любой.
+Как правило, в этом параметре передается либо контекст окружения, в
+котором возникло событие либо контекст экземпляра
+класса-издателя. Но можно передавать любой параметр.</li>
+<li>ДопПараметры - тип: Любой.
+Любая дополнительная информация, которая будет доступна в методе экземпляра
+класса-подписчика во втором параметре.
+Количество параметров метода зависит от установленного
+ограничения на количество параметров для события/подписчиков.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - цепочка рассылки событий пройдена полностью</li>
+<li>0 - рассылка была прервана одним из подписчиков</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Посылает событие всем зарегистрировавшимся подписчикам на него.</p>
+</blockquote>
+</div>
+<div class="section" id="setdelegate">
+<h3>УстановитьДелегата / SetDelegate</h3>
+<blockquote id="id59">
+<p><strong>Синтаксис:</strong> УстановитьДелегата(ЭкземплярДелегата)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ЭкземплярДелегата - тип: <a class="reference internal" href="#id44">Делегат</a>. Экземпляр делегата, через который
+будет осуществляться вызов методов-обработчиков.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> <a class="reference internal" href="#id44">Делегат</a>. Установленный ранее делегат, или делегат по умолчанию,
+содержащийся в текущем менеджере событий.</p>
+<p><strong>Описание:</strong> Устанавливает делегата для вызова методов-обработчиков.</p>
+</blockquote>
+</div>
+<div class="section" id="clear">
+<h3>Очистить / Clear</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Очистить()</p>
+<p><strong>Параметры:</strong></p>
+<p><strong>Описание:</strong> Очищает менеджер событий от подписчиков.</p>
+</blockquote>
+</div>
+<div class="section" id="setcountofparams">
+<h3>УстановитьКоличествоПараметров / SetCountOfParams</h3>
+<blockquote id="id60">
+<p><strong>Синтаксис:</strong> УстановитьКоличествоПараметров(чКолвоПарам)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>чКолвоПарам - тип: Число. Новое количество параметров.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает количество параметров, которые должны принимать подписчики
+и количество параметров, которые необходимо передавать в метод <a class="reference internal" href="#id58">ПослатьСобытие</a>.</p>
+<p>Данный метод удаляет всех подписчиков, установленных ранее в менеджере событий.</p>
+</blockquote>
+</div>
+<div class="section" id="id61">
+<h3>ПолучитьТаблицуОбработчиков / GetHandlersTable</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ПолучитьТаблицуОбработчиков()</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Таблицу значений с подключенными обработчиками.
+В таблице есть 3 колонки - Объект, НаименованиеКласса, НаименованиеМетода</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><dl class="first last docutils">
+<dt>Возвращает таблицу значений подключенных обработчиков в порядке их</dt>
+<dd><p class="first last">добавления.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id62">
+<h2>Пример кода</h2>
+<!-- <chminfo>
+    <topictitle>
+        <a class="toc-backref" href="parent"><title to="parent"/></a> :: <title to="selfremove"/>
+    </topictitle>
+</chminfo> -->
+<p>Определение класса &quot;ФабрикаСобытий&quot;:</p>
+<pre class="literal-block">
+класс ФабрикаСобытий=EventFactory.ert
+{
+    void Событие_1();
+    void Событие_2();
+};
+</pre>
+<p>Реализация класса &quot;ФабрикаСобытий&quot; файл EventFactory.ert:</p>
+<pre class="literal-block">
+Перем МенеджерСобытий1 Экспорт;
+Перем МенеджерСобытий2 Экспорт;
+
+Функция GetThis(Конт) Возврат Конт; КонецФункции
+
+Процедура Конструктор()
+    МенеджерСобытий1 = СоздатьОбъект(&quot;МенеджерСобытий&quot;);
+    МенеджерСобытий2 = СоздатьОбъект(&quot;МенеджерСобытий&quot;);
+КонецПроцедуры
+
+Процедура Событие_1()
+    Если МенеджерСобытий1.Пустой() = 0 Тогда
+        МенеджерСобытий1.ПослатьСобытие(GetThis(Контекст), &quot;Событие произошло!&quot;);
+    КонецЕсли;
+КонецПроцедуры
+Процедура Событие_2()
+    Если МенеджерСобытий2.Пустой() = 0 Тогда
+        сз = СоздатьОбъект(&quot;СписокЗначений&quot;);
+        сз.ДобавитьЗначение(100, &quot;Парам1&quot;);
+сз.ДобавитьЗначение(200, &quot;Парам2&quot;);
+сз.ДобавитьЗначение(300, &quot;Парам3&quot;);
+        МенеджерСобытий2.ПослатьСобытие(GetThis(Контекст), сз);
+    КонецЕсли;
+КонецПроцедуры
+</pre>
+<p>Определим классы подписчики &quot;ОбработчикСобытий_1&quot; и &quot;ОбработчикСобытий_2&quot;,
+в нашем примере определение этих классов будет одинаково:</p>
+<pre class="literal-block">
+класс ОбработчикСобытий_1=TreaterEvetns_1.ert
+{
+    Число ОбработкаСобытия_1(Неопределенный, Строка);
+    Число ОбработкаСобытия_2(Неопределенный, СписокЗначений);
+};
+</pre>
+<p>Реализация этих классов может быть любая, в нашем примере она тривиальна и ее описание опустим.</p>
+<p>В любом модуле системы для запуска механизма обработки событий пишем следующий код:</p>
+<pre class="literal-block">
+ОбрСобытий_1 = СоздатьОбъект(&quot;ОбработчикСобытий_1&quot;);
+ОбрСобытий_2 = СоздатьОбъект(&quot;ОбработчикСобытий_2&quot;);
+ФабрикаСобытий = СоздатьОбъект(&quot;ФабрикаСобытий&quot;);
+
+// Регистрируем подписчиков и их методы - обработчики событий
+ФабрикаСобытий.МенеджерСобытий1.ДобавитьОбработчикСобытия(ОбрСобытий_1, &quot;ОбработкаСобытия_1&quot;);
+ФабрикаСобытий.МенеджерСобытий1.ДобавитьОбработчикСобытия(ОбрСобытий_2, &quot;ОбработкаСобытия_1&quot;);
+
+ФабрикаСобытий.МенеджерСобытий2.ДобавитьОбработчикСобытия(ОбрСобытий_1, &quot;ОбработкаСобытия_2&quot;);
+ФабрикаСобытий.МенеджерСобытий2.ДобавитьОбработчикСобытия(ОбрСобытий_2, &quot;ОбработкаСобытия_2&quot;);
+
+// Вызываем методы, которые формирую событие (издают)
+ФабрикаСобытий.Событие_1();
+ФабрикаСобытий.Событие_2();
+// Далее происходит вызов всех методов зарегистрированных в менеджере экземпляров классов - подписчиков.
+</pre>
+</div>
+</div>
+<div class="section" id="id63">
+<h1>Структура</h1>
+<!-- <chminfo>
+    <klinks>
+        Структура
+        Struct
+    </klinks>
+</chminfo> -->
+<p><strong>Класс Структура / Struct</strong></p>
+<p>Данный класс предназначен для имитирования структуры данных других языков.
+Структура является динамическим объектом, что означает возможность программного
+управления количеством и названиями свойств структуры.</p>
+<div class="section" id="id64">
+<h2>Свойства</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id65">
+<h3>&lt;ИмяСвойства&gt;</h3>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Любой.</p>
+<p><strong>Описание:</strong> Позволяет обратиться к свойству, добавленному
+методом <a class="reference internal" href="#id67">Вставить</a>.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id66">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="insert">
+<h3>Вставить / Insert</h3>
+<blockquote id="id67">
+<p><strong>Синтаксис:</strong> Вставить(стрКлюч, [нЗначение], [чРежим])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">стрКлюч - тип: Строка. Название свойства структуры.</p>
+<p>Если такое свойство уже существует - то его значение изменяется,
+если не существует - создается новое</p>
+</li>
+<li><p class="first">нЗначение - тип: Любой. Значение свойства, которое необходимо установить.</p>
+</li>
+<li><p class="first">чРежим - тип: Число.</p>
+<ul class="simple">
+<li>0 - нЗначение сохраняется в структуре по ссылке</li>
+<li>1 - нЗначение сохраняется в структуре по значению</li>
+</ul>
+<p>По умолчанию - 1.</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Добавляет свойство в структуру.</p>
+<p>В структуре хранятся копии нЗначение.</p>
+</blockquote>
+</div>
+<div class="section" id="count">
+<h3>Количество / Count</h3>
+<blockquote id="id68">
+<p><strong>Синтаксис:</strong> Количество()</p>
+<p><strong>Возвращает:</strong> Число. Количество свойств структуры.</p>
+<p><strong>Описание:</strong> Возвращает количество свойств структуры, добавленных
+методом <a class="reference internal" href="#id67">Вставить</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="id69">
+<h3>Очистить / Clear</h3>
+<blockquote id="id70">
+<p><strong>Синтаксис:</strong> Очистить()</p>
+<p><strong>Описание:</strong>  Удаляет все свойства структуры.</p>
+</blockquote>
+</div>
+<div class="section" id="property">
+<h3>Свойство / Property</h3>
+<blockquote id="id71">
+<p><strong>Синтаксис:</strong> Свойство(стрКлюч, [нЗначение])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрКлюч - тип: Строка. Название для поиска свойства структуры.</li>
+<li>нЗначение - тип: Имя переменной. В данный параметр возвращается найденное значение.
+Если ключа нет в структуре, то возвращается пустое значение неопределенного типа.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - свойство с ключом найдено</li>
+<li>0 - не найдено</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Позволяет получить значение свойства по указанному имени,
+а также проверить, имеется ли указанное свойство.</p>
+</blockquote>
+</div>
+<div class="section" id="remove">
+<h3>Удалить / Remove</h3>
+<blockquote id="id72">
+<p><strong>Синтаксис:</strong> Удалить(стрКлюч)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрКлюч - тип: Строка. Название удаляемого свойства структуры.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет элемент структуры с заданным ключом.
+Если ключа не существует,  выдается исключение.</p>
+</blockquote>
+</div>
+<div class="section" id="get">
+<h3>Получить / Get</h3>
+<blockquote id="id73">
+<p><strong>Синтаксис:</strong> Получить(чИндекс, [стрИмяСвойства])</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>чИндекс - тип: Число. Номер поля по порядку от 1 до <a class="reference internal" href="#id68">Количество</a></li>
+<li>стрИмяСвойства - тип: Имя переменной. В нее записывается имя свойства,
+полученное по его номеру.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Значение свойства, полученное по его номеру.</p>
+<p><strong>Описание:</strong> Позволяет получать по индексу значение свойства и его имя.</p>
+</blockquote>
+</div>
+<div class="section" id="existprop">
+<h3>ЕстьСвойство / ExistProp</h3>
+<blockquote id="id74">
+<p><strong>Синтаксис:</strong> ЕстьСвойство(стрИмя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип:</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число. Индекс найденного свойства, начиная с 1.
+Если свойство не найдено, 0.</p>
+<p><strong>Описание:</strong> Проверяет, есть ли свойство с таким именем.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="dynavalue">
+<h1>DynaValue</h1>
+<!-- <chminfo>
+    <klinks>
+        DynaValue
+    </klinks>
+</chminfo> -->
+<p><strong>Класс DynaValue</strong></p>
+<p>Объект &quot;DynaValue&quot; представляет собой массив поименованных свойств или,
+иными словами, составное значение. Свойства принимают тип значения переданного
+параметром при добавлении свойства. Чтение/Установка свойства осуществляется
+через точку по имени свойства.</p>
+<div class="section" id="id75">
+<h2>Свойства</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id76">
+<h3>&lt;ИмяСвойства&gt;</h3>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Любой.</p>
+<p><strong>Описание:</strong> Позволяет обратиться к свойству, добавленному
+методом <a class="reference internal" href="#id78">ДобавитьСвойство</a>.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id77">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="addprop">
+<h3>ДобавитьСвойство / AddProp</h3>
+<blockquote id="id78">
+<p><strong>Синтаксис:</strong> ДобавитьСвойство(стрИмя, нЗначение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип: Строка. Имя свойства.</li>
+<li>нЗначение - тип: Любой. Значение свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> добавленное значение.</p>
+<p><strong>Описание:</strong> Добавляет новое свойство с заданным именем.</p>
+</blockquote>
+</div>
+<div class="section" id="selectprops">
+<h3>ВыбратьСвойства / SelectProps</h3>
+<blockquote id="id79">
+<p><strong>Синтаксис:</strong> ВыбратьСвойства()</p>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - если выбрано хоть одно свойство</li>
+<li>0 - нет свойств</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Открывает выборку свойств.</p>
+</blockquote>
+</div>
+<div class="section" id="getprop">
+<h3>ПолучитьСвойство / GetProp</h3>
+<blockquote id="id80">
+<p><strong>Синтаксис:</strong> ПолучитьСвойство(нЗначение, стрИмя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>нЗначение - тип: Имя переменной. В нее вернется значение свойства.</li>
+<li>стрИмя - тип:  Имя переменной. В нее вернется имя свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - свойство получено</li>
+<li>0 - выборка кончилась</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Получает следующее свойство из выборки, открытой <a class="reference internal" href="#id79">ВыбратьСвойства</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="getpropbynum">
+<h3>ПолучитьСвойствоПоНомеру / GetPropByNum</h3>
+<blockquote id="id81">
+<p><strong>Синтаксис:</strong> ПолучитьСвойствоПоНомеру(чНомер)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>чНомер - тип: Число. Индекс свойства от <strong>0</strong> до <a class="reference internal" href="#id82">КоличествоСвойств</a> - 1.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> свойство по индексу.</p>
+<p><strong>Описание:</strong> Получает значение свойства по его индексу.</p>
+<p>Если индекс неверен, то генерируется ошибка.</p>
+<p><strong>Внимание! Индексация свойств начинается с 0(ноль)!</strong></p>
+</blockquote>
+</div>
+<div class="section" id="getnprops">
+<h3>КоличествоСвойств / GetNProps</h3>
+<blockquote id="id82">
+<p><strong>Синтаксис:</strong> КоличествоСвойств()</p>
+<p><strong>Возвращает:</strong> Число. Количество свойств.</p>
+<p><strong>Описание:</strong> Получает количество свойств.</p>
+</blockquote>
+</div>
+<div class="section" id="savetostring">
+<h3>ВыгрузитьВСтроку / SaveToString</h3>
+<blockquote id="id83">
+<p><strong>Синтаксис:</strong> ВыгрузитьВСтроку()</p>
+<p><strong>Возвращает:</strong> Строка. Сохранненое состояние объекта.</p>
+<p><strong>Описание:</strong> Возвращает строку с содержимым объекта для хранения и последующего
+восстановления.</p>
+<p><strong>Примечание:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>выгружается абсолютно все содержимое, независимо от количества уровней вложенности.</li>
+<li>Для возможного сохранения классов КОП, которые могут содержаться в DynaValue
+необходимо, чтобы эти классы соответствовали требованиям, описанным
+в <a class="reference external" href="alink.html">Сериализации КОП|_1cpp_oop_serialization_</a>.</li>
+</ul>
+</blockquote>
+</blockquote>
+</div>
+<div class="section" id="savetofile">
+<h3>ВыгрузитьВФайл / SaveToFile</h3>
+<blockquote id="id84">
+<p><strong>Синтаксис:</strong> ВыгрузитьВФайл(стрИмяФайла)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмяФайла - тип: Строка. Имя файла, в который производится выгрузка состояния.</li>
+</ul>
+</blockquote>
+<dl class="docutils">
+<dt><strong>Возвращает:</strong> Число.</dt>
+<dd><ul class="first last simple">
+<li>1 - выгрузка произведена успешно</li>
+<li>иначе ошибка</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Сохраняет состояние объекта в файл.</p>
+</blockquote>
+</div>
+<div class="section" id="loadfromstring">
+<h3>ЗагрузитьИзСтроки / LoadFromString</h3>
+<blockquote id="id85">
+<p><strong>Синтаксис:</strong> ЗагрузитьИзСтроки(стрСтрока)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрСтрока - тип: Строка. Сохраненное состояние объекта.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Восстанавливает значение объекта из выгрузки в строку.</p>
+<p><strong>Примечание:</strong></p>
+<ul class="simple">
+<li>Предыдущее состояние объекта не сохранятся.</li>
+<li>восстанавливаются значения всех элементов, включая агрегатные.</li>
+<li>категорически запрещается передавать методу &quot;ЗагрузитьИзСтроки&quot; в качестве
+параметра что-либо, кроме строк выгруженных методом <a class="reference internal" href="#id84">ВыгрузитьВФайл</a>,
+по причине невозможности проконтролировать целостность данных.
+В случае неверной строки происходит немедленное прекращение работы
+программы 1С с потерей всех несохраненных на данный момент данных.</li>
+<li>Запрещены циклические ссылки между элементами объектов, один из которых
+подлежит выгрузке в строку. В этом случае произойдет зацикливание программы 1С и,
+со временем - прекращение работы программы 1С с потерей всех несохраненных
+на данный момент данных.</li>
+<li>Для восстановления состояния классов КОП вызывается их метод
+<a class="reference external" href="alink.html">ЗагрузитьИзСтроки|_1cpp_oop_load_from_string_</a>.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="loadfromfile">
+<h3>ЗагрузитьИзФайла / LoadFromFile</h3>
+<blockquote id="id86">
+<p><strong>Синтаксис:</strong> ЗагрузитьИзФайла(стрИмяФайла)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмяФайла - тип: Строка. Имя файла, из которого производится загрузка.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Число.</p>
+<blockquote>
+<ul class="simple">
+<li>1 - загрузка произведена успешно</li>
+<li>не 1 - произошла ошибка</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Восстанавливает значения объектов из файла.</p>
+<p>См. примечание у метода <a class="reference internal" href="#id85">ЗагрузитьИзСтроки</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="findbyname">
+<h3>НайтиПоИмени / FindByName</h3>
+<blockquote id="id87">
+<p><strong>Синтаксис:</strong> НайтиПоИмени(стрИмя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип: Строка. Имя искомого свойства.</li>
+<li><ul class="first">
+<li>тип:</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>тип:</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>тип:</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> номер свойства (от нуля), или -1 если не найдено.</p>
+<p><strong>Описание:</strong> Ищет свойство по имени.</p>
+</blockquote>
+</div>
+<div class="section" id="getbyname">
+<h3>ПолучитьПоИмени / GetByName</h3>
+<blockquote id="id88">
+<p><strong>Синтаксис:</strong> ПолучитьПоИмени(стрИмя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип: Строка. Имя свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Значение свойства по номеру (от нуля).</p>
+<p><strong>Описание:</strong> Получает свойство по имени.</p>
+</blockquote>
+</div>
+<div class="section" id="setbyname">
+<h3>УстановитьПоИмени / SetByName</h3>
+<blockquote id="id89">
+<p><strong>Синтаксис:</strong> УстановитьПоИмени(стрИмя,нЗначение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип: Строка. Имя свойства.</li>
+<li>нЗначение - тип: Любой. Значение свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает значение свойства по имени свойства.</p>
+</blockquote>
+</div>
+<div class="section" id="setbynum">
+<h3>УстановитьПоНомеру / SetByNum</h3>
+<blockquote id="id90">
+<p><strong>Синтаксис:</strong> УстановитьПоНомеру(чНомер,нЗначение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>чНомер - тип: Число. Порядковый номер свойства, нумерация начинается с 0 и заканчивается
+<a class="reference internal" href="#id82">КоличествоСвойств</a>- 1;</li>
+<li>нЗначение - тип: Любой. Новое значение свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает значение свойства по номеру свойства.</p>
+</blockquote>
+</div>
+<div class="section" id="deletebynum">
+<h3>УдалитьПоНомеру / DeleteByNum</h3>
+<blockquote id="id91">
+<p><strong>Синтаксис:</strong> УдалитьПоНомеру(чНомер)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>чНомер - тип: Число. Порядковый номер свойства, нумерация начинается с 0 и заканчивается
+<a class="reference internal" href="#id82">КоличествоСвойств</a> - 1;</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет свойство по указанному номеру.</p>
+</blockquote>
+</div>
+<div class="section" id="deletebyname">
+<h3>УдалитьПоИмени / DeleteByName</h3>
+<blockquote id="id92">
+<p><strong>Синтаксис:</strong> УдалитьПоИмени(стрИмя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмя - тип: Строка. Имя удаляемого свойства.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет свойство по указанному названию.</p>
+</blockquote>
+</div>
+<div class="section" id="id93">
+<h3>Очистить / Clear</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Очистить()</p>
+<p><strong>Описание:</strong> Удаляет все свойства.</p>
+</blockquote>
+</div>
+<div class="section" id="propstovaluelist">
+<h3>СвойстваВСписокЗначений / PropsToValueList</h3>
+<blockquote id="id94">
+<p><strong>Синтаксис:</strong> СвойстваВСписокЗначений(сз)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>сз - тип: Имя переменной. В нее вернется заполненный список значений.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Выгружает в список значений все значения и имена свойств.</p>
+</blockquote>
+</div>
+<div class="section" id="findbyvalue">
+<h3>НайтиПоЗначению / FindByValue</h3>
+<blockquote id="id95">
+<p><strong>Синтаксис:</strong> НайтиПоЗначению(нЗнач, чИндекс)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>нЗнач - тип: Любой. Значение, которое ищем в объекте.</li>
+<li>чИндекс - тип: Имя переменной. В нее вернется индекс найденного
+значения в объекте, если не найдено - устанавливается в -1.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Если значение найдено - возвращается оно же, иначе пустой объект.</p>
+<p><strong>Описание:</strong> ищет значение в объекте и, если находит, возвращает значение и
+индекс в &quot;чИндекс&quot;.</p>
+</blockquote>
+</div>
+<div class="section" id="findbyatributevalue">
+<h3>НайтиПоЗначениюАтрибута / FindByAtributeValue</h3>
+<blockquote id="id96">
+<p><strong>Синтаксис:</strong> НайтиПоЗначениюАтрибута(стрИмяАтрибута, нЗнач, чИндекс)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>стрИмяАтрибута - тип: Строка. Имя для поиска атрибута в объекте,
+который хранится в свойстве DynaValue.</li>
+<li>нЗнач - тип: Любой. Значение, которое ищем в атрибуте значения свойства.</li>
+<li>чИндекс - тип: Имя переменной. В нее вернется индекс найденного свойства,
+в котором хранится другой объект, имеющий атрибут с именем &quot;стрИмяАтрибута&quot;,
+и содержащий значение, указанное в &quot;нЗнач&quot;. Если не найдено устанавливается в -1.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> Если значение найдено - возвращается значение свойства,
+у которого был обнаружен атрибут, иначе возвращается пустой объект.</p>
+<p><strong>Описание:</strong> Ищет свойство, у которого есть атрибут с указанным именем
+&quot;стрИмяАтрибута&quot;, и содержащее указанное значение &quot;нЗнач&quot;.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id97">
+<h1>Форма</h1>
+<!-- <chminfo>
+    <klinks>
+        Форма
+        Form
+    </klinks>
+</chminfo> -->
+<p><strong>Класс Форма / Form</strong></p>
+<p>Класс позволяет привязываться к форме и создавать элементы управления.
+В основном, используектся для создания ActiveX / АктивИкс объектов.</p>
+<blockquote>
+<strong>Версия:</strong> Метод работает на релизе 2.5 и позже.</blockquote>
+<p>После установки формы методом <a class="reference internal" href="#id104">УстановитьФорму</a> могут генерироваться события формы.</p>
+<div class="section" id="id98">
+<h2>События</h2>
+<div class="section" id="id100">
+<span id="id99"></span><h3>ФормаПриСоздании</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ФормаПриСоздании(ИсточникСобытия)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li><strong>ИсточникСобытия</strong> - источник события, объект типа &quot;Форма&quot;
+или наследник от класса &quot;Форма&quot;.</li>
+</ul>
+</dd>
+<dt><strong>Описание:</strong></dt>
+<dd><p class="first">Событие вызывается после физического создания окна формы
+для формы, установленной методом &quot;УстановитьФорму&quot;.</p>
+<p class="last">Подробнее см. описание метода <a class="reference internal" href="#id104">УстановитьФорму</a>.</p>
+</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id102">
+<span id="id101"></span><h3>ФормаПослеЗаписи</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ФормаПослеЗаписи(ИсточникСобытия, флРезультат)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><p class="first"><strong>ИсточникСобытия</strong> - источник события, объект типа &quot;Форма&quot;
+или наследник от класса &quot;Форма&quot;.</p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>флРезультат</strong> - результат операции, тип: число</dt>
+<dd><ul class="first last simple">
+<li>0: запись не выполнена</li>
+<li>1: запись выполнена успешно</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Описание:</strong></dt>
+<dd><p class="first">Событие вызывается после записи документа и элемента справочника
+для формы, установленной методом &quot;УстановитьФорму&quot;.</p>
+<p>Для элемента справочника событие вызывается для icpp версии не менее 3.2.3.9.</p>
+<p class="last">Для элемента справочника поддерживаются релизы 1С: 18,19,20,21,23,25,26,27.</p>
+</dd>
+</dl>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id103">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="assignform">
+<span id="id104"></span><h3>УстановитьФорму / AssignForm</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> void УстановитьФорму(Форма)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Форма</strong> - тип: Форма. Форма, к которой идет привязка.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Привязывает объект класса к переданной форме.</p>
+<p>Время жизни объекта совпадает со временем жизни указанной формы.</p>
+<p>Объект может генерировать событие &quot;ФормаПриСоздании(ИсточникСобытия)&quot; в виде вызова
+процедуры модуля формы с одним параметром, если данная процедура определена в модуле формы.
+Событие вызывается после физического создания формы.
+Параметр &quot;ИсточникСобытия&quot; у события - это источник события, т.е. объект &quot;Форма&quot; или
+наследник от класса &quot;Форма&quot;.</p>
+</blockquote>
+<dl class="docutils">
+<dt>Пока не выполнено ---</dt>
+<dd><p class="first">Событие &quot;ФормаПриСоздании&quot; может также обрабатывать переданный первым параметром
+КОП-наследник от АктивИкс или ТабличногоПоля.
+Процедура-обработчик события должна быть объявлена в классе с ключевым словом Экспорт.</p>
+<blockquote class="last">
+Событие может быть задано в КОПе и в модуле формы одновременно,
+в этом случае сначала происходит вызов события в КОПе, затем в модуле формы.</blockquote>
+</dd>
+</dl>
+</div>
+<div class="section" id="createcontrol">
+<span id="id105"></span><h3>СоздатьЭлементУправления / CreateControl</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> СоздатьЭлементУправления(ИмяОбъектаИлиОбъектКлассаКОП, ИдентификаторЭлементаДиалога)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first"><strong>ИмяОбъектаИлиОбъектКлассаКОП</strong> - тип: Строка или объект класса.</p>
+<blockquote>
+<p>Если передана строка, пытаемся создать объект класса с таким
+именем.
+Если передан объект, используем именно его.</p>
+</blockquote>
+</li>
+<li><dl class="first docutils">
+<dt><strong>ИдентификаторЭлементаДиалога</strong> - тип: Строка или элемент диалога. Идентификатор элемента</dt>
+<dd><p class="first last">диалога, на месте которого будет создан элемент ActiveX.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Объект. Созданный объект.</p>
+<p><strong>Описание:</strong> Создает элемент управления и указывает размещение создаваемого элемента.</p>
+<blockquote>
+Также устанавливает префикс для имен процедур-обработчиков событий, расположенных
+в модуле формы.</blockquote>
+<p>Время жизни объекта совпадает со временем жизни указанной формы.</p>
+<p>Предварительно должна быть установлена привязка объекта к форме
+методом <a class="reference internal" href="#id104">УстановитьФорму</a> .</p>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает после физического открытия окна формы (например - в предопределенной процедуре
+ПослеОткрытия). Метод работает только для реквизитов диалога типа &quot;Текст&quot;.</p>
+</div>
+<ul class="simple">
+<li>На текущий момент возможно использование метода для классов, которые
+являются наследниками встроенных классов АктивИкс или ТабличноеПоле,
+или для самих объектов типа АктивИкс или ТабличноеПоле.</li>
+</ul>
+</div>
+<div class="section" id="getcontrol">
+<span id="id106"></span><h3>ПолучитьЭлементУправления / GetControl</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьЭлементУправления(ИдентификаторЭлементаДиалога)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>ИдентификаторЭлементаДиалога</strong> - тип: Строка или элемент диалога.</dt>
+<dd><p class="first last">Идентификатор элемента диалога, на месте которого был создан ActiveX.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Объект. Объект (элемент управления), связанный с данным элементом диалога.</p>
+<p><strong>Описание:</strong> Возвращает существующий объект, связанный с данным элементом диалога.</p>
+<blockquote>
+В случае, если для данного элемента диалога нет связанных элементов управления, метод возвращает пустое значение.</blockquote>
+<p>Предварительно должна быть установлена привязка объекта к форме
+методом <a class="reference internal" href="#id104">УстановитьФорму</a> .</p>
+</blockquote>
+<div class="important">
+<p class="first admonition-title">Important</p>
+<p class="last">Метод работает после физического открытия окна формы (например - в предопределенной процедуре
+ПослеОткрытия). Метод работает только для реквизитов диалога типа &quot;Текст&quot;.</p>
+</div>
+<ul class="simple">
+<li>На текущий момент возможно использование метода для классов, которые
+являются наследниками встроенных классов АктивИкс или ТабличноеПоле,
+или для самих объектов типа АктивИкс или ТабличноеПоле.</li>
+</ul>
+</div>
+<div class="section" id="createcontrolonform">
+<span id="id107"></span><h3>СоздатьЭлементУправленияНаФорме / CreateControlOnForm</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> void СоздатьЭлементУправленияНаФорме(Форма, ИмяОбъектаИлиОбъектКлассаКОП, ИдентификаторЭлементаДиалога)</p>
+<p><strong>Описание:</strong> Объединяет функционал <a class="reference internal" href="#id104">УстановитьФорму</a> и <a class="reference internal" href="#id105">СоздатьЭлементУправления</a></p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id108">
+<h1>БуферОбмена</h1>
+<!-- <chminfo>
+    <klinks>
+        БуферОбмена
+        Clipboard
+    </klinks>
+</chminfo> -->
+<p><strong>Класс БуферОбмена / Clipboard</strong></p>
+<p>Класс позволяет работать с системным буфером обмена.</p>
+<blockquote>
+<strong>Версия:</strong> Метод работает на релизе 2.5 и позже.</blockquote>
+<div class="section" id="id109">
+<h2>Методы</h2>
+<!-- <chminfo split="0" splitchild="1">
+    <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id111">
+<span id="id110"></span><h3>Получить / Get</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> Строка Получить()</p>
+<p><strong>Описание:</strong> Получает текст из системного буфера обмена.</p>
+</blockquote>
+</div>
+<div class="section" id="set">
+<span id="id112"></span><h3>Установить / Set</h3>
+<blockquote>
+<p><strong>Синтаксис:</strong> void Установить(Строка Текст)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li><strong>Текст</strong> - тип: Строка. Новый текст для буфера обмена.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Сохраняет текст в системного буфере обмена.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id113">
+<h1>Вектор</h1>
+<!-- <chminfo>
+    <klinks>
+        Вектор
+        Vector
+    </klinks>
+</chminfo> -->
+<p><strong>Класс Вектор / Vector</strong></p>
+<p>Быстрый контейнер - реализация безопасного массива.
+Построен на базе std::vector из стандартной библиотеки С++ с аналогичными гарантиями сложности.</p>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Внимание:</strong> Нумерация позиций всегда идет с 0, а не с 1, как у 1С. Будьте аккуратны!</dt>
+<dd>Доступ к последнему элементу коллекции возможен по значению индекса -1.</dd>
+</dl>
+<p><strong>Версия:</strong> Объект поддерживается на релизах версии 3.0.1.7 и выше.</p>
+</blockquote>
+<div class="section" id="id114">
+<h2>Методы</h2>
+<div class="section" id="id115">
+<h3>Количество / Count</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Количество()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Количество элементов коллекции; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Возвращает количество элементов коллекции</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body">Const</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="ubound">
+<h3>ВГраница / UBound</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">ВГраница()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Наибольший индекс в коллекции; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Возвращает количество элементов коллекции минус 1</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body">Const</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id116">
+<h3>Получить / Get</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Получить(Индекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции; может принимать значения от 0 до Количество() - 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Значение элемента коллекции;</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Получает значение элемента коллекции по его индексу</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">Const</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id117">
+<h3>Установить / Set</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Установить(Индекс, Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()-1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: любой</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Устанавливает значение элемента коллекции по его индексу</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">Const</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="add">
+<h3>Добавить / Add</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Добавить(Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип: Любой</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Добавляет новый элемент коллекции с заданным значением.
+Добавление новой позиции происходит всегда в конце коллекции.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">Const</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id118">
+<h3>Удалить / Remove</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Удалить(Индекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()-1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Удаляет заданный элемент из коллекции</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">В конце: Const; В начале и середине: O(n)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id119">
+<h3>Очистить / Clear</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Очистить()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Удаляет все элементы коллекции</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body">O(n)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id120">
+<h3>Вставить / Insert</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Вставить(Индекс, Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: Число</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Добавляет новый элемент коллекции перед элементом с заданным индексом.
+Вставка в конец коллекции с номером Количество() также разрешена.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">В конце: Const; В начале и середине: O(n)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="move">
+<h3>Сдвинуть / Move</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Сдвинуть(Индекс, Смещение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()-1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Смещение, тип: Число</dt>
+<dd><p class="first last">Смещение элемента коллекции относительно его текущего положения</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Перемещает заданный элемент коллекции, в соответствии с указанным смещением.
+Положительные смещения перемещеют элемент вправо (в сторону больших индексов), отрицательные - влево.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd>O(n), зависимость от смещения</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="unload">
+<h3>Выгрузить / Unload</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Выгрузить(Приемник)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Приемник, тип: СписокЗначений, ТаблицаЗначений, произвольная коллекция или любой объект, поддерживающий универсальный интерфейс загрузки.</dt>
+<dd><p class="first last">Приемник, в который будут выгружены элементы коллекции.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Выгружает коллекцию в приемник</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="reserve">
+<h3>Резервировать / Reserve</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Резервировать(Количество)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Количество, тип: Число</dt>
+<dd><p class="first last">Количество элементов</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Резервирует память для заданного количества элементов.
+Это позволяет избежать перемещения элементов при росте вектора до заданного размера.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="resize">
+<h3>ИзменитьРазмер / Resize</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ИзменитьРазмер(Количество)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Количество, тип: Число</dt>
+<dd><p class="first last">Количество элементов</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Добавляет или удаляет элементы, изменяя размер вектора до указанного значения.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="sort">
+<h3>Сортировать / Sort</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Сортировать(Выражение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Выражение, тип: Строка</dt>
+<dd><p class="first">Выражение сортировки.
+Состоит из перечисления &quot;колонок&quot;, разделенных запятыми,
+каждая из которых может иметь один или несколько модификаторов</p>
+<dl class="last docutils">
+<dt><strong>Колонки:</strong></dt>
+<dd><ul class="first last simple">
+<li>&quot;Значение&quot;</li>
+</ul>
+</dd>
+<dt><strong>Модификаторы</strong></dt>
+<dd><ul class="first last simple">
+<li>&quot;-&quot; - по убыванию</li>
+<li>&quot;*&quot; - по внутреннему представлению</li>
+<li>&quot;#&quot; - с обрезкой пробелов</li>
+<li>&quot;^&quot; - без учета регистра</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Сортирует элементы коллекции.
+В отличие от ассоциативного вектора наименование колонки &quot;Значение&quot; можно не указывать.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">O(log(N))</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id121">
+<h1>АссоциативныйВектор</h1>
+<!-- <chminfo>
+    <klinks>
+        АссоциативныйВектор
+        AssociativeVector
+    </klinks>
+</chminfo> -->
+<p><strong>Класс АссоциативныйВектор / AssociativeVector</strong></p>
+<p>Быстрый контейнер - объединение безопасного массива и хэш-таблицы.
+Построен на базе std::vector из стандартной библиотеки С++ с аналогичными гарантиями сложности.</p>
+<p>Позволяет ассоциировать значения с ключом - регистронезависимой строкой и осуществлять быстрый доступ
+по ключу - в том числе и как к свойствам объекта.</p>
+<p>Также позволяет использование в ограниченном варианте - без присвоения ассоциаций значениям.
+В этом случае аналогичен классу &quot;Вектор&quot;, а дополнительные накладные расходы минимальны.</p>
+<p>Коллекция может являться приемником при выгрузке из ИТ и других коллекций.
+При этом <em>Данные</em> должны передаваться в первой колонке, а <em>Ключи</em> - во второй.
+Возможна загрузка одной колонки с <em>Данными</em>.</p>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Внимание:</strong> Нумерация позиций всегда идет с 0, а не с 1, как у 1С. Будьте аккуратны!</dt>
+<dd>Доступ к последнему элементу коллекции возможен по значению индекса -1.</dd>
+</dl>
+<p><strong>Версия:</strong> Объект поддерживается на релизах версии 3.0.1.10 и выше.</p>
+</blockquote>
+<div class="section" id="id122">
+<h2>Методы</h2>
+<div class="section" id="id123">
+<h3>Количество / Count</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Количество()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Количество элементов коллекции; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Возвращает количество элементов коллекции</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd>Const</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id124">
+<h3>ВГраница / UBound</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">ВГраница()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Наибольший индекс в коллекции; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Возвращает количество элементов коллекции минус 1</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body">Const</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id125">
+<h3>Получить / Get</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Получить(Ключ)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Ключ, тип: Число, Строка</dt>
+<dd><ul class="first last simple">
+<li>Число: Индекс элемента коллекции; может принимать значения от 0 до Количество() - 1</li>
+<li>Строка: Ключ элемента коллекции</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Значение элемента коллекции;</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Получает значение элемента коллекции по ключу</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd>Const</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id126">
+<h3>ПолучитьКлюч / GetKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ПолучитьКлюч(чИндекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>чИндекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Ключ заданного элемента коллекции</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Возвращает значение ключа по индексу элемента</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">Const</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="findkey">
+<h3>НайтиКлюч / FindKey</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">НайтиКлюч(Ключ, флТочныйПоиск  = 0)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Ключ, тип: Строка</dt>
+<dd><p class="first last">Ключ элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>флТочныйПоиск, тип: Число</dt>
+<dd><p class="first last">Флаг, определяющий вид поиска</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>для флТочныйПоиск = 0:</dt>
+<dd><ul class="first last simple">
+<li>-1: ключ не найден</li>
+<li>1: ключ найден</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>для флТочныйПоиск = 1:</dt>
+<dd><ul class="first last simple">
+<li>-1: ключ не найден</li>
+<li>Индекс элемента для данного ключа</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Осуществляет поиск ключа в коллекции.
+В отличие от метода <a class="reference internal" href="#id73">Получить</a> при отсутствии ключа исключение не выбрасывает.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">Зависит от значение флТочныйПоиск:
+- 0: Const
+- 1: O(n) (обратите внимание!)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id127">
+<h3>Выгрузить / Unload</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Выгрузить(Приемник)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Приемник, тип: СписокЗначений, ТаблицаЗначений, произвольная коллекция или любой объект, поддерживающий универсальный интерфейс загрузки.</dt>
+<dd><p class="first last">Приемник, в который будут выгружены элементы коллекции.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Выгружает коллекцию в приемник</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id128">
+<h3>Установить / Set</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Установить(Ключ, Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Ключ, тип: Число, Строка</dt>
+<dd><ul class="first last simple">
+<li>Число: Индекс элемента коллекции от 0 до Количество()-1</li>
+<li>Строка: Ключ элемента коллекции</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: любой</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает значение элемента коллекции по ключу</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd>Const</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id129">
+<h3>Добавить / Add</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Добавить(Значение, Ключ)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип: Любой</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Ключ, тип: Строка</dt>
+<dd><p class="first last">Ключ, который будет ассоциирован с элементом коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Добавляет новый элемент коллекции с заданным значением (и ключом).
+Добавление новой позиции происходит всегда в конце коллекции.
+Если в коллекции уже существует элемент, ассоциированный с ключом, то выдается исключение.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd>Const</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id130">
+<h3>Удалить / Remove</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Удалить(Ключ)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Ключ, тип: Число, Строка</dt>
+<dd><ul class="first last simple">
+<li>Число: Индекс элемента коллекции от 0 до Количество()-1</li>
+<li>Строка: Ключ элемента коллекции</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Удаляет заданный элемент из коллекции</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>:Сложность</dt>
+<dd><dl class="first last docutils">
+<dt>Зависит от типа Ключа:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Число:</dt>
+<dd><p class="first last">В конце: Const; В начале и середине: O(n)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Строка:</dt>
+<dd><p class="first last">В конце: O(m); В начале и середине: O(n) + O(m)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="id131">
+<h3>Очистить / Clear</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Очистить()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Удаляет все элементы коллекции</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body">O(n)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id132">
+<h3>Вставить / Insert</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Вставить(Индекс, Значение, [Ключ])</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: Число</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Ключ, тип: Строка. Необязательный параметр</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Добавляет новый элемент коллекции перед элементом с заданным индексом.
+Вставка в конец коллекции с номером Количество() также разрешена.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">В конце: Const; В начале и середине: O(n)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id133">
+<h3>Сдвинуть / Move</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Сдвинуть(Индекс, Смещение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции от 0 до Количество()-1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Смещение, тип: Число</dt>
+<dd><p class="first last">Смещение элемента коллекции относительно его текущего положения</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Перемещает заданный элемент коллекции, в соответствии с указанным смещением.
+Положительные смещения перемещеют элемент вправо (в сторону больших индексов), отрицательные - влево.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">O(n), зависимость от смещения</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id134">
+<h3>Резервировать / Reserve</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Резервировать(Количество)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Количество, тип: Число</dt>
+<dd><p class="first last">Количество элементов</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Резервирует память для заданного количества элементов.
+Это позволяет избежать перемещения элементов при росте вектора до заданного размера.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id135">
+<h3>ИзменитьРазмер / Resize</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ИзменитьРазмер(Количество)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Количество, тип: Число</dt>
+<dd><p class="first last">Количество элементов</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Добавляет или удаляет элементы, изменяя размер вектора до указанного значения.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id136">
+<h3>Сортировать / Sort</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Сортировать(Выражение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Выражение, тип: Строка</dt>
+<dd><p class="first">Выражение сортировки.
+Состоит из перечисления &quot;колонок&quot;, разделенных запятыми,
+каждая из которых может иметь один или несколько модификаторов</p>
+<dl class="last docutils">
+<dt><strong>Колонки:</strong></dt>
+<dd><ul class="first last simple">
+<li>&quot;Ключ&quot;</li>
+<li>&quot;Значение&quot;</li>
+</ul>
+</dd>
+<dt><strong>Модификаторы</strong></dt>
+<dd><ul class="first last simple">
+<li>&quot;-&quot; - по убыванию</li>
+<li>&quot;*&quot; - по внутреннему представлению</li>
+<li>&quot;#&quot; - с обрезкой пробелов</li>
+<li>&quot;^&quot; - без учета регистра</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first">Сортирует элементы коллекции.</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Сложность:</th><td class="field-body"><p class="first last">O(log(N))</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id137">
+<h2>Свойства</h2>
+<div class="section" id="key">
+<h3>&lt;Ключ&gt; / &lt;Key&gt;</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Любой</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Позволяет осуществлять доступ к значению по ключу,
+с которым оно было ассоциировано при добавлении в коллекцию</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="cpp">
+<h1>1cpp.Делегат</h1>
+<!-- <chminfo>
+    <klinks>
+        1cpp.Делегат
+        1cpp.Delegate
+    </klinks>
+</chminfo> -->
+<p><strong>Класс 1cpp.Делегат / 1cpp.Delegate</strong></p>
+<p>1cpp.Делегат предоставляет возможность косвенного вызова заданного метода контекста.
+Полезен для создания обобщенных алгоритмов.</p>
+<div class="section" id="id138">
+<h2>Методы</h2>
+<div class="section" id="id139">
+<h3>Установить / Set</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Установить(Конт, ИмяМетода)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><em>Конт</em>: Контекст</dt>
+<dd><p class="first last">Контекст делегата</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>ИмяМетода</em>: Строка</dt>
+<dd><p class="first last">Имя метода контекста</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Задает контекст и метод контекста делегата</div>
+<div class="line">Для некорректных данных генерирует исключение</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id140">
+<h3>Пустой / IsEmpty</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Пустой()</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Число</p>
+<ul class="simple">
+<li>0 - делегат установлен и может быть вызван</li>
+<li>1 - делегат не установлен</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Позволяет определить статус делегата</div>
+<div class="line">Исключений не генерирует</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id141">
+<h3>Вызвать / Invoke</h3>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Вызвать(...)</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">Определяются сигнатурой делегата</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Определяется сигнатурой делегата</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Вызывает метод делегата</div>
+<div class="line">Количество параметров, наличие возвращаемого значения и значения по умолчанию</div>
+<div class="line">соответствуют сигнатуре установленного метода делегата</div>
+<div class="line">В случае невозможности вызова генерируется исключение</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2013-01-30 23:09 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/extobjs.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:57:01 GMT -->
+</html>

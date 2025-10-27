@@ -1,0 +1,4563 @@
+<?xml version="1.0" encoding="CP1251" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/TableField.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:52 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=CP1251" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title>Работа с Табличным Полем</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: TableField.html,v 1.1251 2013/01/30 23:11:08 fez Exp $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="id1">
+<h1 class="title">Работа с Табличным Полем</h1>
+
+<!-- Автор: Дмитрий Ощепков aka DmitrO, mailto: dmitro@russian.ru -->
+<!-- <chminfo>
+        <insert nodes="//common/maininfo/*"/>
+        <alinks>
+                _1cpp_table_field_
+                _1cpp_formex_cc_target_
+        </alinks>
+</chminfo> -->
+<div class="contents topic" id="id2">
+<p class="topic-title first">Содержание</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id3" id="id152">Табличное поле</a><ul>
+<li><a class="reference internal" href="#id4" id="id153">ТабличноеПоле</a><ul>
+<li><a class="reference internal" href="#id5" id="id154">Создание табличного поля.</a></li>
+<li><a class="reference internal" href="#id6" id="id155">Свойства</a><ul>
+<li><a class="reference internal" href="#columns" id="id156">Колонки / Columns</a></li>
+<li><a class="reference internal" href="#dataprovider" id="id157">ПоставщикДанных / DataProvider</a></li>
+<li><a class="reference internal" href="#vscroller" id="id158">ВертСкроллер / VScroller</a></li>
+<li><a class="reference internal" href="#startview" id="id159">НачальноеПредставление / StartView</a></li>
+<li><a class="reference internal" href="#rowselectmode" id="id160">РежимВыделенияСтроки / RowSelectMode</a></li>
+<li><a class="reference internal" href="#selectmode" id="id161">РежимВыделения / SelectMode</a></li>
+<li><a class="reference internal" href="#verticallines" id="id162">ВертикальныеЛинии / VerticalLines</a></li>
+<li><a class="reference internal" href="#horizontallines" id="id163">ГоризонтальныеЛинии / HorizontalLines</a></li>
+<li><a class="reference internal" href="#headersstyle" id="id164">СтильЗаголовков / HeadersStyle</a></li>
+<li><a class="reference internal" href="#activeheaderstyle" id="id165">СтильАктивногоЗаголовка / ActiveHeaderStyle</a></li>
+<li><a class="reference internal" href="#borderstyle" id="id166">СтильРамки / BorderStyle</a></li>
+<li><a class="reference internal" href="#currentcolumn" id="id167">ТекущаяКолонка / CurrentColumn</a></li>
+<li><a class="reference internal" href="#currentdata" id="id168">ТекущиеДанные / CurrentData</a></li>
+<li><a class="reference internal" href="#selectedrows" id="id169">ВыделенныеСтроки / SelectedRows</a></li>
+<li><a class="reference internal" href="#font" id="id170">Шрифт / Font</a></li>
+<li><a class="reference internal" href="#refreshtimeout" id="id171">ТаймаутОбновления / RefreshTimeout</a></li>
+<li><a class="reference internal" href="#quicksearchtimeout" id="id172">ТаймаутБыстрогоПоиска / QuickSearchTimeout</a></li>
+<li><a class="reference internal" href="#changepositionofcolumns" id="id173">ИзменятьПозициюКолонок / ChangePositionOfColumns</a></li>
+<li><a class="reference internal" href="#linescolor" id="id174">ЦветЛиний / LinesColor</a></li>
+<li><a class="reference internal" href="#inactiverowslinescolor" id="id175">ЦветЛинийНеактивныхСтрок / InactiveRowsLinesColor</a></li>
+<li><a class="reference internal" href="#textcolor" id="id176">ЦветТекста / TextColor</a></li>
+<li><a class="reference internal" href="#backcolor" id="id177">ЦветФона / BackColor</a></li>
+<li><a class="reference internal" href="#selectiontextcolor" id="id178">ЦветТекстаВыделения / SelectionTextColor</a></li>
+<li><a class="reference internal" href="#selectionbackcolor" id="id179">ЦветФонаВыделения / SelectionBackColor</a></li>
+<li><a class="reference internal" href="#selectiontextcolor2" id="id180">ЦветТекстаВыделения2 / SelectionTextColor2</a></li>
+<li><a class="reference internal" href="#selectionbackcolor2" id="id181">ЦветФонаВыделения2 / SelectionBackColor2</a></li>
+<li><a class="reference internal" href="#alternationrowbackcolor" id="id182">ЦветФонаЧередованияСтрок / AlternationRowBackColor</a></li>
+<li><a class="reference internal" href="#usealternationrowcolor" id="id183">ЧередованиеЦветовСтрок / UseAlternationRowColor</a></li>
+<li><a class="reference internal" href="#negativescolor" id="id184">ЦветОтрицательных / NegativesColor</a></li>
+<li><a class="reference internal" href="#headerstextcolor" id="id185">ЦветТекстаЗаголовков / HeadersTextColor</a></li>
+<li><a class="reference internal" href="#headersbackcolor" id="id186">ЦветФонаЗаголовков / HeadersBackColor</a></li>
+<li><a class="reference internal" href="#bordercolor" id="id187">ЦветРамки / BorderColor</a></li>
+<li><a class="reference internal" href="#currentrow" id="id188">ТекущаяСтрока / CurrentRow</a></li>
+<li><a class="reference internal" href="#enablestartdrag" id="id189">РазрешитьНачалоПеретаскивания / EnableStartDrag</a></li>
+<li><a class="reference internal" href="#enabledrag" id="id190">РазрешитьПеретаскивание / EnableDrag</a></li>
+<li><a class="reference internal" href="#showheaders" id="id191">ОтображатьЗаголовки / ShowHeaders</a></li>
+<li><a class="reference internal" href="#fixedleft" id="id192">ФиксацияСлева / FixedLeft</a></li>
+<li><a class="reference internal" href="#fixedright" id="id193">ФиксацияСправа / FixedRight</a></li>
+<li><a class="reference internal" href="#header" id="id194">Шапка / Header</a></li>
+<li><a class="reference internal" href="#footer" id="id195">Подвал / Footer</a></li>
+<li><a class="reference internal" href="#cellbacktransparency" id="id196">ПрозрачностьФонаЯчеек / CellBackTransparency</a></li>
+<li><a class="reference internal" href="#selectioncellbacktransparency" id="id197">ПрозрачностьФонаЯчеекВыделения / SelectionCellBackTransparency</a></li>
+<li><a class="reference internal" href="#selectioncellbacktransparency2" id="id198">ПрозрачностьФонаЯчеекВыделения2 / SelectionCellBackTransparency2</a></li>
+<li><a class="reference internal" href="#alternationrowcellbacktransparency" id="id199">ПрозрачностьФонаЯчеекЧередованияСтрок / AlternationRowCellBackTransparency</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id15" id="id200">Методы</a><ul>
+<li><a class="reference internal" href="#refreshrows" id="id201">ОбновитьСтроки / RefreshRows</a></li>
+<li><a class="reference internal" href="#redrawrows" id="id202">ПерерисоватьСтроки / RedrawRows</a></li>
+<li><a class="reference internal" href="#settextmargins" id="id203">УстановитьОтступы / SetTextMargins</a></li>
+<li><a class="reference internal" href="#getcurrentcellbounds" id="id204">ПолучитьГраницыТекущейЯчейки / GetCurrentCellBounds</a></li>
+<li><a class="reference internal" href="#autowidth" id="id205">АвтоШирина / AutoWidth</a></li>
+<li><a class="reference internal" href="#setsyspictures" id="id206">УстановитьСистемныеКартинки / SetSysPictures</a></li>
+<li><a class="reference internal" href="#addsyspictures" id="id207">ДобавитьСистемныеКартинки / AddSysPictures</a></li>
+<li><a class="reference internal" href="#resetsyspictures" id="id208">СброситьСистемныеКартинки / ResetSysPictures</a></li>
+<li><a class="reference internal" href="#setbackgroundpicture" id="id209">УстановитьФоновуюКартинку / SetBackgroundPicture</a></li>
+<li><a class="reference internal" href="#resetbackgroundpicture" id="id210">СброситьФоновуюКартинку / ResetBackgroundPicture</a></li>
+<li><a class="reference internal" href="#setbackgroundtext" id="id211">УстановитьФоновыйТекст / SetBackgroundText</a></li>
+<li><a class="reference internal" href="#resetbackgroundtext" id="id212">СброситьФоновыйТекст / ResetBackgroundText</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id22" id="id213">События</a><ul>
+<li><a class="reference internal" href="#rowout" id="id214">ПриВыводеСтроки / RowOut</a></li>
+<li><a class="reference internal" href="#selection" id="id215">Выбор / Selection</a></li>
+<li><a class="reference internal" href="#activaterow" id="id216">ПриАктивизацииСтроки / ActivateRow</a></li>
+<li><a class="reference internal" href="#activatecolumn" id="id217">ПриАктивизацииКолонки / ActivateColumn</a></li>
+<li><a class="reference internal" href="#activatecell" id="id218">ПриАктивизацииЯчейки / ActivateCell</a></li>
+<li><a class="reference internal" href="#headerselection" id="id219">ПриВыбореЗаголовка / HeaderSelection</a></li>
+<li><a class="reference internal" href="#contextmenu" id="id220">ПриКонтекстномМеню / ContextMenu</a></li>
+<li><a class="reference internal" href="#clickcheckbox" id="id221">ПриВыбореФлажка / ClickCheckBox</a></li>
+<li><a class="reference internal" href="#clickpicture" id="id222">ПриВыбореКартинки / ClickPicture</a></li>
+<li><a class="reference internal" href="#clicksyspicture" id="id223">ПриВыбореСистемнойКартинки / ClickSysPicture</a></li>
+<li><a class="reference internal" href="#dragstart" id="id224">НачалоПеретаскивания / DragStart</a></li>
+<li><a class="reference internal" href="#dragend" id="id225">ОкончаниеПеретаскивания / DragEnd</a></li>
+<li><a class="reference internal" href="#dragcheck" id="id226">ПроверкаПеретаскивания / DragCheck</a></li>
+<li><a class="reference internal" href="#drag" id="id227">Перетаскивание / Drag</a></li>
+<li><a class="reference internal" href="#ondestroy" id="id228">ПриУничтожении / OnDestroy</a></li>
+<li><a class="reference internal" href="#onquicksearchstart" id="id229">ПриНачалеБыстрогоПоиска / OnQuickSearchStart</a></li>
+<li><a class="reference internal" href="#onquicksearch" id="id230">ПриБыстромПоиске / OnQuickSearch</a></li>
+<li><a class="reference internal" href="#onquicksearchend" id="id231">ПриОкончанииБыстрогоПоиска / OnQuickSearchEnd</a></li>
+<li><a class="reference internal" href="#oncolumnmove" id="id232">ПриПеремещенииКолонки / OnColumnMove</a></li>
+<li><a class="reference internal" href="#oncolumnvisibilitychange" id="id233">ПриИзмененииВидимостиКолонки / OnColumnVisibilityChange</a></li>
+<li><a class="reference internal" href="#oncolumnwidthchange" id="id234">ПриИзмененииШириныКолонки / OnColumnWidthChange</a></li>
+<li><a class="reference internal" href="#onkeydown" id="id235">ПриНажатииКлавиши / OnKeyDown</a></li>
+<li><a class="reference internal" href="#onkeyup" id="id236">ПриОтжатииКлавиши / OnKeyUp</a></li>
+<li><a class="reference internal" href="#onsyskeydown" id="id237">ПриНажатииСистемнойКлавиши / OnSysKeyDown</a></li>
+<li><a class="reference internal" href="#onsyskeyup" id="id238">ПриОтжатииСистемнойКлавиши / OnSysKeyUp</a></li>
+<li><a class="reference internal" href="#onchar" id="id239">ПриВводеСимвола / OnChar</a></li>
+<li><a class="reference internal" href="#onshowhint" id="id240">ПриВыводеПодсказки / OnShowHint</a></li>
+<li><a class="reference internal" href="#onrowformat" id="id241">ПриФорматированииСтроки / OnRowFormat</a></li>
+<li><a class="reference internal" href="#onclipboard" id="id242">ПриКомандеБуфераОбмена / OnClipboard</a></li>
+<li><a class="reference internal" href="#onfind" id="id243">ПриПоиске / OnFind</a></li>
+<li><a class="reference internal" href="#onfinddialog" id="id244">ПриДиалогеПоиска / OnFindDialog</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id32" id="id245">КолонкиТабличногоПоля</a><ul>
+<li><a class="reference internal" href="#id33" id="id246">Свойства</a><ul>
+<li><a class="reference internal" href="#id34" id="id247">&lt;ИмяКолонки&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id35" id="id248">Методы</a><ul>
+<li><a class="reference internal" href="#count" id="id249">Количество / Count</a></li>
+<li><a class="reference internal" href="#get" id="id250">Получить / Get</a></li>
+<li><a class="reference internal" href="#indexof" id="id251">Индекс / IndexOf</a></li>
+<li><a class="reference internal" href="#add" id="id252">Добавить / Add</a></li>
+<li><a class="reference internal" href="#insert" id="id253">Вставить / Insert</a></li>
+<li><a class="reference internal" href="#remove" id="id254">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#clear" id="id255">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#move" id="id256">Сдвинуть / Move</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id36" id="id257">КолонкаТабличногоПоля</a><ul>
+<li><a class="reference internal" href="#id37" id="id258">Свойства</a><ul>
+<li><a class="reference internal" href="#name" id="id259">Имя / Name</a></li>
+<li><a class="reference internal" href="#caption" id="id260">Заголовок / Caption</a></li>
+<li><a class="reference internal" href="#visible" id="id261">Видимость / Visible</a></li>
+<li><a class="reference internal" href="#width" id="id262">Ширина / Width</a></li>
+<li><a class="reference internal" href="#id38" id="id263">АвтоШирина / AutoWidth</a></li>
+<li><a class="reference internal" href="#horizontalalignment" id="id264">ГоризонтальноеВыравнивание / HorizontalAlignment</a></li>
+<li><a class="reference internal" href="#sizechange" id="id265">ИзменениеРазмера / SizeChange</a></li>
+<li><a class="reference internal" href="#id39" id="id266">ЦветТекста / TextColor</a></li>
+<li><a class="reference internal" href="#id40" id="id267">ЦветФона / BackColor</a></li>
+<li><a class="reference internal" href="#id41" id="id268">Шрифт / Font</a></li>
+<li><a class="reference internal" href="#headerfont" id="id269">ШрифтЗаголовка / HeaderFont</a></li>
+<li><a class="reference internal" href="#headertextcolor" id="id270">ЦветТекстаЗаголовка / HeaderTextColor</a></li>
+<li><a class="reference internal" href="#headerbackcolor" id="id271">ЦветФонаЗаголовка / HeaderBackColor</a></li>
+<li><a class="reference internal" href="#datafield" id="id272">Данные / DataField</a></li>
+<li><a class="reference internal" href="#picturedatafield" id="id273">ДанныеКартинки / PictureDataField</a></li>
+<li><a class="reference internal" href="#ordermarker" id="id274">ЗнакУпорядочивания / OrderMarker</a></li>
+<li><a class="reference internal" href="#changevisible" id="id275">ИзменятьВидимость / ChangeVisible</a></li>
+<li><a class="reference internal" href="#parameter" id="id276">Параметр / Parameter</a></li>
+<li><a class="reference internal" href="#location" id="id277">Положение / Location</a></li>
+<li><a class="reference internal" href="#wordbreak" id="id278">ПереноситьПоСловам / WordBreak</a></li>
+<li><a class="reference internal" href="#format" id="id279">Формат / Format</a></li>
+<li><a class="reference internal" href="#marknegatives" id="id280">ВыделятьОтрицательные / MarkNegatives</a></li>
+<li><a class="reference internal" href="#backtransparency" id="id281">ПрозрачностьФона / BackTransparency</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id42" id="id282">Методы</a><ul>
+<li><a class="reference internal" href="#setrowspictures" id="id283">УстановитьКартинкиСтрок / SetRowsPictures</a></li>
+<li><a class="reference internal" href="#addrowspictures" id="id284">ДобавитьКартинкиСтрок / AddRowsPictures</a></li>
+<li><a class="reference internal" href="#resetrowspictures" id="id285">СброситьКартинкиСтрок / ResetRowsPictures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id45" id="id286">ДанныеСтроки</a><ul>
+<li><a class="reference internal" href="#id46" id="id287">Свойства</a><ul>
+<li><a class="reference internal" href="#id47" id="id288">&lt;ИмяПоляДанных&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id48" id="id289">Методы</a><ul>
+<li><a class="reference internal" href="#id49" id="id290">Количество / Count</a></li>
+<li><a class="reference internal" href="#id50" id="id291">Получить / Get</a></li>
+<li><a class="reference internal" href="#id51" id="id292">Индекс / IndexOf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id52" id="id293">ОформлениеСтроки</a><ul>
+<li><a class="reference internal" href="#id53" id="id294">Свойства</a><ul>
+<li><a class="reference internal" href="#rowdata" id="id295">ДанныеСтроки / RowData</a></li>
+<li><a class="reference internal" href="#cells" id="id296">Ячейки / Cells</a></li>
+<li><a class="reference internal" href="#id54" id="id297">ЦветТекста / TextColor</a></li>
+<li><a class="reference internal" href="#id55" id="id298">ЦветФона / BackColor</a></li>
+<li><a class="reference internal" href="#id56" id="id299">Шрифт / Font</a></li>
+<li><a class="reference internal" href="#id57" id="id300">ПрозрачностьФона / BackTransparency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id58" id="id301">ОформлениеЯчейки</a><ul>
+<li><a class="reference internal" href="#id59" id="id302">Свойства</a><ul>
+<li><a class="reference internal" href="#id60" id="id303">Имя / Name</a></li>
+<li><a class="reference internal" href="#showtext" id="id304">ОтображатьТекст / ShowText</a></li>
+<li><a class="reference internal" href="#showpicture" id="id305">ОтображатьКартинку / ShowPicture</a></li>
+<li><a class="reference internal" href="#showsyspicture" id="id306">ОтображатьСистемнуюКартинку / ShowSysPicture</a></li>
+<li><a class="reference internal" href="#showcheck" id="id307">ОтображатьФлажок / ShowCheck</a></li>
+<li><a class="reference internal" href="#id61" id="id308">ГоризонтальноеВыравнивание / HorizontalAlignment</a></li>
+<li><a class="reference internal" href="#pictures" id="id309">Картинки / Pictures</a></li>
+<li><a class="reference internal" href="#pictureindex" id="id310">ИндексКартинки / PictureIndex</a></li>
+<li><a class="reference internal" href="#syspictures" id="id311">СистемныеКартинки / SysPictures</a></li>
+<li><a class="reference internal" href="#syspictureindex" id="id312">ИндексСистемнойКартинки / SysPictureIndex</a></li>
+<li><a class="reference internal" href="#checkvalue" id="id313">ЗначениеФлажка / CheckValue</a></li>
+<li><a class="reference internal" href="#text" id="id314">Текст / Text</a></li>
+<li><a class="reference internal" href="#id64" id="id315">ЦветТекста / TextColor</a></li>
+<li><a class="reference internal" href="#id65" id="id316">ЦветФона / BackColor</a></li>
+<li><a class="reference internal" href="#id66" id="id317">Шрифт / Font</a></li>
+<li><a class="reference internal" href="#id67" id="id318">ПереноситьПоСловам / WordBreak</a></li>
+<li><a class="reference internal" href="#showhint" id="id319">ОтображатьПодсказку / ShowHint</a></li>
+<li><a class="reference internal" href="#hint" id="id320">Подсказка / Hint</a></li>
+<li><a class="reference internal" href="#id68" id="id321">ПрозрачностьФона / BackTransparency</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id69" id="id322">Методы</a><ul>
+<li><a class="reference internal" href="#settext" id="id323">УстановитьТекст / SetText</a></li>
+<li><a class="reference internal" href="#setpicture" id="id324">УстановитьКартинку / SetPicture</a></li>
+<li><a class="reference internal" href="#setsyspicture" id="id325">УстановитьСистемнуюКартинку / SetSysPicture</a></li>
+<li><a class="reference internal" href="#setcheck" id="id326">УстановитьФлажок / SetCheck</a></li>
+<li><a class="reference internal" href="#sethint" id="id327">УстановитьПодсказку / SetHint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id70" id="id328">ФорматЯчейки</a><ul>
+<li><a class="reference internal" href="#id71" id="id329">Свойства</a><ul>
+<li><a class="reference internal" href="#id72" id="id330">Имя / Name</a></li>
+<li><a class="reference internal" href="#id73" id="id331">ОтображатьТекст / ShowText</a></li>
+<li><a class="reference internal" href="#id74" id="id332">Текст / Text</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id75" id="id333">Методы</a><ul>
+<li><a class="reference internal" href="#id76" id="id334">УстановитьТекст / SetText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id77" id="id335">ИндексыКартинок</a><ul>
+<li><a class="reference internal" href="#id78" id="id336">Методы</a><ul>
+<li><a class="reference internal" href="#id79" id="id337">Количество / Count</a></li>
+<li><a class="reference internal" href="#id80" id="id338">Получить / Get</a></li>
+<li><a class="reference internal" href="#unload" id="id339">Выгрузить / Unload</a></li>
+<li><a class="reference internal" href="#set" id="id340">Установить / Set</a></li>
+<li><a class="reference internal" href="#id81" id="id341">Добавить / Add</a></li>
+<li><a class="reference internal" href="#id82" id="id342">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#id83" id="id343">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#id84" id="id344">Вставить / Insert</a></li>
+<li><a class="reference internal" href="#id85" id="id345">Сдвинуть / Move</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id86" id="id346">ВыделенныеСтроки</a><ul>
+<li><a class="reference internal" href="#id87" id="id347">Методы</a><ul>
+<li><a class="reference internal" href="#id88" id="id348">Количество / Count</a></li>
+<li><a class="reference internal" href="#id89" id="id349">Очистить / Clear</a></li>
+<li><a class="reference internal" href="#id90" id="id350">Получить / Get</a></li>
+<li><a class="reference internal" href="#id91" id="id351">Добавить / Add</a></li>
+<li><a class="reference internal" href="#delete" id="id352">Удалить / Delete</a></li>
+<li><a class="reference internal" href="#contains" id="id353">Содержит / Contains</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id92" id="id354">ФиксированныеСтроки</a><ul>
+<li><a class="reference internal" href="#id93" id="id355">Свойства</a><ul>
+<li><a class="reference internal" href="#id94" id="id356">ПоставщикДанных / DataProvider</a></li>
+<li><a class="reference internal" href="#id95" id="id357">ЦветТекста / TextColor</a></li>
+<li><a class="reference internal" href="#id96" id="id358">ЦветФона / BackColor</a></li>
+<li><a class="reference internal" href="#id97" id="id359">ПрозрачностьФона / BackTransparency</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id98" id="id360">Методы</a><ul>
+<li><a class="reference internal" href="#id99" id="id361">ОбновитьСтроки / RefreshRows</a></li>
+<li><a class="reference internal" href="#id100" id="id362">ПерерисоватьСтроки / RedrawRows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id101" id="id363">Типы данных</a><ul>
+<li><a class="reference internal" href="#id102" id="id364">Общие</a><ul>
+<li><a class="reference internal" href="#id103" id="id365">Перечисления</a><ul>
+<li><a class="reference internal" href="#id104" id="id366">ТипыРегионовТП</a></li>
+<li><a class="reference internal" href="#id105" id="id367">ТипыОбластейЯчейки</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id106" id="id368">Структуры</a><ul>
+<li><a class="reference internal" href="#id107" id="id369">ГлобальныеДанныеПоиска</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id108" id="id370">Поставщики данных табличного поля</a><ul>
+<li><a class="reference internal" href="#odbc-odbcdataprovider" id="id371">ПоставщикДанныхODBC.&lt;ТипИсточника&gt; / ODBCDataProvider</a><ul>
+<li><a class="reference internal" href="#id110" id="id372">&lt;ТипИсточника&gt;</a></li>
+<li><a class="reference internal" href="#id111" id="id373">Свойства</a><ul>
+<li><a class="reference internal" href="#fields" id="id374">Поля / Fields</a></li>
+<li><a class="reference internal" href="#database" id="id375">БазаДанных / Database</a></li>
+<li><a class="reference internal" href="#params" id="id376">Параметры / Params</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id113" id="id377">Методы</a><ul>
+<li><a class="reference internal" href="#setquerytext" id="id378">УстТекстЗапроса / SetQueryText</a></li>
+<li><a class="reference internal" href="#setorderkey" id="id379">УстКлючПорядка / SetOrderKey</a></li>
+<li><a class="reference internal" href="#settextparam" id="id380">УстановитьТекстовыйПараметр / SetTextParam</a></li>
+<li><a class="reference internal" href="#setidfield" id="id381">УстИДПоле / SetIDField</a></li>
+<li><a class="reference internal" href="#refresh" id="id382">Обновить / Refresh</a></li>
+<li><a class="reference internal" href="#debug" id="id383">Отладка / Debug</a></li>
+<li><a class="reference internal" href="#getquerytext" id="id384">ПолучитьТекстЗапроса / GetQueryText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#odbc" id="id385">ПоляДанныхODBC</a><ul>
+<li><a class="reference internal" href="#id116" id="id386">Свойства</a><ul>
+<li><a class="reference internal" href="#id117" id="id387">&lt;ИмяПоля&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id118" id="id388">Методы</a><ul>
+<li><a class="reference internal" href="#id119" id="id389">Количество / Count</a></li>
+<li><a class="reference internal" href="#id120" id="id390">Получить / Get</a></li>
+<li><a class="reference internal" href="#id121" id="id391">Добавить / Add</a></li>
+<li><a class="reference internal" href="#id122" id="id392">Удалить / Remove</a></li>
+<li><a class="reference internal" href="#id123" id="id393">Очистить / Clear</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id124" id="id394">ПолеДанныхODBC</a><ul>
+<li><a class="reference internal" href="#id125" id="id395">Свойства</a><ul>
+<li><a class="reference internal" href="#id126" id="id396">Имя / Name</a></li>
+<li><a class="reference internal" href="#autodelete" id="id397">АвтоУдаление / AutoDelete</a></li>
+<li><a class="reference internal" href="#quicksearchtype" id="id398">ТипБыстрогоПоиска / QuickSearchType</a></li>
+<li><a class="reference internal" href="#quicksearchcondition" id="id399">УсловиеБыстрогоПоиска / QuickSearchCondition</a></li>
+<li><a class="reference internal" href="#typification" id="id400">Типизация / Typification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id127" id="id401">ПараметрыЗапроса</a><ul>
+<li><a class="reference internal" href="#id128" id="id402">Свойства</a><ul>
+<li><a class="reference internal" href="#id129" id="id403">&lt;ИмяПараметра&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id130" id="id404">Методы</a><ul>
+<li><a class="reference internal" href="#id131" id="id405">Количество / Count</a></li>
+<li><a class="reference internal" href="#id132" id="id406">Получить / Get</a></li>
+<li><a class="reference internal" href="#id133" id="id407">Индекс / IndexOf</a></li>
+<li><a class="reference internal" href="#id134" id="id408">Установить / Set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vtprovider" id="id409">ПоставщикДанныхТЗ / VTProvider</a><ul>
+<li><a class="reference internal" href="#id135" id="id410">Свойства</a><ul>
+<li><a class="reference internal" href="#valuetable" id="id411">ТаблицаЗначений / ValueTable</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id136" id="id412">Методы</a><ul>
+<li><a class="reference internal" href="#setvaluetable" id="id413">УстТаблицуЗначений / SetValueTable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vtextprovider" id="id414">ПоставщикДанныхИТ / VTExtProvider</a><ul>
+<li><a class="reference internal" href="#id137" id="id415">Свойства</a><ul>
+<li><a class="reference internal" href="#indexedtable" id="id416">ИндексированнаяТаблица / IndexedTable</a></li>
+<li><a class="reference internal" href="#index" id="id417">Индекс / Index</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id138" id="id418">Объекты общего назначения</a><ul>
+<li><a class="reference internal" href="#cpp-1cpp-keyboard" id="id419">1cpp.Клавиатура / 1cpp.Keyboard</a><ul>
+<li><a class="reference internal" href="#id140" id="id420">Свойства</a><ul>
+<li><a class="reference internal" href="#id141" id="id421">&lt;ИмяВиртуальнойКлавиши&gt;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id143" id="id422">Методы</a><ul>
+<li><a class="reference internal" href="#getkeystate" id="id423">ПолучитьСостояниеКлавиши / GetKeyState</a></li>
+<li><a class="reference internal" href="#getkeynametext" id="id424">ПолучитьИмяКлавиши / GetKeyNameText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id144" id="id425">Шрифт</a><ul>
+<li><a class="reference internal" href="#id145" id="id426">Свойства</a><ul>
+<li><a class="reference internal" href="#type" id="id427">Вид / Type</a></li>
+<li><a class="reference internal" href="#id146" id="id428">Имя / Name</a></li>
+<li><a class="reference internal" href="#size" id="id429">Размер / Size</a></li>
+<li><a class="reference internal" href="#bold" id="id430">Жирный / Bold</a></li>
+<li><a class="reference internal" href="#italic" id="id431">Наклонный / Italic</a></li>
+<li><a class="reference internal" href="#underline" id="id432">Подчеркивание / Underline</a></li>
+<li><a class="reference internal" href="#strikeout" id="id433">Зачеркивание / StrikeOut</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id147" id="id434">Конструкторы (Создание через фабрику объектов)</a><ul>
+<li><a class="reference internal" href="#id148" id="id435">Основной</a></li>
+<li><a class="reference internal" href="#id149" id="id436">Системный</a></li>
+<li><a class="reference internal" href="#id150" id="id437">На основании другого шрифта</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id151" id="id438">ФабрикаОбъектов</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Эта часть документации описывает работу с ЭУ &quot;ТабличноеПоле&quot;.</p>
+<div class="section" id="id3">
+<h1>Табличное поле</h1>
+<p>Элемент управления, представляющий данные в виде таблицы. Работает со специальными объектами -
+источниками данных, называемыми поставщиками данных табличного поля. Поставщики данных обеспечивают
+специальный интерфейс, через который табличное поле получает данные. Само табличное поле не работает с
+источниками данных (базой данных, файлом, таблицами в памяти и т.п.), оно пользуется только тем,
+что предоставляет ему поставщик данных.</p>
+<p>Табличное поле может генерировать события в виде вызова процедур модуля формы, на которой оно расположено,
+имена которых должны быть составлены из имени реквизита формы и имени события. Каждое событие, кроме
+описанных параметров, всегда имеет первый параметр, имеющий значение объекта - источника событий
+(само табличное поле).</p>
+<p>Подержка полиморфного поведения при обработке событий</p>
+<p>События табличного поля может обрабатывать КОП-наследник от ТабличногоПоля. Процедуры-обработчики событий должны
+быть объявлены с ключевым словом Экспорт (protected или public) и должны иметь имя, совпадающее с именем
+обрабатываемого события.</p>
+<p>События могут быть заданы в КОПе и в модуле формы одновременно, в этом случае сначала происходит вызов события в КОПе,
+затем в модуле формы.</p>
+<div class="section" id="id4">
+<h2>ТабличноеПоле</h2>
+<p>Во всех объектах табличного поля и в нем самом, свойства, определяющие цвет различных элементов задаются стандартным
+числом RGB. Кроме того, свойства могут принимать специальное значение цвета, равное -1. Это означает авто-цвет -
+значение цвета будет определяться из настроек операционной системы.</p>
+<div class="section" id="id5">
+<h3>Создание табличного поля.</h3>
+<!-- <chminfo split="0"></chminfo> -->
+<p>Для создания объекта нужно разместить на форме кнопку - она будет реквизитом формы. После того, как окно формы создано
+(например в процедуре ПослеОткрытия()), необходимо получить объект АтрибутФормы, соответствующий
+этой кнопке и вызвать его метод <a class="reference external" href="alink.html">АтрибутФормы::СоздатьЭлементУправления()|_1cpp_Formex_CreateControl_</a>, передав в него:</p>
+<blockquote>
+<ul class="simple">
+<li>строку &quot;ТабличноеПоле&quot;: в этом случае будет создан объект типа <a class="reference internal" href="#id4">ТабличноеПоле</a>;</li>
+<li>объект типа <a class="reference internal" href="#id4">ТабличноеПоле</a>: для создания ЭУ будет использован переданный объект.</li>
+<li>объект КОПа наследника от объекта <a class="reference internal" href="#id4">ТабличноеПоле</a> (причем не обязательно непосредственный наследник):
+для создания ЭУ будет использован объект базового класса.</li>
+</ul>
+</blockquote>
+<p>Метод возвращает объект типа <a class="reference internal" href="#id4">ТабличноеПоле</a> или переданный параметром объект.</p>
+</div>
+<div class="section" id="id6">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="columns">
+<h4>Колонки / Columns</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id32">КолонкиТабличногоПоля</a>.</p>
+<p><strong>Описание:</strong> Содержит коллекцию колонок табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="dataprovider">
+<h4>ПоставщикДанных / DataProvider</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> объект.</p>
+<p><strong>Описание:</strong> Поставщик данных табличного поля.</p>
+<p>См. также: <a class="reference internal" href="#id108">Поставщики данных табличного поля</a></p>
+</blockquote>
+</div>
+<div class="section" id="vscroller">
+<h4>ВертСкроллер / VScroller</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Наличие вертикальной полосы прокрутки.</p>
+<ul class="simple">
+<li>0 - Автоматически скрывать, если все строки помещаются в табличном поле;</li>
+<li>1 - Всегда присутствует;</li>
+<li>2 - Всегда отсутствует.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="startview">
+<h4>НачальноеПредставление / StartView</h4>
+<blockquote id="id7">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Используется для определения начального заполнения табличного поля, когда в него установлен
+поставщик данных.</p>
+<ul class="simple">
+<li>0 - с начала;</li>
+<li>1 - с конца.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="rowselectmode">
+<h4>РежимВыделенияСтроки / RowSelectMode</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет стиль выделения текущей строки.</p>
+<ul class="simple">
+<li>0 - выделяется ячейка</li>
+<li>1 - выделяется вся строка</li>
+<li>2 - текущая ячейка и текущая строка выделяется по-разному (для строки используются ЦветТекстаВыделения2 и ЦветФонаВыделения2)</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="selectmode">
+<h4>РежимВыделения / SelectMode</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет режим выделения строк табличного поля.</p>
+<ul class="simple">
+<li>0 - одиночный (разрешено выделение одной строки)</li>
+<li>1 - множественный (разрешено выделение нескольких строк)</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="verticallines">
+<h4>ВертикальныеЛинии / VerticalLines</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет наличие вертикальных разделительных линий между ячейками.
+0 - линии не отображаются, 1 - линии отображаются.</p>
+</blockquote>
+</div>
+<div class="section" id="horizontallines">
+<h4>ГоризонтальныеЛинии / HorizontalLines</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет наличие горизонтальных разделительных линий между ячейками.
+0 - линии не отображаются, 1 - линии отображаются.</p>
+</blockquote>
+</div>
+<div class="section" id="headersstyle">
+<h4>СтильЗаголовков / HeadersStyle</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет стиль отрисовки заголовков колонок.</p>
+<ul class="simple">
+<li>0 - стиль 3D;</li>
+<li>1 - плоский стиль.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="activeheaderstyle">
+<h4>СтильАктивногоЗаголовка / ActiveHeaderStyle</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет стиль отрисовки заголовка активной колонки.</p>
+<ul class="simple">
+<li>0 - активная колонка не выделяется;</li>
+<li>1 - активная колонка выделяется в стиле, соответствующем значению свойства 'СтильЗаголовков'.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="borderstyle">
+<h4>СтильРамки / BorderStyle</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет стиль отрисовки рамки табличного поля.</p>
+<ul class="simple">
+<li>0 - стиль 3D;</li>
+<li>1 - плоский стиль.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="currentcolumn">
+<h4>ТекущаяКолонка / CurrentColumn</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+<p><strong>Описание:</strong> Определяет текущую колонку табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="currentdata">
+<h4>ТекущиеДанные / CurrentData</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id45">ДанныеСтроки</a>.</p>
+<p><strong>Описание:</strong> Коллекция значений полей данных источника данных табличного поля. Данные текущей строки.</p>
+</blockquote>
+</div>
+<div class="section" id="selectedrows">
+<h4>ВыделенныеСтроки / SelectedRows</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id86">ВыделенныеСтроки</a></p>
+<p><strong>Описание:</strong> Коллекция выделенных строк табличного поля</p>
+</blockquote>
+</div>
+<div class="section" id="font">
+<h4>Шрифт / Font</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id144">Шрифт</a>.</p>
+<p><strong>Описание:</strong> Шрифт по умолчанию для колонок, строк, заголовков и ячеек табличного поля.</p>
+<p>Определяет также
+высоту строки табличного поля. Высота строки будет определяться по высоте строки текста этого шрифта. Значение
+Авто означает, что будет использоваться шрифт формы. По отношению ко всем остальным дочерним объектам табличного
+поля (колонка, строка, ячейка), этот шрифт будет шрифтом с самым низким приоритетом.</p>
+<p><strong>Примечание:</strong> значение Авто в свойствах типа Шрифт дочерних объектов означает, что будет выбран шрифт с меньшим
+приоритетом.</p>
+</blockquote>
+</div>
+<div class="section" id="refreshtimeout">
+<h4>ТаймаутОбновления / RefreshTimeout</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Интервал времени (в секундах), через который выполняется автоматическое обновление данных
+табличного поля. 0 - не обновлять автоматически.</p>
+</blockquote>
+</div>
+<div class="section" id="quicksearchtimeout">
+<h4>ТаймаутБыстрогоПоиска / QuickSearchTimeout</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Интервал времени (в миллисекундах), через который выполняется попытка найти строку по введенным данным.
+табличного поля. 0 - автоматически не пытаться.</p>
+</blockquote>
+</div>
+<div class="section" id="changepositionofcolumns">
+<h4>ИзменятьПозициюКолонок / ChangePositionOfColumns</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Разрешает или запрещает изменение позиции колонок. 0 - запрещает, 1 - разрешает.</p>
+</blockquote>
+</div>
+<div class="section" id="linescolor">
+<h4>ЦветЛиний / LinesColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет разделительных линий между ячейками табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="inactiverowslinescolor">
+<h4>ЦветЛинийНеактивныхСтрок / InactiveRowsLinesColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет разделительных линий между ячейками с положением &quot;на следующей строке&quot; или &quot;в той же колонке&quot; в неактивных строках.</p>
+</blockquote>
+</div>
+<div class="section" id="textcolor">
+<h4>ЦветТекста / TextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста табличного поля по умолчанию.</p>
+</blockquote>
+</div>
+<div class="section" id="backcolor">
+<h4>ЦветФона / BackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет фона табличного поля по умолчанию.
+Имеет влияние на цвет ячеек и на пространство окна, не занятое данными табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="selectiontextcolor">
+<h4>ЦветТекстаВыделения / SelectionTextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста выделенной ячейки.</p>
+</blockquote>
+</div>
+<div class="section" id="selectionbackcolor">
+<h4>ЦветФонаВыделения / SelectionBackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет фона выделенной ячейки.</p>
+</blockquote>
+</div>
+<div class="section" id="selectiontextcolor2">
+<h4>ЦветТекстаВыделения2 / SelectionTextColor2</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста выделенной строки когда РежимВыделенияСтроки == 2.</p>
+</blockquote>
+</div>
+<div class="section" id="selectionbackcolor2">
+<h4>ЦветФонаВыделения2 / SelectionBackColor2</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет фона выделенной ячейки когда РежимВыделенияСтроки == 2.</p>
+</blockquote>
+</div>
+<div class="section" id="alternationrowbackcolor">
+<h4>ЦветФонаЧередованияСтрок / AlternationRowBackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет альтернативный цвет фона строки таблицы в режиме чередования цветов фона строк.</p>
+</blockquote>
+</div>
+<div class="section" id="usealternationrowcolor">
+<h4>ЧередованиеЦветовСтрок / UseAlternationRowColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет режим чередования цвета фона строки. 0 - не чередовать, 1- чередовать.</p>
+</blockquote>
+</div>
+<div class="section" id="negativescolor">
+<h4>ЦветОтрицательных / NegativesColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста начинающегося на знак &quot;-&quot; (минус).</p>
+<p>Имеет значение по умолчанию -1. При этом цвет отрицательных - красный (0,0,255)</p>
+</blockquote>
+</div>
+<div class="section" id="headerstextcolor">
+<h4>ЦветТекстаЗаголовков / HeadersTextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет текста заголовков.</p>
+</blockquote>
+</div>
+<div class="section" id="headersbackcolor">
+<h4>ЦветФонаЗаголовков / HeadersBackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет фона заголовков.</p>
+</blockquote>
+</div>
+<div class="section" id="bordercolor">
+<h4>ЦветРамки / BorderColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет рамки и линий заголовков для плоского стиля отрисовки.</p>
+</blockquote>
+</div>
+<div class="section" id="currentrow">
+<h4>ТекущаяСтрока / CurrentRow</h4>
+<!-- <chminfo><alinks>_table_field_current_row_</alinks></chminfo> -->
+<blockquote id="id8">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> определяется поставщиком данных. Указывается в описании конкретного поставщика данных.</p>
+<p><strong>Описание:</strong> Определяет текущую строку табличного поля. Cвойство обслуживается установленным поставщиком данных.
+При записи в это свойство, произойдет активизация соответствующей строки табличного поля.</p>
+<p><strong>См. также:</strong> <a class="reference internal" href="#id108">Поставщики данных табличного поля</a></p>
+</blockquote>
+</div>
+<div class="section" id="enablestartdrag">
+<h4>РазрешитьНачалоПеретаскивания / EnableStartDrag</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет поведение ЭУ для режима Drag&amp;Drop. 1 - разрешает ЭУ выступать источником в операциях перетаскивания, 0 - запрещает.</p>
+<p>Когда начало перетаскивания разрешено, работают события <a class="reference internal" href="#dragstart">НачалоПеретаскивания / DragStart</a> и <a class="reference internal" href="#dragend">ОкончаниеПеретаскивания / DragEnd</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="enabledrag">
+<h4>РазрешитьПеретаскивание / EnableDrag</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет поведение ЭУ для режима Drag&amp;Drop. 1 - разрешает ЭУ выступать приемником в операциях перетаскивания, 0 - запрещает.</p>
+<p>Когда перетаскивание разрешено, работают события <a class="reference internal" href="#dragcheck">ПроверкаПеретаскивания / DragCheck</a> и <a class="reference internal" href="#drag">Перетаскивание / Drag</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="showheaders">
+<h4>ОтображатьЗаголовки / ShowHeaders</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body"><p class="first">Чтение и запись</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body"><dl class="first docutils">
+<dt>Число</dt>
+<dd><ul class="first last simple">
+<li>1: отобразить заголовки</li>
+<li>0: скрыть заголовки</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Управляет отображением заголовков колонок ТП</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="fixedleft">
+<h4>ФиксацияСлева / FixedLeft</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Содержит количество зафиксированных слева колонок.
+Зафиксированные колонки остаются на месте при горизонтальной прокрутке табличного поля.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="fixedright">
+<h4>ФиксацияСправа / FixedRight</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Содержит количество зафиксированных справа колонок.
+Зафиксированные колонки остаются на месте при горизонтальной прокрутке табличного поля.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="header">
+<span id="id9"></span><h4>Шапка / Header</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body"><a class="reference internal" href="#id92">ФиксированныеСтроки</a></td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Объект, предназначенный для управления шапкой табличного поля</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="footer">
+<span id="id10"></span><h4>Подвал / Footer</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body"><a class="reference internal" href="#id92">ФиксированныеСтроки</a></td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Объект, предназначенный для управления подвалом табличного поля</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="cellbacktransparency">
+<h4>ПрозрачностьФонаЯчеек / CellBackTransparency</h4>
+<blockquote id="id11">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячеек табличного поля.</p>
+<p>Свойство может принмать значения от 0 до 255.
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+<div class="section" id="selectioncellbacktransparency">
+<h4>ПрозрачностьФонаЯчеекВыделения / SelectionCellBackTransparency</h4>
+<blockquote id="id12">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона выделенных ячеек табличного поля.</p>
+<p>Свойство может принмать значения от 0 до 255.
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+<div class="section" id="selectioncellbacktransparency2">
+<h4>ПрозрачностьФонаЯчеекВыделения2 / SelectionCellBackTransparency2</h4>
+<blockquote id="id13">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячейки выделенной строки не текущей колонки когда РежимВыделенияСтроки = 2.</p>
+<p>Свойство может принмать значения от 0 до 255.
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+<div class="section" id="alternationrowcellbacktransparency">
+<h4>ПрозрачностьФонаЯчеекЧередованияСтрок / AlternationRowCellBackTransparency</h4>
+<blockquote id="id14">
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.
+<strong>Описание:</strong> Значение альтернативной прозрачности фона ячейки строки таблицы в режиме чередования цветов фона строк.</p>
+<p>Свойство может принмать значения от 0 до 255.
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="refreshrows">
+<h4>ОбновитьСтроки / RefreshRows</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ОбновитьСтроки()</p>
+<p><strong>Описание:</strong> перечитать строки, отображаемые в данный момент в табличном поле. Табличное поле будет
+стараться сохранить текущую строку.</p>
+</blockquote>
+</div>
+<div class="section" id="redrawrows">
+<h4>ПерерисоватьСтроки / RedrawRows</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">ПерерисоватьСтроки()</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Обновить строки, отображаемые в данный момент в табличном поле, без обращения к провайдеру.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="settextmargins">
+<h4>УстановитьОтступы / SetTextMargins</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьОтступы(чЛево, чВерх, чПраво, чНиз)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first simple">
+<li>чЛево, тип: Число</li>
+<li>чВерх, тип: Число</li>
+<li>чПраво, тип: Число</li>
+<li>чНиз, тип: Число</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Устанавливает отступы текста в пределах ячейки в соответствии с переданными параметрами.</div>
+<div class="line">Отрицательные значения параметров игнорируются.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="getcurrentcellbounds">
+<h4>ПолучитьГраницыТекущейЯчейки / GetCurrentCellBounds</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">ПолучитьГраницыТекущейЯчейки(чЛево, чВерх, чПраво, чНиз, флПривязка = 0)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first simple">
+<li>чЛево, тип: Число</li>
+<li>чВерх, тип: Число</li>
+<li>чПраво, тип: Число</li>
+<li>чНиз, тип: Число</li>
+<li>флПривязка, тип: Число<ul>
+<li>0: экранные координаты</li>
+<li>1: клиентские координаты</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><ul class="first simple">
+<li>0: границы получить невозможно</li>
+<li>1: границы успешно получены</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Возвращет координаты текущей ячейки ТП</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="autowidth">
+<h4>АвтоШирина / AutoWidth</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">AutoWidth()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Устанавливает минимальную достаточную ширину для всех колонок ТП по видимой части ТП</div>
+<div class="line">Действие равнозначно двойному щелчку левой кнопкой мыши на разделителе колонок в заголовке ТП при нажатой клавише SHIFT</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="setsyspictures">
+<h4>УстановитьСистемныеКартинки / SetSysPictures</h4>
+<blockquote id="id16">
+<p><strong>Синтаксис:</strong> УстановитьСистемныеКартинки(Картинки, Ширина)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Картинки - тип: Картинка. Картинка - из которой будут получены отдельные пиктограммы для отображения в ячейках.</li>
+<li>Ширина - тип: Число. Необязателен, по умолчанию 0. Ширина отдельной пиктограммы для отображения. Если равна
+нулю, ширина определяется высотой переданной картинки.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает набор системных картинок для отображения в ячейках табличного поля.</p>
+<p>Картинками считаются части общей переданной первым параметром картинки, полученные по следующим правилам:
+от левого верхнего угла слева направо, ширина равна высоте. Выбирается только первый ряд.
+Прозрачным является цвет RGB(0x00, 0x80, 0x80). Картинки будут доступны по индексу (от нуля).</p>
+</blockquote>
+</div>
+<div class="section" id="addsyspictures">
+<h4>ДобавитьСистемныеКартинки / AddSysPictures</h4>
+<blockquote id="id17">
+<p><strong>Синтаксис:</strong> ДобавитьСистемныеКартинки(Картинки)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Картинки - тип: Картинка. Картинка - из которой будут получены отдельные пиктограммы для отображения в ячейках.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Дополняет набор системных картинок для отображения в ячейках табличного поля.</p>
+<p>Метод допустимо вызывать для дополнения коллекции картинок после установки методом <a class="reference internal" href="#id16">УстановитьСистемныеКартинки</a>.
+Ширина отдельных пиктограмм равна ширине указанной при вызове метода <a class="reference internal" href="#id16">УстановитьСистемныеКартинки</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="resetsyspictures">
+<h4>СброситьСистемныеКартинки / ResetSysPictures</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> СброситьСистемныеКартинки()</p>
+<p><strong>Описание:</strong> Очищает набор системных картинок табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="setbackgroundpicture">
+<h4>УстановитьФоновуюКартинку / SetBackgroundPicture</h4>
+<blockquote id="id18">
+<p><strong>Синтаксис:</strong> УстановитьФоновуюКартинку(Картинка, ГорВыравнивание, ВертВыравнивание, Повтор, ЦветПрозрачности)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Картинка - тип: Картинка. Картинка выводимая на фоне грида.</li>
+<li>ГорВыравнивание - тип: Число. Горизонтальное выравнивание. 0-слева, 1-справа, 2-по центру. Исходное значение 2.</li>
+<li>ВертВыравнивание - тип: Число. Вертикальное выравнивание. 0-сверху, 1-снизу, 2-по центру. Исходное значение 2.</li>
+<li>Повтор - тип: Число. Признак повтора картинки при выводе (размножение). 0-не повторять, 1-повторять. Исходное значение 0.</li>
+<li>ЦветПрозрачности - тип: Число. RGB значение цвета который при выводе будет считаться прозрачным. При значении (-1) - прозрачности нет. Исходное значение (-1).</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает картинку фона и параметры ее вывода.</p>
+<p>Все параметры не обязательные.</p>
+<p>Если какой-либо параметр не указан при вызове метода, то соответствующие картинка либо параметр вывода сохраняют прежнее значение (не меняются).</p>
+<p>При выводе имеет значение режим рисования картинки установленный методом Картинка::РежимРисования(Режим): 1-растягивать на весь размер грида, 2-рисовать с оригинальными размерами, 3-рисовать, сохраняя оригинальное соотношение размеров.</p>
+<p>Параметры ГорВыравнивание, ВертВыравнивание и Повтор - влияют на вывод только при режиме рисования 2.</p>
+<p>Параметр ЦветПрозрачности не имеет значения для картинок-иконок типа .ico</p>
+</blockquote>
+</div>
+<div class="section" id="resetbackgroundpicture">
+<h4>СброситьФоновуюКартинку / ResetBackgroundPicture</h4>
+<blockquote id="id19">
+<p><strong>Синтаксис:</strong> СброситьФоновуюКартинку()</p>
+<p><strong>Описание:</strong> Отключает вывод фоновой картинки и устаналивает параметры вывода в исходные значения.</p>
+</blockquote>
+</div>
+<div class="section" id="setbackgroundtext">
+<h4>УстановитьФоновыйТекст / SetBackgroundText</h4>
+<blockquote id="id20">
+<p><strong>Синтаксис:</strong> УстановитьФоновыйТекст(Текст, Шрифт, Цвет, ГорВыравнивание, ВертВыравнивание, Перенос)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Текст - тип: Строка. Текст выводимый на фоне грида.</li>
+<li>Шрифт - тип: <a class="reference internal" href="#id144">Шрифт</a>. Шрифт выводимого текста. Исходное значение - шрифт текста табличного поля.</li>
+<li>Цвет - тип: Число. RGB значение цвета текста. При значении (-1) текст принимает установленный цвет текста табличного поля. Исходное значение (-1).</li>
+<li>ГорВыравнивание - тип: Число. Горизонтальное выравнивание. 0-слева, 1-справа, 2-по центру. Исходное значение 2.</li>
+<li>ВертВыравнивание - тип: Число. Вертикальное выравнивание. 0-сверху, 1-снизу, 2-по центру. Исходное значение 2.</li>
+<li>Перенос - тип: Число. Признак автоматического переноса строк текста по словам. 0-не переносить, 1-переносить. Исходное значение 1.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает текст фона и параметры его вывода.</p>
+<p>Все параметры не обязательные.</p>
+<p>Если какой-либо параметр не указан при вызове метода, то соответствующие текст либо параметр вывода сохраняют прежнее значение (не меняются).</p>
+</blockquote>
+</div>
+<div class="section" id="resetbackgroundtext">
+<h4>СброситьФоновыйТекст / ResetBackgroundText</h4>
+<blockquote id="id21">
+<p><strong>Синтаксис:</strong> СброситьФоновыйТекст()</p>
+<p><strong>Описание:</strong> Отключает вывод фонового текста и устаналивает параметры вывода в исходные значения.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>События</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="rowout">
+<h4>ПриВыводеСтроки / RowOut</h4>
+<blockquote id="id23">
+<p><strong>Синтаксис:</strong> ПриВыводеСтроки(ОформлениеСтроки, ДанныеСтроки, ТипРегиона)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ОформлениеСтроки - тип: <a class="reference internal" href="#id52">ОформлениеСтроки</a>. Объект для управления оформлением выводимой строки
+табличного поля.</li>
+<li>ДанныеСтроки - тип: <a class="reference internal" href="#id45">ДанныеСтроки</a>. Данные (коллекция значений полей) выводимой строки
+табличного поля.</li>
+<li>ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает при выводе (отображении) строки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="selection">
+<h4>Выбор / Selection</h4>
+<blockquote id="id24">
+<p><strong>Синтаксис:</strong> Выбор(Строка, Колонка, ТипРегиона, ТипОбластиЯчейки)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</li>
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></li>
+<li>ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></li>
+<li>ТипОбластиЯчейки - тип: <a class="reference internal" href="#id105">ТипыОбластейЯчейки</a></li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает при двойном клике для регионов 1 - 4, или нажатии клавиши Enter для региона 3.
+При нажатии Enter ТипОбластиЯчейки не определен.
+При активизации события для заголовка значения параметра Строка не определено.</p>
+</blockquote>
+</div>
+<div class="section" id="activaterow">
+<h4>ПриАктивизацииСтроки / ActivateRow</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриАктивизацииСтроки()</p>
+<p><strong>Описание:</strong> Возникает, когда любая строка становится текущей.</p>
+</blockquote>
+</div>
+<div class="section" id="activatecolumn">
+<h4>ПриАктивизацииКолонки / ActivateColumn</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриАктивизацииКолонки()</p>
+<p><strong>Описание:</strong> Возникает, когда любая колонка становится текущей.</p>
+</blockquote>
+</div>
+<div class="section" id="activatecell">
+<h4>ПриАктивизацииЯчейки / ActivateCell</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриАктивизацииЯчейки()</p>
+<p><strong>Описание:</strong> Возникает, когда ячейка становится текущей. Порядок прохождения событий: ПриАктивизацииСтроки,
+ПриАктивизацииКолонки, ПриАктивизацииЯчейки.</p>
+</blockquote>
+</div>
+<div class="section" id="headerselection">
+<h4>ПриВыбореЗаголовка / HeaderSelection</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВыбореЗаголовка(Колонка)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>. Колонка, заголовок которой выбран.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает, когда пользователь выбирает мышью заголовок колонки.</p>
+</blockquote>
+</div>
+<div class="section" id="contextmenu">
+<h4>ПриКонтекстномМеню / ContextMenu</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриКонтекстномМеню(ТипРегиона, Колонка, Строка)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></li>
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>. Колонка табличного поля, на которой было вызвано контекстное меню.</li>
+<li>Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает, когда необходимо отобразить контекстное меню.</p>
+</blockquote>
+</div>
+<div class="section" id="clickcheckbox">
+<h4>ПриВыбореФлажка / ClickCheckBox</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВыбореФлажка(Строка, Колонка, ТипРегиона, ФлагВыбора)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</p>
+</li>
+<li><p class="first">Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><p class="first">ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></p>
+</li>
+<li><p class="first">ФлагВыбора - тип: число. Флаг выполнения события <a class="reference internal" href="#id24">Выбор</a>.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - подавлять событие выбора при двойном клике</li>
+<li>1 - не подавлять событие выбора при двойном клике</li>
+</ul>
+<p>При вызове события имеет значение 0, т.е. событие Выбор при выборе флажка будет подавляться.</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает, когда пользователь производит выбор флажка.</p>
+</blockquote>
+</div>
+<div class="section" id="clickpicture">
+<h4>ПриВыбореКартинки / ClickPicture</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВыбореКартинки(Строка, Колонка, ИндексКартинки, ТипРегиона, ФлагВыбора)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</p>
+</li>
+<li><p class="first">Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><p class="first">ИндексКартинки - тип: Число. Индекс картинки в ячейке.</p>
+</li>
+<li><p class="first">ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></p>
+</li>
+<li><p class="first">ФлагВыбора - тип: число. Флаг выполнения события <a class="reference internal" href="#id24">Выбор</a>.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - подавлять событие выбора при двойном клике</li>
+<li>1 - не подавлять событие выбора при двойном клике</li>
+</ul>
+<p>При вызове события имеет значение 1, т.е. событие Выбор при выборе картинки не будет подавляться.</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает, когда пользователь производит выбор картинки.</p>
+</blockquote>
+</div>
+<div class="section" id="clicksyspicture">
+<h4>ПриВыбореСистемнойКартинки / ClickSysPicture</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВыбореСистемнойКартинки(Строка, Колонка, ИндексКартинки, ТипРегиона, ФлагВыбора)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><p class="first">Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</p>
+</li>
+<li><p class="first">Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><p class="first">ИндексКартинки - тип: Число. Индекс системной картинки в ячейке.</p>
+</li>
+<li><p class="first">ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></p>
+</li>
+<li><p class="first">ФлагВыбора - тип: число. Флаг выполнения события <a class="reference internal" href="#id24">Выбор</a>.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - подавлять событие выбора при двойном клике</li>
+<li>1 - не подавлять событие выбора при двойном клике</li>
+</ul>
+<p>При вызове события имеет значение 0, т.е. событие Выбор при выборе системной картинки будет подавляться.</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает, когда пользователь производит выбор системной картинки.</p>
+</blockquote>
+</div>
+<div class="section" id="dragstart">
+<h4>НачалоПеретаскивания / DragStart</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> НачалоПеретаскивания(ДопустимыеДействия, Значение, Колонка, ТипРегиона, ТипЦели)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<blockquote>
+<ul>
+<li><p class="first">ДопустимыеДействия - тип: Число. (Выход) Список допустимых действий перетаскивания. Список задается как сумма следующих значений:</p>
+<blockquote>
+<ul class="simple">
+<li>1 - копирование (Copy)</li>
+<li>2 - перетаскивание (Move)</li>
+<li>4 - связывание (Link)</li>
+</ul>
+</blockquote>
+<p>Значение по-умолчанию 1. Если необходимо разрешить другие действия, нужно изменить значение этого параметра на выходе из обработчика
+события. Если передать 0, т.е. не определить ни одного действия, Перетаскивание не начнется.</p>
+</li>
+<li><p class="first">Значение - тип: определяется поставщиком данных. (Вход) Значение, идентифицирующее строку табличного поля.
+(Выход) Значение, которое будет представлять перетаскиваемые данные.</p>
+</li>
+<li><p class="first">Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><p class="first">ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></p>
+</li>
+<li><p class="first">ТипЦели - тип: Число. (Выход) Определяет логическую область отображения перетаскиваемых данных в ТП.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - не задано</li>
+<li>1 - ячейка</li>
+<li>2 - строка</li>
+<li>3 - колонка</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>Это значение используется для определения области ТП, в которой не нужно формировать события проверки перетаскивания, в том случае когда
+ЭУ-приемником является то же ТП, что и источник.</p>
+</blockquote>
+<p><strong>Описание:</strong> Возникает в ЭУ источнике данных, когда пользователь начинает перетаскивание (Drag&amp;Drop).</p>
+</blockquote>
+</div>
+<div class="section" id="dragend">
+<h4>ОкончаниеПеретаскивания / DragEnd</h4>
+<blockquote>
+<blockquote>
+<p><strong>Синтаксис:</strong> ОкончаниеПеретаскивания(Действие, Значение, Колонка, ТипРегиона)</p>
+<p><strong>Параметры:</strong></p>
+<ul>
+<li><p class="first">Действие - тип: Число. Действие - результат операции перетаскивания. Допустимые действия:</p>
+<blockquote>
+<blockquote>
+<ul class="simple">
+<li>0 - нет действия</li>
+<li>1 - копирование (Copy)</li>
+<li>2 - перетаскивание (Move)</li>
+<li>4 - связывание (Link)</li>
+</ul>
+</blockquote>
+<ul class="simple">
+<li>Значение - тип: Любой. Значение, представляющее перетаскиваемые данные. Это значение было задано в событии <a class="reference external" href="klink.html">НачалоПеретаскивания|НачалоПеретаскивания</a>.</li>
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></li>
+<li>ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает в ЭУ источнике данных, когда завершается операция перетаскивания (Drag&amp;Drop).</p>
+<p>Обычная обработка: в случае операции 2 (перетаскивания или Move) нужно удалить перетаскиваемые данные. В параметре Действие
+ЭУ источник данных всегда получит одно из тех действий, которое он определил для себя в событии
+<a class="reference internal" href="#dragstart">НачалоПеретаскивания / DragStart</a>.</p>
+<dl class="docutils">
+<dt>Порядок прохождения событий:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="klink.html">НачалоПеретаскивания|НачалоПеретаскивания</a> - в источнике,</li>
+<li><a class="reference external" href="klink.html">ПроверкаПеретаскивания|ПроверкаПеретаскивания</a> - в назначении,</li>
+<li><a class="reference external" href="klink.html">Перетаскивание|Перетаскивание</a> - в назначении,</li>
+<li>ОкончаниеПеретаскивания - в источнике.</li>
+</ul>
+</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="dragcheck">
+<h4>ПроверкаПеретаскивания / DragCheck</h4>
+<blockquote>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПроверкаПеретаскивания(Действие, Значение, СтрокаТП, КолонкаТП, ТипРегионаТП, ТипЦели)</p>
+<p><strong>Параметры:</strong></p>
+<ul>
+<li><p class="first">Действие - тип: Число. (Выход) Действие которое произойдет при совершении перетаскивания. По-умолчанию 0. Допустимые действия:</p>
+<blockquote>
+<ul class="simple">
+<li>0 - нет действия</li>
+<li>1 - копирование (Copy)</li>
+<li>2 - перетаскивание (Move)</li>
+<li>4 - связывание (Link)</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Значение - тип: Любой. Значение, представляющее перетаскиваемые данные. Это значение было задано в обработчике события
+<a class="reference external" href="klink.html">НачалоПеретаскивания|НачалоПеретаскивания</a>.</p>
+</li>
+<li><p class="first">СтрокаТП - тип: Любой. Значение представляющее строку табличного поля, в которую идет перетаскивание (находится под курсором).
+Обеспечивается поставщиком данных.</p>
+</li>
+<li><dl class="first docutils">
+<dt>КолонкаТП - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>. Колонка табличного поля, в которую идет перетаскивание (находится под курсором).</dt>
+<dd><ul class="first last simple">
+<li>ТипРегионаТП - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a>. Тип региона, в который идет перетаскивание.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">ТипЦели - тип: Число. (Выход) Определяет логическую область приемника перетаскиваемых данных, которая подсвечивается
+рамкой. Значение по-умолчанию: если ЭУ источник данных - табличное поле, то значение, заданное в обработчике события
+<a class="reference external" href="klink.html">НачалоПеретаскивания|НачалоПеретаскивания</a>; если источник данных - некий другой ЭУ, то значение равно 0.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - не задано</li>
+<li>1 - ячейка</li>
+<li>2 - строка</li>
+<li>3 - колонка</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает в ЭУ назначения перетаскивания для определения действия, которое произойдет при совершении операции перетаскивания.
+(Drag&amp;Drop)</p>
+<p>Главное назначение события - проверить возможность совершения операции перетаскивания и определить Действие.
+Событие возникает всякий раз, когда изменяется строка или колонка ТП. Если строка или колонка не определяются под курсором мыши, то значения
+соответствующих параметров будут равны пустому значению.</p>
+</blockquote>
+</div>
+<div class="section" id="drag">
+<h4>Перетаскивание / Drag</h4>
+<blockquote>
+<blockquote>
+<p><strong>Синтаксис:</strong> Перетаскивание(Действие, Значение, СтрокаТП, КолонкаТП, ТипРегионаТП)</p>
+<p><strong>Параметры:</strong></p>
+<ul>
+<li><p class="first">Действие - тип: Число. Действие, которое нужно выполнить для совершения перетаскивания. Равно значению
+параметра Действие на выходе из события <a class="reference internal" href="#dragcheck">ПроверкаПеретаскивания / DragCheck</a>. Допустимые действия:</p>
+<blockquote>
+<ul class="simple">
+<li>1 - копирование (Copy)</li>
+<li>2 - перетаскивание (Move)</li>
+<li>4 - связывание (Link)</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Значение - тип: Любой. Значение, представляющее перетаскиваемые данные. Это значение было задано в обработчике события
+<a class="reference external" href="klink.html">НачалоПеретаскивания|НачалоПеретаскивания</a>.</p>
+</li>
+<li><p class="first">СтрокаТП - тип: Любой. Значение представляющее строку табличного поля, в которую идет перетаскивание (находится под курсором).
+Обеспечивается поставщиком данных.</p>
+</li>
+<li><dl class="first docutils">
+<dt>КолонкаТП - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>. Колонка табличного поля, в которую идет перетаскивание (находится под курсором).</dt>
+<dd><ul class="first last simple">
+<li>ТипРегионаТП - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a>. Тип региона, в который идет перетаскивание.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает в ЭУ назначения, когда совершается операция перетаскивания (Drag&amp;Drop).</p>
+<p>Если строка или колонка не определяются под курсором мыши, то значения соответствующих параметров будут равны пустому значению.</p>
+</blockquote>
+</div>
+<div class="section" id="ondestroy">
+<h4>ПриУничтожении / OnDestroy</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриУничтожении()</p>
+<p><strong>Параметры:</strong> нет</p>
+<p><strong>Описание:</strong> Событие вызывается при уничтожении контрола, с которым связано ТП, до уничтожения самого ТП.</p>
+</blockquote>
+</div>
+<div class="section" id="onquicksearchstart">
+<h4>ПриНачалеБыстрогоПоиска / OnQuickSearchStart</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриНачалеБыстрогоПоиска(чТипБыстрогоПоиска, чФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>чТипБыстрогоПоиска, тип: Число</dt>
+<dd><dl class="first last docutils">
+<dt>Тип быстрого поиска:</dt>
+<dd><ul class="first last simple">
+<li>1 - текстовый быстрый поиск</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>чФСО, тип: Число</dt>
+<dd><p class="first">Доступ: чтение и запись</p>
+<dl class="docutils">
+<dt>Флаг стандартной обработки. Возможные значения для установки:</dt>
+<dd><ul class="first last simple">
+<li>1 - быстрый поиск разрешен</li>
+<li>0 - быстрый поиск запрещен</li>
+</ul>
+</dd>
+</dl>
+<p class="last">Значение по умолчанию: 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается до инициализации окна быстрого поиска и позволяет управлять разрешением на его создание.</p>
+</blockquote>
+</div>
+<div class="section" id="onquicksearch">
+<h4>ПриБыстромПоиске / OnQuickSearch</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>ПриБыстромПоиске(чТипБыстрогоПоиска, нДанные, чФСО)</dd>
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>чТипБыстрогоПоиска, тип: Число</dt>
+<dd><dl class="first last docutils">
+<dt>Тип быстрого поиска:</dt>
+<dd><ul class="first last simple">
+<li>1 - текстовый быстрый поиск</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>нДанные, тип: для текстового быстрого поиска - Строка</dt>
+<dd><p class="first">Доступ: чтение и запись</p>
+<p class="last">Данные, введенные в окне быстрого поиска</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>чФСО, тип: Число</dt>
+<dd><dl class="first docutils">
+<dt>Флаг стандартной обработки. Возможные значения для установки:</dt>
+<dd><ul class="first last simple">
+<li>1 - быстрый поиск разрешен</li>
+<li>0 - быстрый поиск запрещен</li>
+</ul>
+</dd>
+</dl>
+<p class="last">Значение по умолчанию: 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается до выполнения системной процедуры быстрого поиска и позволяет организовать специальные алгоритмы поиска.</p>
+<p>Возможна трансформация данных с последующей системной обработкой, а также полная замена системной обработки на собственную.</p>
+</blockquote>
+</div>
+<div class="section" id="onquicksearchend">
+<h4>ПриОкончанииБыстрогоПоиска / OnQuickSearchEnd</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>ПриОкончанииБыстрогоПоиска(флРезультат, флПерепозиционировано)</dd>
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>флРезультат, тип: Число</dt>
+<dd><dl class="first last docutils">
+<dt>Причина закрытия окна быстрого поиска.</dt>
+<dd><ul class="first last simple">
+<li>1 - закрытие клавишей ENTER</li>
+<li>0 - отмена быстрого поиска (любым способом)</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>флПерепозиционировано, тип: Число</dt>
+<dd><dl class="first last docutils">
+<dt>Флаг, отражающий факт перепозиционирования непосредственно перед закрытием окна БП</dt>
+<dd><ul class="first last simple">
+<li>1 - ТП было перепозиционировано</li>
+<li>0 - ТП не было перепозиционировано</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается после закрытия окна быстрого поиска.</p>
+</blockquote>
+</div>
+<div class="section" id="oncolumnmove">
+<h4>ПриПеремещенииКолонки / OnColumnMove</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>ПриПеремещенииКолонки(Колонка, чСдвиг, чФСО)</dd>
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><p class="first">Колонка, тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>чСдвиг, тип: Число</dt>
+<dd><p class="first last">Предлагаемый сдвиг колонки</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>чФСО, тип: Число</dt>
+<dd><dl class="first docutils">
+<dt>Флаг стандартной обработки. Возможные значения для установки:</dt>
+<dd><ul class="first last simple">
+<li>1 - перемещение колонки разрешено</li>
+<li>0 - перемещение колонки запрещено</li>
+</ul>
+</dd>
+</dl>
+<p class="last">Значение по умолчанию: 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при интерактивном перемещении колонки ТП непосредственно перед выполнением перемещения.</p>
+</blockquote>
+</div>
+<div class="section" id="oncolumnvisibilitychange">
+<h4>ПриИзмененииВидимостиКолонки / OnColumnVisibilityChange</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>ПриИзмененииВидимостиКолонки(Колонка, флВидимость, чФСО)</dd>
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last">
+<li><p class="first">Колонка, тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>флВидимость, тип: Число</dt>
+<dd><p class="first last">Предлагаемое значение флага видимости колонки</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>чФСО, тип: Число</dt>
+<dd><dl class="first docutils">
+<dt>Флаг стандартной обработки. Возможные значения для установки:</dt>
+<dd><ul class="first last simple">
+<li>1 - изменение видимости колонки разрешено</li>
+<li>0 - изменение видимости колонки запрещено</li>
+</ul>
+</dd>
+</dl>
+<p class="last">Значение по умолчанию: 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при интерактивном изменении видимости колонки ТП непосредственно перед выполнением изменения видимости.</p>
+</blockquote>
+</div>
+<div class="section" id="oncolumnwidthchange">
+<h4>ПриИзмененииШириныКолонки / OnColumnWidthChange</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>ПриИзмененииШириныКолонки()</dd>
+<dt><strong>Параметры:</strong></dt>
+<dd>нет</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при интерактивном изменении ширины одной или нескольких колонок.</p>
+</blockquote>
+</div>
+<div class="section" id="onkeydown">
+<h4>ПриНажатииКлавиши / OnKeyDown</h4>
+<blockquote>
+<p><strong>Синтаксис</strong> ПриНажатииКлавиши(ВиртКод, Данные, Клавиатура, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры</strong></dt>
+<dd><ul class="first last">
+<li><p class="first">ВиртКод - тип: Число. <a class="reference internal" href="#id142">Код виртуальной клавиши</a> не системной.</p>
+</li>
+<li><p class="first">Данные - тип: Число. Определяет счетчик повторения, скан-код и прочее. Подробнее см. MSDN: <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx</a></p>
+</li>
+<li><p class="first">Клавиатура - тип: <a class="reference internal" href="#id139">Клавиатура</a>. Ссылка на сервисный объект работы с состоянием клавиатуры.</p>
+</li>
+<li><p class="first">ФСО - флаг стандартной обработки. При вызове равен 1. Установка в 0 отменяет штатную обработку.</p>
+<blockquote>
+<p><strong>Внимание</strong>: важно помнить, что передача 0 может остановить важную
+системную обработку нажатия клавиши. Например, если 0 передать для
+ESC, то форма перестанет закрываться по этой клавише и т.д</p>
+</blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при нажатии не системной клавиши.</p>
+<p><strong>Примечание:</strong> Не системная клавиша это клавиша нажатая без нажатия Alt и не F10.</p>
+</blockquote>
+</div>
+<div class="section" id="onkeyup">
+<h4>ПриОтжатииКлавиши / OnKeyUp</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриОтжатииКлавиши(ВиртКод, Данные, Клавиатура, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>ВиртКод - тип: Число. <a class="reference internal" href="#id142">Код виртуальной клавиши</a> не системной.</li>
+<li>Данные - тип: Число. Определяет счетчик повторения, скан-код и прочее. Подробнее см. MSDN: <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx</a></li>
+<li>Клавиатура - тип: <a class="reference internal" href="#id139">Клавиатура</a>. Ссылка на сервисный объект работы с состоянием клавиатуры.</li>
+<li>ФСО - флаг стандартной обработки. При вызове равен 1. Установка в 0 отменяет штатную обработку.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при отжатии не системной клавиши.</p>
+<p><strong>Примечание:</strong> Не системная клавиша это клавиша нажатая без нажатия Alt и не F10.</p>
+</blockquote>
+</div>
+<div class="section" id="onsyskeydown">
+<h4>ПриНажатииСистемнойКлавиши / OnSysKeyDown</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриНажатииСистемнойКлавиши(ВиртКод, Данные, Клавиатура, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>ВиртКод - тип: Число. <a class="reference internal" href="#id142">Код виртуальной клавиши</a> системной.</li>
+<li>Данные - тип: Число. Определяет счетчик повторения, скан-код и прочее. Подробнее см. MSDN: <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx</a></li>
+<li>Клавиатура - тип: <a class="reference internal" href="#id139">Клавиатура</a>. Ссылка на сервисный объект работы с состоянием клавиатуры.</li>
+<li>ФСО - флаг стандартной обработки. При вызове равен 1. Установка в 0 отменяет штатную обработку.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при нажатии системной клавиши.</p>
+<p><strong>Примечание:</strong> Системная клавиша это F10 или любая другая клавиша нажатая при удержании клавиши Alt</p>
+</blockquote>
+</div>
+<div class="section" id="onsyskeyup">
+<h4>ПриОтжатииСистемнойКлавиши / OnSysKeyUp</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриОтжатииСистемнойКлавиши(ВиртКод, Данные, Клавиатура, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>ВиртКод - тип: Число. <a class="reference internal" href="#id142">Код виртуальной клавиши</a> системной.</li>
+<li>Данные - тип: Число. Определяет счетчик повторения, скан-код и прочее. Подробнее см. MSDN: <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx</a></li>
+<li>Клавиатура - тип: <a class="reference internal" href="#id139">Клавиатура</a>. Ссылка на сервисный объект работы с состоянием клавиатуры.</li>
+<li>ФСО - флаг стандартной обработки. При вызове равен 1. Установка в 0 отменяет штатную обработку.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при отжатии системной клавиши.</p>
+<p><strong>Примечание:</strong> Системная клавиша это F10 или любая другая клавиша нажатая при удержании клавиши Alt</p>
+</blockquote>
+</div>
+<div class="section" id="onchar">
+<h4>ПриВводеСимвола / OnChar</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВводеСимвола(КодСимвола, Данные, Клавиатура, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>КодСимвола - тип: Число. Код символа нажатой клавиши.</li>
+<li>Данные - тип: Число. Определяет счетчик повторения, скан-код и прочее. Подробнее см. MSDN: <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx">http://msdn.microsoft.com/en-us/library/ms646280(VS.85).aspx</a></li>
+<li>Клавиатура - тип: <a class="reference internal" href="#id139">Клавиатура</a>. Ссылка на сервисный объект работы с состоянием клавиатуры.</li>
+<li>ФСО - флаг стандартной обработки. При вызове равен 1. Установка в 0 отменяет штатную обработку.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при нажатии клавиши, транслированной как символьная.</p>
+</blockquote>
+</div>
+<div class="section" id="onshowhint">
+<h4>ПриВыводеПодсказки / OnShowHint</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПриВыводеПодсказки(Подсказка, ФСО, Х, У, Строка, Колонка, ТипРегиона)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Подсказка - тип: Строка. Текст подсказки.</li>
+<li>ФСО - тип: Число. Флаг стандартной обработки. Установка в 0 приведет к отмене стандартного вывода подсказки.</li>
+<li>Х - тип: Число. Горизонтальное положение окна подсказки на экране.</li>
+<li>У - тип: Число. Вертикальное положение окна подсказки на экране.</li>
+<li>Строка - тип: определяется поставищком данных. Значение, идентифицирующее строку ТП.</li>
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a></li>
+<li>ТипРегиона - тип: <a class="reference internal" href="#id104">ТипыРегионовТП</a></li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Возникает при выводе (отображении) подсказки для ячейки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="onrowformat">
+<h4>ПриФорматированииСтроки / OnRowFormat</h4>
+<blockquote>
+<p><strong>Синтаксис</strong> ПриФорматированииСтроки(ФорматСтроки, ДанныеСтроки)</p>
+<dl class="docutils">
+<dt><strong>Параметры</strong></dt>
+<dd><ul class="first last simple">
+<li>ФорматСтроки - тип: Коллекция. Коллекция объектов типа <a class="reference internal" href="#id70">ФорматЯчейки</a> для доступа к ячейкам строки табличного поля с целью форматирования текста ячеек.</li>
+<li>ДанныеСтроки - тип: <a class="reference internal" href="#id45">ДанныеСтроки</a>. Данные (коллекция значений полей) форматируемой строки табличного поля.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается когда появляется необходимость отформатировать текст ячеек табличного поля.</p>
+<p><strong>Примечание:</strong> Необходимость форматирования текста ячеек возникает при глобальном поиске по подстроке текста, а также при выполнении копирования в буфер обмена.
+Если событие ПриФорматированииСтроки не определено, то в целях форматирования текста ячеек будет вызываться событие <a class="reference internal" href="#id23">ПриВыводеСтроки</a></p>
+</blockquote>
+</div>
+<div class="section" id="onclipboard">
+<h4>ПриКомандеБуфераОбмена / OnClipboard</h4>
+<blockquote>
+<p><strong>Синтаксис</strong> ПриКомандеБуфераОбмена(Команда, Текст, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры</strong></dt>
+<dd><ul class="first last simple">
+<li>Команда - тип: Число. 0- copy, 1- paste, 2- (M), 3- (M+), 4- (M-)</li>
+<li>Текст - тип: Строка. При команде copy - текст текущей ячейки. При команде paste - текст содержимого буфера обмена. При командах M, M+, M- - строковое представление числа в текущей ячейке. При этом из строки убраны пробелы и символ ',' заменен на '.'</li>
+<li>ФСО - тип: Число. Флаг стандартной обработки. Установка в 0 приведет к отмене стандартного действия.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается при командах работы с буфером обмена.</p>
+</blockquote>
+</div>
+<div class="section" id="onfind">
+<h4>ПриПоиске / OnFind</h4>
+<blockquote>
+<p><strong>Синтаксис</strong> ПриПоиске(ДанныеПоиска, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры</strong></dt>
+<dd><ul class="first last simple">
+<li>ДанныеПоиска - тип: <a class="reference internal" href="#id107">ГлобальныеДанныеПоиска</a>. Объект для доступа к параметрам поиска.</li>
+<li>ФСО - тип: Число. Флаг стандартной обработки. Установка в 0 приведет к отмене стандартного поиска.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается перед запуском поиска.</p>
+<p><strong>Примечание:</strong> Существует возможность скорректировать данные поиска и/или заменить стандартный алгоритм поиска собственным алгоритмом.
+Если тип зачение ДанныеПоиска::Значение отличный от типа Строка, то выполняется поиск по значению. Иначе выполняется поиск по подстроке.</p>
+</blockquote>
+</div>
+<div class="section" id="onfinddialog">
+<h4>ПриДиалогеПоиска / OnFindDialog</h4>
+<blockquote>
+<p><strong>Синтаксис</strong> ПриДиалогеПоиска(ДанныеПоиска, ФСО)</p>
+<dl class="docutils">
+<dt><strong>Параметры</strong></dt>
+<dd><ul class="first last simple">
+<li>ДанныеПоиска - тип: <a class="reference internal" href="#id107">ГлобальныеДанныеПоиска</a>. Объект для доступа к параметрам поиска.</li>
+<li>ФСО - тип: Число. Флаг стандартной обработки. Установка в 0 приведет к отмене открытия стандартного диалога.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Описание:</strong> Событие вызывается перед открытием диалога настройки поиска.</p>
+<p><strong>Примечание:</strong> Существует возможность скорректировать данные поиска и/или заменить стандартный диалог настройки поиска собственным.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id32">
+<h2>КолонкиТабличногоПоля</h2>
+<p>Коллекция колонок табличного поля. Элементы коллекции - объекты типа КолонкаТабличногоПоля.
+Индексы колонок - от нуля до количества колонок минус один.</p>
+<div class="section" id="id33">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id34">
+<h4>&lt;ИмяКолонки&gt;</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+<p><strong>Описание:</strong> Набор свойств содержит значения полей колонок табличного поля. Доступ к значению осуществляется
+по имени колонки. Имена свойств совпадают с именами колонок табличного поля.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id35">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="count">
+<h4>Количество / Count</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Количество()</p>
+<p><strong>Возвращает:</strong> тип: Число, количество колонок.</p>
+<p><strong>Описание:</strong> Получить количество колонок.</p>
+</blockquote>
+</div>
+<div class="section" id="get">
+<h4>Получить / Get</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Получить(Колонка)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Колонка - тип: Число, Строка. Индекс или имя колонки.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+<p><strong>Описание:</strong> Получить колонку табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="indexof">
+<h4>Индекс / IndexOf</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Индекс(Колонка)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Колонка - тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>, Строка. Колонка или имя колонки, индекс которой требуется получить.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Число - индекс колонки, или -1, если колонка не принадлежит табличному полю.</p>
+<p><strong>Описание:</strong> Получить индекс колонки.</p>
+</blockquote>
+</div>
+<div class="section" id="add">
+<h4>Добавить / Add</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Добавить(Имя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип: Строка. Имя добавляемой колонки.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a> - созданная колонка.</p>
+<p><strong>Описание:</strong> Добавляет колонку в табличное поле.</p>
+</blockquote>
+</div>
+<div class="section" id="insert">
+<h4>Вставить / Insert</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Вставить(Имя,Индкс)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип: Строка. Имя вставляемой колонки.</li>
+<li>Индекс - тип: Число. Индекс вставляемой колонки.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a> - созданная колонка.</p>
+<p><strong>Описание:</strong> Вставляет колонку в табличное поле.</p>
+</blockquote>
+</div>
+<div class="section" id="remove">
+<h4>Удалить / Remove</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Удалить(Индекс)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Индекс - тип: Число, Строка. Индекс или имя удаляемой колонки.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет колонку из табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="clear">
+<h4>Очистить / Clear</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Очистить()</p>
+<p><strong>Описание:</strong> Удаляет все колонки в табличном поле.</p>
+</blockquote>
+</div>
+<div class="section" id="move">
+<h4>Сдвинуть / Move</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Сдвинуть(Индекс, Смещение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Индекс - тип: Число, индекс колонки, которую необходимо сдвинуть;</li>
+<li>Смещение - тип: Число, если положительное, колонка сдвигается вправо (ее индекс увеличивается),
+если отрицательное, сдвигается влево.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a> - созданная колонка.</p>
+<p><strong>Описание:</strong> Сдвигает позицию колоки на указанное смещение.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id36">
+<h2>КолонкаТабличногоПоля</h2>
+<p>Объект для управления колонкой табличного поля.</p>
+<div class="section" id="id37">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="name">
+<h4>Имя / Name</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя колонки.</p>
+</blockquote>
+</div>
+<div class="section" id="caption">
+<h4>Заголовок / Caption</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Текст заголовка колонки.</p>
+</blockquote>
+</div>
+<div class="section" id="visible">
+<h4>Видимость / Visible</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Видимость колонки. 0 - невидима, 1 - видима.</p>
+</blockquote>
+</div>
+<div class="section" id="width">
+<h4>Ширина / Width</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Ширина колонки в пикселях.</p>
+</blockquote>
+</div>
+<div class="section" id="id38">
+<h4>АвтоШирина / AutoWidth</h4>
+<blockquote>
+<p><strong>Доступ:</strong> Чтение</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> Минимальная достаточная ширина колонки в пикселях, рассчитанная по видимой части ТП</p>
+</blockquote>
+</div>
+<div class="section" id="horizontalalignment">
+<h4>ГоризонтальноеВыравнивание / HorizontalAlignment</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет правило выравнивания текста в ячейках колонки по горизонтали.</p>
+<ul class="simple">
+<li>0 - автоматически, в зависимости от типа поля данных, отображаемого в колонке;</li>
+<li>1 - прижать влево;</li>
+<li>2 - прижать вправо;</li>
+<li>3 - центрировать.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="sizechange">
+<h4>ИзменениеРазмера / SizeChange</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет возможность интерактивного изменения ширины колонки. 0 - запрещено, 1 - разрешено.</p>
+</blockquote>
+</div>
+<div class="section" id="id39">
+<h4>ЦветТекста / TextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет текста строк. Приоритет выше, чем у свойства ЦветТекста табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id40">
+<h4>ЦветФона / BackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет фона строк. Приоритет выше, чем у свойства ЦветФона табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id41">
+<h4>Шрифт / Font</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id144">Шрифт</a>.</p>
+<p><strong>Описание:</strong> Шрифт строк. Приоритет выше, чем у свойства Шрифт табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="headerfont">
+<h4>ШрифтЗаголовка / HeaderFont</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id144">Шрифт</a>.</p>
+<p><strong>Описание:</strong> Шрифт заголовка. Приоритет выше, чем у свойства Шрифт табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="headertextcolor">
+<h4>ЦветТекстаЗаголовка / HeaderTextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет текста заголовка.</p>
+</blockquote>
+</div>
+<div class="section" id="headerbackcolor">
+<h4>ЦветФонаЗаголовка / HeaderBackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Цвет фона заголовка.</p>
+</blockquote>
+</div>
+<div class="section" id="datafield">
+<h4>Данные / DataField</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя поля данных в поставщике данных. Если не указано, или указано неверно - это не является
+ошибкой, в этом случае никакие данные поставщика данных в этой колонке не отображаются.</p>
+<p><strong>См. также:</strong> <a class="reference internal" href="#id108">Поставщики данных табличного поля</a></p>
+</blockquote>
+</div>
+<div class="section" id="picturedatafield">
+<h4>ДанныеКартинки / PictureDataField</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка, Число (см. Примечание)</p>
+<p><strong>Описание:</strong> Имя поля данных в поставщике данных для отображения картинок.
+Если поле данных не указано, или указано неверно - это не является ошибкой;
+в этом случае привязка картинок к полю данных не осуществляется.</p>
+<p>Формат данных соответствует формату данных свойства <a class="reference internal" href="#id62">ИндексКартинки</a> объекта ОформлениеЯчейки.</p>
+<p><strong>См. также:</strong> <a class="reference internal" href="#id108">Поставщики данных табличного поля</a></p>
+<p><strong>Примечание:</strong> Картинку с нулевым индексом можно задавать только строкой.</p>
+</blockquote>
+</div>
+<div class="section" id="ordermarker">
+<h4>ЗнакУпорядочивания / OrderMarker</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> Определяет вывод значка упорядочивания в заголовке колонки.</p>
+<ul class="simple">
+<li>0 - не отображается;</li>
+<li>1 - по возрастанию;</li>
+<li>2 - по убыванию;</li>
+<li>3 - по возрастанию второе поле;</li>
+<li>4 - по убыванию второе поле;</li>
+<li>5 - по возрастанию третье поле;</li>
+<li>6 - по убыванию третье поле;</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="changevisible">
+<h4>ИзменятьВидимость / ChangeVisible</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> Разрешает или запрещает изменять видимость колонки. 0 - запрещает, 1- разрешает.</p>
+</blockquote>
+</div>
+<div class="section" id="parameter">
+<h4>Параметр / Parameter</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Любой</p>
+<p><strong>Описание:</strong> Дополнительный параметр колонки для хранения произвольных данных</p>
+</blockquote>
+</div>
+<div class="section" id="location">
+<h4>Положение / Location</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> Определяет положение колонки относительно предыдущей колонки.</p>
+<ul class="simple">
+<li>0 - новая колонка;</li>
+<li>1 - на следующей строке;</li>
+<li>2 - в той же колонке;</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="wordbreak">
+<h4>ПереноситьПоСловам / WordBreak</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> 1 - преносить текст по словам, 0 - выводить текст в одну строку.</p>
+</blockquote>
+</div>
+<div class="section" id="format">
+<h4>Формат / Format</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка</p>
+<p><strong>Описание:</strong> форматная строка для форматирования содержимого ячеек колонки. Виды форматной строки см. в описании системной функции Формат.</p>
+</blockquote>
+</div>
+<div class="section" id="marknegatives">
+<h4>ВыделятьОтрицательные / MarkNegatives</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет необходимость выделения цветом текста начинающегося на знак &quot;-&quot; (минус).</p>
+</blockquote>
+</div>
+<div class="section" id="backtransparency">
+<h4>ПрозрачностьФона / BackTransparency</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячеек колонки. Приоритет выше, чем у свойства <a class="reference internal" href="#id11">ПрозрачностьФонаЯчеек</a> табличного поля.</p>
+<p>Свойство может принмать значения от 0 до 255
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id42">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="setrowspictures">
+<h4>УстановитьКартинкиСтрок / SetRowsPictures</h4>
+<blockquote id="id43">
+<p><strong>Синтаксис:</strong> УстановитьКартинкиСтрок(Картинки, Ширина)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Картинки - тип: Картинка. Картинка - из которой будут получены отдельные пиктограммы для отображения в ячейках.</li>
+<li>Ширина - тип: Число. Необязателен, по умолчанию 0. Ширина отдельной пиктограммы для отображения. Если равна
+нулю, ширина определяется высотой переданной картинки.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает набор картинок для отображения в ячейках этой колонки. Картинками считаются части общей
+переданной первым параметром картинки, полученные по следующим правилам: от левого верхнего угла слева направо, ширина
+равна высоте. Выбирается только первый ряд. Прозрачным является цвет RGB(0x00, 0x80, 0x80). Картинки будут доступны
+по индексу (от нуля).</p>
+</blockquote>
+</div>
+<div class="section" id="addrowspictures">
+<h4>ДобавитьКартинкиСтрок / AddRowsPictures</h4>
+<blockquote id="id44">
+<p><strong>Синтаксис:</strong> ДобавитьКартинкиСтрок(Картинки)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Картинки - тип: Картинка. Картинка - из которой будут получены отдельные пиктограммы для отображения в ячейках.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Дополняет набор картинок для отображения в ячейках этой колонки.</p>
+<p>Метод допустимо вызывать для дополнения коллекции картинок после установки методом <a class="reference internal" href="#id43">УстановитьКартинкиСтрок</a>.
+Ширина отдельных пиктограмм равна ширине указанной при вызове метода <a class="reference internal" href="#id43">УстановитьКартинкиСтрок</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="resetrowspictures">
+<h4>СброситьКартинкиСтрок / ResetRowsPictures</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> СброситьКартинкиСтрок()</p>
+<p><strong>Описание:</strong> Очищает набор картинок этой колонки.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id45">
+<h2>ДанныеСтроки</h2>
+<p>Фиксированная коллекция значений полей данных, полученных табличным полем от поставщика данных. Элементы коллекции
+- значения полей поставщика.</p>
+<div class="section" id="id46">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id47">
+<h4>&lt;ИмяПоляДанных&gt;</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> любой. Тип определяется поставщиком данных.</p>
+<p><strong>Описание:</strong> Набор свойств содержит значения значения полей данных. Доступ к значению осуществляется
+по имени поля данных. Набор полей данных обеспечивается поставщиком данных.</p>
+<p><strong>См. также:</strong> <a class="reference internal" href="#id108">Поставщики данных табличного поля</a></p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id48">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id49">
+<h4>Количество / Count</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Количество()</p>
+<p><strong>Возвращает:</strong> тип: Число, количество полей.</p>
+<p><strong>Описание:</strong> Получить количество полей данных.</p>
+</blockquote>
+</div>
+<div class="section" id="id50">
+<h4>Получить / Get</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Получить(Поле)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Поле - тип: Число, Строка. Имя или индекс поля данных.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Любой. Значение поля данных</p>
+<p><strong>Описание:</strong> Получить значение поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id51">
+<h4>Индекс / IndexOf</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Индекс(Поле)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Поле - тип: Строка. Имя поля, индекс которого требуется получить.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Число - индекс поля, или -1, если поля с таким именем не существует.</p>
+<p><strong>Описание:</strong> Получить индекс поля.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id52">
+<h2>ОформлениеСтроки</h2>
+<p>Объект для управления оформлением строки табличного поля.</p>
+<div class="section" id="id53">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="rowdata">
+<h4>ДанныеСтроки / RowData</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id45">ДанныеСтроки</a>.</p>
+<p><strong>Описание:</strong> Данные строки. Коллекция значений полей для строки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="cells">
+<h4>Ячейки / Cells</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> ФиксированнаяКоллекция.</p>
+<p><strong>Описание:</strong> Коллекция ячеек строки табличного поля. Элементы коллекции - объекты типа ОформлениеЯчейки.</p>
+</blockquote>
+</div>
+<div class="section" id="id54">
+<h4>ЦветТекста / TextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста всех ячеек строки. Приоритет выше, чем у свойства ЦветТекста колонки
+табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id55">
+<h4>ЦветФона / BackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста всех ячеек строки. Приоритет выше, чем у свойства ЦветТекста колонки
+табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id56">
+<h4>Шрифт / Font</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id144">Шрифт</a>.</p>
+<p><strong>Описание:</strong> Определяет Шрифт всех ячеек строки. Приоритет выше, чем у свойства Шрифт колонки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id57">
+<h4>ПрозрачностьФона / BackTransparency</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячеек строки. Приоритет выше, чем у свойства ПрозрачностьФона колонки.</p>
+<p>Свойство может принмать значения от 0 до 255
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id58">
+<h2>ОформлениеЯчейки</h2>
+<p>Объект для управления оформлением ячейки табличного поля.
+В ячейку табличного поля могут выводится различные пиктограммы и текст.
+При этом определен следующий порядок следования слева направо:</p>
+<blockquote>
+<ul class="simple">
+<li>Системные картинки табличного поля</li>
+<li>Флажок</li>
+<li>Картинки колонки</li>
+<li>Текст</li>
+</ul>
+</blockquote>
+<div class="section" id="id59">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id60">
+<h4>Имя / Name</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя ячейки. Соответствует имени колонки, которой принадлежит ячейка.</p>
+</blockquote>
+</div>
+<div class="section" id="showtext">
+<h4>ОтображатьТекст / ShowText</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак отображения текста в ячейке. 0 - не отображать, 1 - отображать.</p>
+</blockquote>
+</div>
+<div class="section" id="showpicture">
+<h4>ОтображатьКартинку / ShowPicture</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак отображения картинки в ячейке. 0 - не отображать, 1 - отображать.</p>
+</blockquote>
+</div>
+<div class="section" id="showsyspicture">
+<h4>ОтображатьСистемнуюКартинку / ShowSysPicture</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак отображения системной картинки в ячейке. 0 - не отображать, 1 - отображать.</p>
+</blockquote>
+</div>
+<div class="section" id="showcheck">
+<h4>ОтображатьФлажок / ShowCheck</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак отображения флажка в ячейке. 0 - не отображать, 1 - отображать.</p>
+</blockquote>
+</div>
+<div class="section" id="id61">
+<h4>ГоризонтальноеВыравнивание / HorizontalAlignment</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет правило выравнивания текста в ячейке по горизонтали.</p>
+<ul class="simple">
+<li>0 - автоматически, в зависимости от типа поля данных, отображаемого в колонке;</li>
+<li>1 - прижать влево;</li>
+<li>2 - прижать вправо;</li>
+<li>3 - центрировать.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="pictures">
+<h4>Картинки / Pictures</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id77">ИндексыКартинок</a></p>
+<p><strong>Описание:</strong> Определяет коллекцию индексов картинкок для отображения в ячейке.
+Картинки должны быть предварительно установлены в соответствующей колонке.</p>
+<p><strong>См. также:</strong> свойство <a class="reference internal" href="#id43">УстановитьКартинкиСтрок</a> и <a class="reference internal" href="#id44">ДобавитьКартинкиСтрок</a>, объекта <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="pictureindex">
+<span id="id62"></span><h4>ИндексКартинки / PictureIndex</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число, Строка.</p>
+<p><strong>Описание:</strong> Определяет индекс картинки для отображения в ячейке.
+Возможно использование строки - списка индексов, разделенных запятыми.
+Картинки должны быть предварительно установлены в соответствующей колонке.</p>
+<p><strong>См. также:</strong> свойство <a class="reference internal" href="#id43">УстановитьКартинкиСтрок</a> и <a class="reference internal" href="#id44">ДобавитьКартинкиСтрок</a>, объекта <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="syspictures">
+<h4>СистемныеКартинки / SysPictures</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id77">ИндексыКартинок</a></p>
+<p><strong>Описание:</strong> Определяет коллекцию индексов системных картинкок для отображения в ячейке.
+Системные картинки должны быть предварительно установлены в табличном поле.</p>
+<p><strong>См. также:</strong> свойство <a class="reference internal" href="#setsyspictures">УстановитьСистемныеКартинки / SetSysPictures</a> и <a class="reference internal" href="#addsyspictures">ДобавитьСистемныеКартинки / AddSysPictures</a>, объекта <a class="reference internal" href="#id4">ТабличноеПоле</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="syspictureindex">
+<span id="id63"></span><h4>ИндексСистемнойКартинки / SysPictureIndex</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число, Строка.</p>
+<p><strong>Описание:</strong> Определяет индекс системной картинки для отображения в ячейке.
+Возможно использование строки - списка индексов, разделенных запятыми.
+Системные картинки должны быть предварительно установлены в табличном поле.</p>
+<p><strong>См. также:</strong> свойство <a class="reference internal" href="#setsyspictures">УстановитьСистемныеКартинки / SetSysPictures</a> и <a class="reference internal" href="#addsyspictures">ДобавитьСистемныеКартинки / AddSysPictures</a>, объекта <a class="reference internal" href="#id4">ТабличноеПоле</a>.</p>
+</blockquote>
+</div>
+<div class="section" id="checkvalue">
+<h4>ЗначениеФлажка / CheckValue</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет значение флажка ячейки табличного поля. Значение флажка отображаемого в ячейке.</p>
+<ul class="simple">
+<li>0 - не установлен;</li>
+<li>1 - установлен;</li>
+<li>2 - неопределенное состояние.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="text">
+<h4>Текст / Text</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Определяет текст ячейки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id64">
+<h4>ЦветТекста / TextColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет текста ячейки табличного поля. Приоритет выше, чем у свойства ЦветТекста строки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id65">
+<h4>ЦветФона / BackColor</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Определяет цвет фона ячейки табличного поля. Приоритет выше, чем у свойства ЦветФона строки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id66">
+<h4>Шрифт / Font</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id144">Шрифт</a>.</p>
+<p><strong>Описание:</strong> Определяет шрифт текста ячейки табличного поля. Приоритет выше, чем у свойства Шрифт строки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id67">
+<h4>ПереноситьПоСловам / WordBreak</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число</p>
+<p><strong>Описание:</strong> 1 - преносить текст по словам, 0 - выводить текст в одну строку.</p>
+</blockquote>
+</div>
+<div class="section" id="showhint">
+<h4>ОтображатьПодсказку / ShowHint</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак отображения произвольной подсказки. 0 - не отображать, 1 - отображать.</p>
+</blockquote>
+</div>
+<div class="section" id="hint">
+<h4>Подсказка / Hint</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Определяет текст произвольной подсказки для ячейки табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="id68">
+<h4>ПрозрачностьФона / BackTransparency</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячейки. Приоритет выше, чем у свойства ПрозрачностьФона строки табличного поля.</p>
+<p>Свойство может принмать значения от 0 до 255
+При значении свойства равном 0 прозрачность ячейки отключается - ячейка не прозрачна.
+При значении свойства равном 255 прозрачность ячейки максимальная - фон ячейки не выводится.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id69">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="settext">
+<h4>УстановитьТекст / SetText</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьТекст(стрТекст)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>стрТекст, тип: Строка.</dt>
+<dd><p class="first last">Текст, отображаемый в ячейке.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает текст ячейки табличного поля для отображения и свойство ОтображатьТекст в 1.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="setpicture">
+<h4>УстановитьКартинку / SetPicture</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьКартинку(Картинка)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Картинка, тип: Картинка, Число, Строка</dt>
+<dd><p class="first last">Картинка, индекс картинки, или перечисление индексов картинок через запятую</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first line-block">
+<div class="line">Устанавливает картинку ячейки табличного поля и свойство ОтображатьКартинку в 1.</div>
+<div class="line">Если передано Число, это должен быть индекс пиктограммы в картинке, переданной в метод КолонкаТабличногоПоля::УстановитьКартинкиСтрок;</div>
+<div class="line">Если передана Строка, это должен быть спискок индексов пиктограмм в картинке, переданной в метод КолонкаТабличногоПоля::УстановитьКартинкиСтрок;</div>
+</div>
+<div class="line-block">
+<div class="line">Если передан объект Картинка, то отображается сама переданная картинка. Картинка отображается без использования цвета прозрачности. Правила масштабирования картинки задаются в объекте Картинка.</div>
+</div>
+<div class="line-block">
+<div class="line">Масштабирование вывода картинки идет всегда с сохранением пропорций её оригинальных размеров и зависит от режима рисования (Картинка::РежимРисования()):</div>
+</div>
+<ul class="last simple">
+<li>1 - картинка отображается по оригинальным размерам или если они больше ячейки, то по размерам ячейки;</li>
+<li>2 - картинка отображается по оригинальным размерам (если они больше размеров ячейки - мы увидим не всю картинку, а только левый верхний угол картинки);</li>
+<li>3 - картинка отображается по размерам ячейки;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="setsyspicture">
+<h4>УстановитьСистемнуюКартинку / SetSysPicture</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьСистемнуюКартинку(Картинка)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first simple">
+<li>Картинка, тип: Число, Строка. Индекс картинки, или перечисление индексов картинок через запятую</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><div class="first last line-block">
+<div class="line">Устанавливает картинку ячейки табличного поля и свойство ОтображатьСистемнуюКартинку в 1.</div>
+<div class="line">Если передано Число, это должен быть индекс пиктограммы в картинке, переданной в метод <a class="reference internal" href="#id16">УстановитьСистемныеКартинки</a> или <a class="reference internal" href="#id17">ДобавитьСистемныеКартинки</a>;</div>
+<div class="line">Если передана Строка, это должен быть спискок индексов пиктограмм в картинке, переданной в метод <a class="reference internal" href="#id16">УстановитьСистемныеКартинки</a> или <a class="reference internal" href="#id17">ДобавитьСистемныеКартинки</a>;</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="setcheck">
+<h4>УстановитьФлажок / SetCheck</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьФлажок(ЗначениеФлажка)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>ЗначениеФлажка, тип: Число</dt>
+<dd><p class="first">Значение флажка, отображаемого в ячейке</p>
+<ul class="last simple">
+<li>0 – не установлен;</li>
+<li>1 – установлен;</li>
+<li>2 – неопределенное состояние.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает значение флажка ячейки табличного поля и свойство ОтображатьФлажок в 1.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="sethint">
+<h4>УстановитьПодсказку / SetHint</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">УстановитьПодсказку(стрПодсказка)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>стрПодсказка, тип: Строка.</dt>
+<dd><p class="first last">Текст, отображаемый при выводе произвольной подсказки.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает текст произвольной подсказки и свойство ОтображатьПодсказку в 1.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id70">
+<h2>ФорматЯчейки</h2>
+<p>Объект для управления текстовым представлением ячейки при операциях поиска по подстроке и работы с буфером обмена.</p>
+<div class="section" id="id71">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id72">
+<h4>Имя / Name</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя ячейки. Соответствует имени колонки, которой принадлежит ячейка.</p>
+</blockquote>
+</div>
+<div class="section" id="id73">
+<h4>ОтображатьТекст / ShowText</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> свойство не несет смысловой нагрузки и реализовано только для структурной совместимости с обектом ОформлениеЯчейки.</p>
+</blockquote>
+</div>
+<div class="section" id="id74">
+<h4>Текст / Text</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Определяет текстовое представление ячейки табличного поля.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id75">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id76">
+<h4>УстановитьТекст / SetText</h4>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Синтаксис:</strong></dt>
+<dd>УстановитьТекст(стрТекст)</dd>
+</dl>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt>стрТекст, тип: Строка.</dt>
+<dd><p class="first last">Текстовое представление ячейки.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+<dl class="docutils">
+<dt><strong>Возвращает:</strong></dt>
+<dd>нет</dd>
+</dl>
+<p><strong>Описание:</strong> Устанавливает текстовое представление ячейки табличного поля и свойство ОтображатьТекст в 1.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id77">
+<h2>ИндексыКартинок</h2>
+<p>Коллекция индексов картинок для отображения в ячейке табличного поля.</p>
+<p>Тип элемента коллекции: Число.
+Индексы элементов коллекции - числа от нуля до количества элементов минус один.</p>
+<p>Картинки должны быть предварительно установлены в соответствующей колонке.
+<strong>См. также:</strong> <a class="reference internal" href="#id43">УстановитьКартинкиСтрок</a>, <a class="reference internal" href="#id44">ДобавитьКартинкиСтрок</a>, <a class="reference internal" href="#id16">УстановитьСистемныеКартинки</a>, <a class="reference internal" href="#id17">ДобавитьСистемныеКартинки</a>, объекта <a class="reference internal" href="#id36">КолонкаТабличногоПоля</a>.</p>
+<div class="section" id="id78">
+<h3>Методы</h3>
+<div class="section" id="id79">
+<h4>Количество / Count</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Количество()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Количество элементов коллекции; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Возвращает количество элементов коллекции</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id80">
+<h4>Получить / Get</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Получить(Индекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции; может принимать значения от 0 до Количество() - 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Значение элемента коллекции; тип: Число</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Получает значение элемента коллекции по его индексу</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="unload">
+<h4>Выгрузить / Unload</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Выгрузить(Список)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Список, тип: СписокЗначений</dt>
+<dd><p class="first last">Список значений, в который будут выгружены элементы коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Выгружает коллекцию в список значений</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="set">
+<h4>Установить / Set</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Установить(Индекс, Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: Число</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает значение элемента коллекции по его индексу</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id81">
+<h4>Добавить / Add</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Добавить(Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип: Число</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Добавляет новый элемент коллекции с заданным значением</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id82">
+<h4>Удалить / Remove</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Удалить(Индекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Удаляет заданный элемент из коллекции</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id83">
+<h4>Очистить / Clear</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Очистить()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Удаляет все элементы коллекции</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id84">
+<h4>Вставить / Insert</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Вставить(Индекс, Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Значение, тип: Число</dt>
+<dd><p class="first last">Значение элемента коллекции</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Добавляет новый элемент коллекции перед элементом с заданным индексом</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id85">
+<h4>Сдвинуть / Move</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Сдвинуть(Индекс, Смещение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс элемента коллекции</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Смещение, тип: Число</dt>
+<dd><p class="first last">Смещение элемента коллекции относительно его текущего положения</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Перемещает заданный элемент коллекции, в соответствии с указанным смещением.
+Положительные смещения перемещеют элемент вправо (в сторону больших индексов), отрицательные - влево.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id86">
+<h2>ВыделенныеСтроки</h2>
+<p>Коллекция выделенных строк табличного поля</p>
+<p>Коллекцией можно управлять как интерактивно, так и программно.</p>
+<p>Возможно выделение несвязанных строк с помощью мыши или клавиатуры при нажатой клавише CTRL,
+а также выделение диапазонов строк с помощью мыши при нажатой клавише SHIFT.</p>
+<p>Для корректной работы механизма выделения строк необходимо, чтобы поставщик реализовал
+интерфейс CV7DataProvider (преобразование строки в значение, идентифицирующее строку).
+Например, для поставщика данных ODBC необходима установка поля ИД методом <a class="reference internal" href="#id115">УстИДПоле</a>.</p>
+<div class="section" id="id87">
+<h3>Методы</h3>
+<div class="section" id="id88">
+<h4>Количество / Count</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Количество()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">Количество выделенных строк ТП; тип: Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id89">
+<h4>Очистить / Clear</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">Очистить()</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body">нет</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Снимает выделение со всех строк ТП</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id90">
+<h4>Получить / Get</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Получить(Индекс)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Индекс, тип: Число</dt>
+<dd><p class="first last">Индекс строки; может принимать значения от 0 до Количество() - 1</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">Значение строки; тип задается поставщиком данных</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Получает значение выделенной строки ТП по ее индексу в коллекции</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id91">
+<h4>Добавить / Add</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Добавить(Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип задается поставщиком данных</dt>
+<dd><p class="first last">Значение строки ТП</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Устанавливает выделение указанной строки ТП</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="delete">
+<h4>Удалить / Delete</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Удалить(Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип задается поставщиком данных</dt>
+<dd><p class="first last">Значение строки ТП</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><p class="first">нет</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Снимает выделение указанной строки ТП</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="contains">
+<h4>Содержит / Contains</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body"><p class="first">Содержит(Значение)</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Параметры:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt>Значение, тип задается поставщиком данных</dt>
+<dd><p class="first last">Значение строки ТП</p>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Возвращает:</th><td class="field-body"><ul class="first simple">
+<li>0 - не содержит</li>
+<li>1 - содержит</li>
+</ul>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body"><p class="first last">Определяет, содержит ли в данная коллекция выделенных строк указанную строку ТП</p>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id92">
+<h2>ФиксированныеСтроки</h2>
+<p>Объект, предназначенный для управления регионами фиксированных строк ТП (<a class="reference internal" href="#id9">Шапка</a> и <a class="reference internal" href="#id10">Подвал</a>)</p>
+<div class="section" id="id93">
+<h3>Свойства</h3>
+<div class="section" id="id94">
+<h4>ПоставщикДанных / DataProvider</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body"><a class="reference internal" href="#id108">Поставщики данных табличного поля</a></td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Поставщик данных соответствующего региона ТП</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id95">
+<h4>ЦветТекста / TextColor</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Цвет текста соответствующего региона ТП</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id96">
+<h4>ЦветФона / BackColor</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">Чтение и запись</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Число</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Цвет фона соответствующего региона ТП</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id97">
+<h4>ПрозрачностьФона / BackTransparency</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение прозрачности фона ячеек фиксированных строк.</p>
+<p>Свойство может принмать значения от 0 до 255
+При значении свойства равном 0 прозрачность ячеек отключается - ячейки не прозрачны.
+При значении свойства равном 255 прозрачность ячеек максимальная - фон ячеек не выводится.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id98">
+<h3>Методы</h3>
+<div class="section" id="id99">
+<h4>ОбновитьСтроки / RefreshRows</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">ОбновитьСтроки()</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Обновляет данные поставщика и заново отрисовывает табличное поле</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id100">
+<h4>ПерерисоватьСтроки / RedrawRows</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Синтаксис:</th><td class="field-body">ПерерисоватьСтроки()</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Обновить строки, отображаемые в данный момент в табличном поле, без обращения к провайдеру.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id101">
+<h1>Типы данных</h1>
+<div class="section" id="id102">
+<h2>Общие</h2>
+<div class="section" id="id103">
+<h3>Перечисления</h3>
+<div class="section" id="id104">
+<h4>ТипыРегионовТП</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Значения:</th><td class="field-body"><ul class="first last simple">
+<li>0 - регион не задан</li>
+<li>1 - заголовок</li>
+<li>2 - шапка</li>
+<li>3 - строки (основная часть)</li>
+<li>4 - подвал</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id105">
+<h4>ТипыОбластейЯчейки</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Значения:</th><td class="field-body"><ul class="first last simple">
+<li>-1 - область не определена</li>
+<li>0 - область текста</li>
+<li>1 - область картинки</li>
+<li>2 - область флажка</li>
+<li>3 - область системной картинки</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id106">
+<h3>Структуры</h3>
+<div class="section" id="id107">
+<h4>ГлобальныеДанныеПоиска</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Поля:</th><td class="field-body"><ul class="first last simple">
+<li>Значение/Value - значение поиска. Может быть типов: Строка, Число, Дата, ЛюбаяСсылка. Если тип отличный от типа Строка, то выполняется поиск по значению. Иначе выполняется поиск по подстроке</li>
+<li>Строка/String - строка поиска</li>
+<li>Назад/Back - 0 - поиск вперед, 1 - поиск в обратном направлении</li>
+<li>УчитыватьРегистр/CS - 0 - регистронезависимый поиск, 1 - регистрозависимый поиск</li>
+<li>ПоОднойКолонке/OneCol - 0 - поиск по всем колонкам, 1 - поиск только по текущей колонке</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id108">
+<h1>Поставщики данных табличного поля</h1>
+<!-- <chminfo>
+        <toc>
+                <self>
+                        <childstoc/>
+                        <merge file="LogDataProvider"/>
+                        <merge file="DataProviderSDK"/>
+                </self>
+        </toc>
+        <childs>
+                <autokw mode="1"/>
+        </childs>
+</chminfo> -->
+<!-- Разработчики других провайдеров данных для табличного поля
+должны вставить в первой секции своей документации элемент
+chm-разметки <alinks>_1cpp_table_data_providers_</alinks>,
+что позволит с этой ссылки перейти к описаниям других провайдеров -->
+<p><a class="reference external" href="alink.html">См. также|_1cpp_table_data_providers_</a></p>
+<div class="section" id="odbc-odbcdataprovider">
+<h2>ПоставщикДанныхODBC.&lt;ТипИсточника&gt; / ODBCDataProvider</h2>
+<p>Используется для отображения в табличном поле таблиц баз данных. Для получения данных используется драйвер ODBC. Подключение
+задается объектом <a class="reference external" href="alink.html">ODBCDataBase|_1cpp_odbc_Database</a>.</p>
+<p>Получаемые данные определяются SQL запросом. Формат SQL запроса определяется строже, чем общий формат SQL запроса источника
+данных или драйвера ODBC.</p>
+<p>Возможно использование метаимен и типизации полей, как определено для объекта <a class="reference external" href="alink.html">ODBCRecordset|_1cpp_odbc_recordset</a>
+в <a class="reference external" href="alink.html">Приложении А|_1cpp_SQLQuery_Metanames</a>. Данные получаются частями по несколько записей, как это необходимо для отображения.</p>
+<p>Этот поставщик данных поддерживает функционал исключения полей из текста запроса, если данные не нужны для отображения
+(по причине удаления или невидимости колонки табличного поля).</p>
+<p>Формат запроса:</p>
+<pre class="literal-block">
+&lt;Запрос&gt; ::=
+SELECT
+&lt;ОпределениеПоля&gt; [, …n]
+FROM &lt;ИсточникДанных&gt;
+[WHERE &lt;Условие&gt;]
+
+&lt;ОпределениеПоля&gt; ::= &lt;ВыражениеПоля&gt; AS &lt;ИмяПоля&gt;
+&lt;ВыражениеПоля&gt; ::= &lt;определяется правилами источника данных&gt;
+&lt;ИмяПоля&gt; ::= &lt;определяется правилами источника данных&gt;
+&lt;ИсточникДанных&gt; ::= &lt;определяется правилами источника данных&gt;
+&lt;Условие&gt; ::= &lt;определяется правилами источника данных&gt;
+</pre>
+<p>Кроме текста запроса, для работы также необходимо задать ключ порядка. Ключ порядка - это набор полей с указанием
+упорядочивания (порядка следования записей). Значения этих полей должны однозначно идентифицировать каждую запись.</p>
+<p>Формат ключа порядка:</p>
+<pre class="literal-block">
+&lt;КлючПорядка&gt; ::= &lt;ЭлементКлючаПорядка&gt; [, …n]
+&lt;ЭлементКлючаПорядка&gt; ::= &lt;ИмяПоля&gt; {[ASC] | DESC}
+</pre>
+<p>В ключе порядка имя поля необходимо указывать без типизации. (Обратите внимание, что поля из ключа порядка должны быть обязательно
+определены в запросе.)</p>
+<p>В тексте запроса допустимо использование текстовых параметров. Формат определения текстового параметра в тексте запроса:</p>
+<pre class="literal-block">
+:&lt;ИмяПараметра&gt; [&lt;Модификатор&gt;]
+</pre>
+<p>Возможно использование модификаторов, как определено для объекта <a class="reference external" href="alink.html">ODBCRecordset|_1cpp_odbc_recordset</a>. Текстовые параметры
+должны быть установлены до установки текста запроса.</p>
+<p>В тексте запроса допустимо использование SQL параметров. Формат определения SQL параметра в тексте запроса:</p>
+<pre class="literal-block">
+?&lt;ИмяПараметра&gt;(Тип[, Длина[, Точность]])
+</pre>
+<p>После установки текста запроса, доступ значениям параметров обеспечивается коллекцией параметров поставщика данных.</p>
+<p>Свойство <a class="reference internal" href="#id8">ТекущаяСтрока</a> табличного поля:</p>
+<blockquote>
+<ul class="simple">
+<li>принимает значение идентифицирующего поля в случае, когда идентифицирующее поле было определено методом
+<a class="reference internal" href="#id115">УстИДПоле</a>.</li>
+<li>в случае если идентифицирующее поле не было определено - то свойство <a class="reference internal" href="#id8">ТекущаяСтрока</a> при чтении будет возвращать
+значение неопределенного типа. При записи в это свойство допустимо передавать объект, в свойствах которого будут значения
+для ключа порядка текущей строки.</li>
+</ul>
+</blockquote>
+<div class="section" id="id110">
+<h3>&lt;ТипИсточника&gt;</h3>
+<!-- <chminfo split="0"></chminfo> -->
+<p>Определяет тип источника данных. От типа источника зависит стиль конечных запросов к серверу. От типа источника также могут зависеть способы и возможности оптимизации.
+Определены следующие типы источников данных:</p>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">MSSQL:</th><td class="field-body">Источником данных должен быть Microsoft SQL Server 7.0 или Microsoft SQL Server 2000. Рекомендуется драйвер: {SQL Server}.</td>
+</tr>
+<tr class="field"><th class="field-name">VFP:</th><td class="field-body">Источником данных должны быть dbf файлы. Рекомендуется драйвер: {Microsoft Visual FoxPro Driver}.</td>
+</tr>
+<tr class="field"><th class="field-name">MySQL:</th><td class="field-body">Источником должен быть MySQL Server. Рекомендуется драйвер: {MySQL ODBC 3.51 Driver}.</td>
+</tr>
+<tr class="field"><th class="field-name">Oracle:</th><td class="field-body">Источником должен быть Oracle8i Database. Рекомендуется драйвер: {Microsoft ODBC для Oracle} или {Oracle ODBC Driver}.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div class="section" id="id111">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="fields">
+<h4>Поля / Fields</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#odbc">ПоляДанныхODBC</a>.</p>
+<p><strong>Описание:</strong> Коллекция полей поставщика данных.</p>
+</blockquote>
+</div>
+<div class="section" id="database">
+<h4>БазаДанных / Database</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> <a class="reference external" href="alink.html">ODBCDataBase|_1cpp_odbc_Database</a>.</p>
+<p><strong>Описание:</strong> Определяет подключение, через которое поставщик данных будет работать.</p>
+</blockquote>
+</div>
+<div class="section" id="params">
+<h4>Параметры / Params</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id127">ПараметрыЗапроса</a>.</p>
+<p><strong>Описание:</strong> Коллекция параметров запроса.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id113">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="setquerytext">
+<h4>УстТекстЗапроса / SetQueryText</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстТекстЗапроса(ТекстЗапроса)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ТекстЗапроса - тип: Строка. Текст запроса, определяющий данные, которые будет выдавать поставщик данных.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает текст запроса. При этом происходит сброс ключа порядка, сброс установки идентификационного поля.
+Происходит полная инициализация состояния поставщика данных. При установке текста запроса происходит также парсинг текста
+запроса парсером метаимен, как определено для объекта <a class="reference external" href="alink.html">ODBCRecordset|_1cpp_odbc_recordset</a>.</p>
+<p><strong>Примечание:</strong> Сразу после установки текста запроса поставщик данных находится в неработоспособном состоянии,
+т.к. происходит сброс, без ключа порядка он работать не может.</p>
+</blockquote>
+</div>
+<div class="section" id="setorderkey">
+<h4>УстКлючПорядка / SetOrderKey</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстКлючПорядка(КлючПорядка)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>КлючПорядка - тип: Строка. Текст ключа порядка.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Установка возможна только после установки текста запроса.</p>
+</blockquote>
+</div>
+<div class="section" id="settextparam">
+<h4>УстановитьТекстовыйПараметр / SetTextParam</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстановитьТекстовыйПараметр(ИмяПараметра, ЗначениеПараметра)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяПараметра - тип: Строка. Имя параметра.</li>
+<li>ЗначениеПараметра - тип: Строка. Значение параметра.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает значение параметра.</p>
+</blockquote>
+</div>
+<div class="section" id="setidfield">
+<h4>УстИДПоле / SetIDField</h4>
+<blockquote id="id115">
+<p><strong>Синтаксис:</strong> УстИДПоле(ИмяПоля)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ИмяПоля - тип: Строка. Имя поля.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает поле, которое будет принято поставщиком данных как поле, идентифицирующее строку данных.
+Значение этого поля будет обеспечиваться поставщиком данных, как значение для свойства <a class="reference internal" href="#id8">ТекущаяСтрока</a>
+табличного поля.</p>
+</blockquote>
+</div>
+<div class="section" id="refresh">
+<h4>Обновить / Refresh</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Обновить(ТекущаяСтрока)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ТекущаяСтрока - тип: любой. Необязателен. Зависит от установки идентифицирующего поля.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Если параметр не указан, то происходит начальное заполнение табличного поля, учитывая значение свойства
+табличного поля <a class="reference internal" href="#id7">НачальноеПредставление</a>. Если указан параметр, то начальное заполнение табличного поля
+произойдет с активизацией переданной текущей строки.</p>
+<p>Текущую строку можно задавать двумя способами:</p>
+<blockquote>
+<ul class="simple">
+<li>Если установлено идентифицирующее поле, то можно передать значение идентифицирующего поля.</li>
+<li>Можно передать любой объект, имеющий свойства с именами полей ключа порядка, и соответствующими значениями этих
+свойств, как значения полей ключа порядка необходимой текущей строки. Например - объект типа Структрура.</li>
+</ul>
+</blockquote>
+</blockquote>
+</div>
+<div class="section" id="debug">
+<h4>Отладка / Debug</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Отладка(флРежим = 1)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>флРежим - тип: Число.<ul>
+<li>1 - вкл. отладку</li>
+<li>0 - откл. отладку</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> включает / отключает отладочный режим.</p>
+</blockquote>
+</div>
+<div class="section" id="getquerytext">
+<h4>ПолучитьТекстЗапроса / GetQueryText</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьТекстЗапроса()</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>нет</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> возвращает текст запроса</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="odbc">
+<h2>ПоляДанныхODBC</h2>
+<p>Коллекция полей поставщика данных. Элементы коллекции - объекты типа <a class="reference internal" href="#id124">ПолеДанныхODBC</a>. Состав коллекции определяет набор полей
+запроса, который будет запрашиваться с сервера через драйвер ODBC.</p>
+<div class="section" id="id116">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id117">
+<h4>&lt;ИмяПоля&gt;</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> <a class="reference internal" href="#id124">ПолеДанныхODBC</a>.</p>
+<p><strong>Описание:</strong> Набор свойств содержит значения объекты для управления полями данных. Доступ осуществляется
+по имени поля данных.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id118">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id119">
+<h4>Количество / Count</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Количество()</p>
+<p><strong>Возвращает:</strong> тип: Число. Количество элементов.</p>
+<p><strong>Описание:</strong> Получить количество элементов.</p>
+</blockquote>
+</div>
+<div class="section" id="id120">
+<h4>Получить / Get</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Получить(Поле)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Поле - тип: Число, Строка. Индекс или имя поля.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id124">ПолеДанныхODBC</a>.</p>
+<p><strong>Описание:</strong> Получить поле поставщика данных по индексу или номеру.</p>
+</blockquote>
+</div>
+<div class="section" id="id121">
+<h4>Добавить / Add</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Добавить(Имя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип: Строка. Имя добавляемого поля запроса.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: <a class="reference internal" href="#id124">ПолеДанныхODBC</a>. Добавленное поле.</p>
+<p><strong>Описание:</strong> Добавляет поле в список получаемых от источника данных. Поле с таким именем должно быть определено
+в запросе. Если поле с таким именем уже присутствует с коллекции - добавления не происходит.</p>
+</blockquote>
+</div>
+<div class="section" id="id122">
+<h4>Удалить / Remove</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Удалить(Индекс)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Индекс - тип: Число, Строка. Индекс или имя удаляемого поля.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Удаляет поле из списка получаемых от источника данных.
+Поля, входящие в состав ключа порядка, и идентифицирующее поле - удалить невозможно.</p>
+</blockquote>
+</div>
+<div class="section" id="id123">
+<h4>Очистить / Clear</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Очистить()</p>
+<p><strong>Описание:</strong> Удаляет все поля из списка, кроме полей, входящих в состав ключа порядка.
+Поля, входящие в состав ключа порядка, и идентифицирующее поле - удалить невозможно.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id124">
+<h2>ПолеДанныхODBC</h2>
+<p>Объект для управления полем поставщика данных.</p>
+<div class="section" id="id125">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id126">
+<h4>Имя / Name</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя поля.</p>
+</blockquote>
+</div>
+<div class="section" id="autodelete">
+<h4>АвтоУдаление / AutoDelete</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак разрешения автоматического удаления поля из состава получаемых данных от источника. 0 - запрещено,
+1 - разрешено.</p>
+</blockquote>
+</div>
+<div class="section" id="quicksearchtype">
+<h4>ТипБыстрогоПоиска / QuickSearchType</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Тип быстрого поиска определенного для этого поля. Быстрый поиск может проводиться интерактивно в табличном поле.
+Быстрый поиск ведется поставщиком данных только по первому полю ключа порядка, поэтому тип быстрого поиска должен
+определять тип данных этого поля.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - нет быстрого поиска;</li>
+<li>1 - текстовый быстрый поиск.</li>
+</ul>
+</blockquote>
+</blockquote>
+</div>
+<div class="section" id="quicksearchcondition">
+<h4>УсловиеБыстрогоПоиска / QuickSearchCondition</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Определяет дополнительное условие, которое будет включено по &quot;И&quot; в SQL запрос для быстрого поиска.</p>
+<p><strong>Примечание:</strong> ВНИМАНИЕ! Эта часть запроса не обрабатывается парсером метаимен.</p>
+</blockquote>
+</div>
+<div class="section" id="typification">
+<h4>Типизация / Typification</h4>
+<blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Доступ:</th><td class="field-body">чтение и записаь</td>
+</tr>
+<tr class="field"><th class="field-name">Тип:</th><td class="field-body">Строка вида &quot;Справочник.*&quot;, &quot;Документ.*&quot; и т.д., без имени поля и знака &quot;$&quot;</td>
+</tr>
+<tr class="field"><th class="field-name">Описание:</th><td class="field-body">Предоставляет возможность альтернативной спецификации типизирующих полей запроса.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id127">
+<h2>ПараметрыЗапроса</h2>
+<p>Коллекция значений SQL параметров запроса. Состав коллекции определяется при установке текста запроса.</p>
+<div class="section" id="id128">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id129">
+<h4>&lt;ИмяПараметра&gt;</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись.</p>
+<p><strong>Тип:</strong> любой.</p>
+<p><strong>Описание:</strong> Набор свойств содержит значения SQL параметров определенных в тексте запроса. Доступ осуществляется
+по имени параметра.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id130">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id131">
+<h4>Количество / Count</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Количество()</p>
+<p><strong>Возвращает:</strong> тип: Число. Количество параметров.</p>
+<p><strong>Описание:</strong> Получить количество параметров в запросе.</p>
+</blockquote>
+</div>
+<div class="section" id="id132">
+<h4>Получить / Get</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Получить(Параметр)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Параметр - тип: Число, Строка. Индекс или имя параметра.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: любой. Значение параметра.</p>
+<p><strong>Описание:</strong> Получить значение параметра по индексу или имени.</p>
+</blockquote>
+</div>
+<div class="section" id="id133">
+<h4>Индекс / IndexOf</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Индекс(Имя)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип: Строка. Имя параметра.</li>
+</ul>
+</blockquote>
+<p><strong>Возвращает:</strong> тип: Число. Индекс параметра.</p>
+<p><strong>Описание:</strong> Получить индекс параметра по имени, если параметр с таким именем не определен, то возвращается -1.</p>
+</blockquote>
+</div>
+<div class="section" id="id134">
+<h4>Установить / Set</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Установить(Имя, Значение)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип: Число, Строка. Индекс или имя параметра.</li>
+<li>Значение - тип: любой. Значение параметра.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает значение параметра.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="vtprovider">
+<h2>ПоставщикДанныхТЗ / VTProvider</h2>
+<p>Поставщик данных для табличного поля. Позволяет отобразить данные таблицы значений в табличном поле.</p>
+<p>Свойство <a class="reference internal" href="#id8">ТекущаяСтрока</a> табличного поля имеет тип Число - номер строки таблицы значенией начиная с 1.</p>
+<div class="section" id="id135">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="valuetable">
+<h4>ТаблицаЗначений / ValueTable</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись</p>
+<p><strong>Тип:</strong> ТаблицаЗначений</p>
+<p><strong>Описание:</strong> Устанавливает таблицу значений. Она будет использоваться, как источник данных для отображения в табличном поле.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id136">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="setvaluetable">
+<h4>УстТаблицуЗначений / SetValueTable</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> УстТаблицуЗначений(ТаблицаЗначений)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>ТаблицаЗначений - тип: ТаблицаЗначений. Объект таблицы значений для отображения.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Устанавливает таблицу значений. Она будет использоваться, как источник данных для отображения в табличном поле.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="vtextprovider">
+<h2>ПоставщикДанныхИТ / VTExtProvider</h2>
+<p>Поставщик данных для табличного поля. Позволяет отобразить данные индексированной таблицы в табличном поле.</p>
+<p>Свойство <a class="reference internal" href="#id8">ТекущаяСтрока</a> табличного поля имеет тип Число - номер строки индексированной таблицы, начиная с 1.</p>
+<div class="section" id="id137">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="indexedtable">
+<h4>ИндексированнаяТаблица / IndexedTable</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись</p>
+<p><strong>Тип:</strong> ИндексированнаяТаблица</p>
+<p><strong>Описание:</strong> Устанавливает индексированную таблицу. Она будет использоваться, как источник данных для отображения в табличном поле.</p>
+</blockquote>
+</div>
+<div class="section" id="index">
+<h4>Индекс / Index</h4>
+<blockquote>
+<p><strong>Доступ:</strong> чтение и запись</p>
+<p><strong>Тип:</strong> Строка, Число</p>
+<p><strong>Описание:</strong> Устанавливает индекс индексироанной таблицы, в соответствии с которым данные будут отображаться в табличном поле.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id138">
+<h1>Объекты общего назначения</h1>
+<div class="section" id="cpp-1cpp-keyboard">
+<h2>1cpp.Клавиатура / 1cpp.Keyboard</h2>
+<div class="section" id="id140">
+<span id="id139"></span><h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id141">
+<h4>&lt;ИмяВиртуальнойКлавиши&gt;</h4>
+<blockquote>
+<p><strong>Доступ:</strong> Чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Значение кода виртуальной клавиши.</p>
+</blockquote>
+<dl class="docutils" id="id142">
+<dt>Примеры доступа к кодам виртуальных клавиш:</dt>
+<dd><ul class="first last simple">
+<li>Клавиатура.VK_SHIFT</li>
+<li>Клавиатура.VK_CONTROL</li>
+<li>Клавиатура.VK_ESCAPE</li>
+<li>Клавиатура.VK_UP</li>
+<li>Клавиатура.VK_DOWN</li>
+</ul>
+</dd>
+</dl>
+<p>С полным списком имен виртуальных клавиш можно ознакомится в MSDN.
+Например тут <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms645540.aspx">http://msdn.microsoft.com/en-us/library/ms645540.aspx</a>
+или тут <a class="reference external" href="http://msdn.microsoft.com/en-us/library/ms927178.aspx">http://msdn.microsoft.com/en-us/library/ms927178.aspx</a></p>
+</div>
+</div>
+<div class="section" id="id143">
+<h3>Методы</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="getkeystate">
+<h4>ПолучитьСостояниеКлавиши / GetKeyState</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьСостояниеКлавиши(ВиртКод, [ВклРежим])</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>ВиртКод - тип: Число. <a class="reference internal" href="#id142">Код виртуальной клавиши</a>.</li>
+<li>ВклРежим - тип: Число. Выходной параметр. Необязательный. Имеет смысл для переключаемых клавиш таких как CAPS LOCK. 1 - клавиша включена (toggled), 0 - клавиша выключена (untoggled).</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Возвращает:</strong> тип: Число. Текущее состояние клавиши: 1-нажата, 0-не нажата.</p>
+<p><strong>Описание:</strong> Определяет состояние любой клавиши.</p>
+</blockquote>
+</div>
+<div class="section" id="getkeynametext">
+<h4>ПолучитьИмяКлавиши / GetKeyNameText</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> ПолучитьИмяКлавиши(Данные, [Режим])</p>
+<dl class="docutils">
+<dt><strong>Параметры:</strong></dt>
+<dd><ul class="first last simple">
+<li>Данные - тип: Число. Значение, в двоичном коде которого: биты 16-23 - сканкод, 24-флаг расширенной клавиатуры. В качестве значения можно передавать параметр &lt;Данные&gt; клавиатурных событий таких как ПриНажатииКлавиши().</li>
+<li>Режим - тип: Число. 1 - включает режим безразличия к расположению клавиши на клавиатуре. Например левый или правый CTRL и SHIFT. Необязательный. Значение по-умолчанию 0.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Возвращает:</strong> тип: Строка. Представление имени клавиши.</p>
+<p><strong>Описание:</strong> Формирует представление имени клавиши.</p>
+<p>Представление имени может зависеть от текущей локали.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id144">
+<h2>Шрифт</h2>
+<p>Объект для определения шрифта текста.</p>
+<div class="section" id="id145">
+<h3>Свойства</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="type">
+<h4>Вид / Type</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Вид шпифта.</p>
+<blockquote>
+<ul class="simple">
+<li>0 - специальное значение объекта типа шрифт, которое означает, что шрифт выбирается автоматически;</li>
+<li>1 - абсолютный, шрифт задан именем шрифта, размером и прочими признаками;</li>
+<li>2 - OEMFixedFont;</li>
+<li>3 - ANSIFixedFont;</li>
+<li>4 - ANSIVariableFont;</li>
+<li>5 - SystemFont;</li>
+<li>6 - DefaultGUIFont.</li>
+</ul>
+</blockquote>
+</blockquote>
+</div>
+<div class="section" id="id146">
+<h4>Имя / Name</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Строка.</p>
+<p><strong>Описание:</strong> Имя шрифта. (Имя гарнитуры)</p>
+</blockquote>
+</div>
+<div class="section" id="size">
+<h4>Размер / Size</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Размер шрифта в пунктах.</p>
+</blockquote>
+</div>
+<div class="section" id="bold">
+<h4>Жирный / Bold</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак жирности шрифта. 0 - нормальный; 1 - жирный.</p>
+</blockquote>
+</div>
+<div class="section" id="italic">
+<h4>Наклонный / Italic</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак наклона шрифта. 0 - нормальный; 1 - наклонный.</p>
+</blockquote>
+</div>
+<div class="section" id="underline">
+<h4>Подчеркивание / Underline</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак подчеркивания шрифта. 0 - нормальный; 1 - подчеркнутый.</p>
+</blockquote>
+</div>
+<div class="section" id="strikeout">
+<h4>Зачеркивание / StrikeOut</h4>
+<blockquote>
+<p><strong>Доступ:</strong> только чтение.</p>
+<p><strong>Тип:</strong> Число.</p>
+<p><strong>Описание:</strong> Признак зачеркивания шрифта. 0 - нормальный; 1 - зачеркнутый.</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id147">
+<h3>Конструкторы (Создание через фабрику объектов)</h3>
+<!-- <chminfo split="0" splitchild="1">
+        <insert nodes="//common/propsmethods/*"/>
+</chminfo> -->
+<div class="section" id="id148">
+<h4>Основной</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Шрифт(Имя, Размер, Жирный, Наклонный, Подчеркивание, Зачеркивание)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Имя - тип Строка. Имя шрифта;</li>
+<li>Размер - тип: Число. Размер в пунктах;</li>
+<li>Жирный - тип: Число. Признак жирности шрифта. 0 - нормальный; 1 - жирный;</li>
+<li>Наклонный - тип: Число. Признак наклона шрифта. 0 - нормальный; 1 - наклонный;</li>
+<li>Подчеркивание - тип: Число. Признак подчеркивания шрифта. 0 - нормальный; 1 - подчеркнутый;</li>
+<li>Зачеркивание - тип: Число. Признак зачеркивания шрифта. 0 - нормальный; 1 - зачеркнутый.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Создается абсолютный шрифт.</p>
+</blockquote>
+</div>
+<div class="section" id="id149">
+<h4>Системный</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Шрифт(Вид)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Вид - тип Число. Вид шрифта. Допустимо указывать любой, кроме значения &quot;абсолютный&quot;. Необязательный, по умолчанию 0.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Создается системный шрифт.</p>
+</blockquote>
+</div>
+<div class="section" id="id150">
+<h4>На основании другого шрифта</h4>
+<blockquote>
+<p><strong>Синтаксис:</strong> Шрифт(Шрифт, Имя, Размер, Жирный, Наклонный, Подчеркивание, Зачеркивание)</p>
+<p><strong>Параметры:</strong></p>
+<blockquote>
+<ul class="simple">
+<li>Шрифт - тип Шрифт. Шрифт, на основании которого будет построен новый объект типа шрифт;</li>
+<li>Имя - тип Строка. Имя шрифта;</li>
+<li>Размер - тип: Число. Размер в пунктах;</li>
+<li>Жирный - тип: Число. Признак жирности шрифта. 0 - нормальный; 1 - жирный;</li>
+<li>Наклонный - тип: Число. Признак наклона шрифта. 0 - нормальный; 1 - наклонный;</li>
+<li>Подчеркивание - тип: Число. Признак подчеркивания шрифта. 0 - нормальный; 1 - подчеркнутый;</li>
+<li>Зачеркивание - тип: Число. Признак зачеркивания шрифта. 0 - нормальный; 1 - зачеркнутый.</li>
+</ul>
+</blockquote>
+<p><strong>Описание:</strong> Создается шрифт на основании другого шрифта. Все параметры кроме первого - необязательны, и если
+не указано, то этот показатель шрифта не изменяется.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="id151">
+<h2>ФабрикаОбъектов</h2>
+<p>Специальный объект, представляющий из себя сборник конструкторов встроенных классов. Позволяет снабдить процесс создания
+объектов параметрами. Каждый метод фабрики объектов возвращает объект одноименного типа.</p>
+<p>Описание синтаксиса создания расположено в описании самих объектов.</p>
+<p>Например:</p>
+<pre class="literal-block">
+глФабрика = СоздатьОбъект(&quot;ФабрикаОбъектов&quot;);
+ШрифтАриал10Жирный = глФабрика.Шрифт(&quot;Arial&quot;, 10, 1);
+</pre>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2013-01-30 23:09 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+
+<!-- Mirrored from www.1cpp.ru/docum/icpp/html/TableField.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Mar 2024 08:56:53 GMT -->
+</html>

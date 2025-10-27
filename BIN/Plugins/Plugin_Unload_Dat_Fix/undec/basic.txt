@@ -1,0 +1,4 @@
+?Read@CBufdFile@@UAEIPAXI@Z
+?NextChar@CDB7Stream@@UAEXXZ
+?GetSinceCheckpoint@CDB7Stream@@QBEJXZ
+?Checkpoint@CDB7Stream@@QAEXXZ

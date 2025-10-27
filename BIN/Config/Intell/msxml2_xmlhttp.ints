@@ -1,0 +1,14 @@
+0000 abort()
+0000 getAllResponseHeaders()
+0000 getResponseHeader()
+0000 onreadystatechange
+0000 open(,,,,)
+0000 readyState
+0000 responseBody
+0000 responseStream
+0000 responseText
+0000 responseXML
+0000 send()
+0000 setRequestHeader(,)
+0000 status
+0000 statusText

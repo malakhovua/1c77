@@ -1,0 +1,17 @@
+0000 AddBodyPart()
+0000 BodyParts
+0000 Charset
+0000 ContentClass
+0000 ContentClassName
+0000 ContentMediaType
+0000 ContentTransferEncoding
+0000 DataSource
+0000 Fields
+0000 FileName
+0000 GetDecodedContentStream()
+0000 GetEncodedContentStream()
+0000 GetFieldParameter(,)
+0000 GetInterface()
+0000 GetStream()
+0000 Parent
+0000 SaveToFile()

@@ -1,0 +1,23 @@
+<STYLE TYPE="text/css">
+BODY
+  {
+	color: #000000;
+	font-family: Arial, Verdana, Courier;
+	font-size: 8pt; 
+  }
+
+TABLE
+  { 
+    margin: 10px; /* Отступы вокруг */
+    border-collapse: collapse; /* Отображать только одинарные линии */
+  }
+
+
+TD 
+  {
+	font-family: Arial, Verdana, Courier;
+	font-size: 8pt; 
+	padding:2px; /* Поля вокруг текста */
+	border:.5pt solid gray; /* Стиль рамки */
+  }
+</STYLE>

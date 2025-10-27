@@ -1,0 +1,100 @@
+<html>
+	<head>
+	<title>Настройка скрипта &quot;Авторские комментарии&quot;</title>
+<style type="text/css">
+body {
+	font-family			: sans-serif;
+	font-size			: small;
+	background-color	: #CCCCCC;
+}
+</style>
+<script language="JScript">
+var handlers
+function SetHandlers(h) { handlers = h; handlers.init(settings) }
+function setCheckboxValue(c) { settings[c.name.replace(/_$/,'')].value = c.checked?"1":""; }
+</script>
+	
+</head>
+<body onUnload="handlers.free()" >
+<form name="settings">
+<center>
+	<table width="750 pt" border="1 pt">
+		<tr><td>
+
+<table width="100%" height="100%">
+	<tr><td><b>Параметры сигнатуры</b></td></tr>
+	<tr align="top"><td>
+	<table width="100%">
+		<tr><td colspan="2">Автор:</td></tr>
+		<tr><td>&nbsp;</td><td><input type="radio" name="rbAuthorType" value="1" onClick="authorName.value='%1CUser%';authorName.disabled=true"/>Имя пользователя 1С</td></tr>
+		<tr><td>&nbsp;</td><td><input type="radio" name="rbAuthorType" value="2" onClick="authorName.value='%OSUser%';authorName.disabled=true"/>Имя пользователя Windows</td></tr>
+		<tr><td>&nbsp;</td><td><input type="radio" name="rbAuthorType" value="3" onClick="authorName.disabled=false" checked/>Строкой:&nbsp;<input name="authorName" type="text" value=""/></td></tr>
+	</table>
+	</td></tr>
+	<tr><td>
+	<table>
+		<tr><td>Организация:&nbsp;</td><td><input name="companyName" type="text" value=""/></td></tr>
+	</table>
+	</td></tr>
+	<tr><td>
+	<table>
+		<tr><td>Формат даты:&nbsp;</td><td><input name="dateFormat" type="text" value="yyyy/mm/dd"/></td></tr>		
+	</table>
+	<table width="100%">
+		<tr><td>Формат сигнатуры:&nbsp;</td></tr>		
+		<tr><td align="center"><input name="signature" type="text" value="%Author%@%Company%, %Date%" size="50"/></td></tr>
+	</table>	
+	</td></tr>
+	</table>			
+			</td>
+			<td width="50%" align="top">
+	
+<table width="100%" >
+	<tr><td><b>Формат комментариев</b></td></tr>
+	<tr><td>
+	<table width="100%">
+		<tr><td colspan="2">Открывающие блок маркеры:</td></tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;Фрагмент добавлен:</td><td><input name="markerAdded" type="text" value="+"/></td></tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;Фрагмент изменен:</td><td><input name="markerChanged" type="text" value="*"/></td></tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;Фрагмент удален:</td><td><input name="markerDeleted" type="text" value="-"/></td></tr>
+	</table>
+	</td></tr>
+	<tr><td>
+	<table>
+		<tr><td>Закрывающий маркер блока:&nbsp;</td><td><input name="markerEndBlock" type="text" value="/"/></td></tr>
+	</table>
+	</td></tr>
+	<tr><td>
+	<table width="100%">
+		<tr><td colspan="2">Однострочный маркер:</td></tr>
+		<tr><td>&nbsp;</td><td><input name="rbOneliner" type="radio" value="1" onClick="oneliner.disabled=true" checked/>Использовать маркер блока</td></tr>
+		<tr><td>&nbsp;</td><td><input name="rbOneliner" type="radio" value="2" onClick="oneliner.disabled=false"/>Другой:&nbsp;<input name="oneliner" type="text" value=""/></td></tr>
+	</table>
+	</td></tr>
+	<tr><td>Разделитель кода при замене:</td></tr>
+	<tr><td align="center"><input name="splitter" type="text" value=" -------------" size="40"/></td></tr>
+</table>		
+				
+			</td>
+		</tr>
+	</table><br/>
+	<input name="doNotCopyOldCode"	type="hidden" value="" />
+	<input name="doNotSignAtEnd"	type="hidden" value="" />
+	<input name="doNotIndent"		type="hidden" value="" />
+	<table width="750 pt">
+		<tr><td><b>Дополнительные настройки</b></td></tr>
+		<tr><td><input name="doNotCopyOldCode_" type="checkbox" onClick="splitter.disabled=this.checked;setCheckboxValue(this);"/>Не оставлять копию кода при замене/изменении </td></tr>
+		<tr><td><input name="doNotSignAtEnd_" type="checkbox" onClick="setCheckboxValue(this);"/>Не добавлять сигнатуру в закрывающий маркер блока</td></tr>
+		<tr><td><input name="doNotIndent_" type="checkbox" onClick="setCheckboxValue(this);"/>Не использовать отступ при установке маркера &quot;Изменен&quot;(по умолчанию отступ как у первой строки в блоке)</td></tr>
+	</table>	
+	<br/>
+	<input type="button" name="btOk" value="Сохранить настройки" onClick="handlers.ok(settings)" />&nbsp;
+	<input type="button" name="btCancel" value="Отмена" onClick="handlers.cancel()" />	
+</form>	
+</center>
+
+<a href="http://1c.proclub.ru/modules/mydownloads/personal.php?cid=1004&lid=4915" target="_blank" title="Домашняя страница скрипта на Проклабе">Посетить домашнюю страницу скрипта на Проклабе</a><br/>
+<a href="mailto:kuntashov@yandex.ru?subject=OC_AuthorJS:" title="Александр Кунташов kuntashov@yandex.ru">Написать письмо автору скрипта</a></br>
+<a href="http://openconf.itland.ru" target="_blank" title="Домашняя страница проекта &quot;Открытый Конфигуратор&quot;">Проект &quot;Открытый Конфигуратор&quot;</a><br/>
+</body>
+</html>
